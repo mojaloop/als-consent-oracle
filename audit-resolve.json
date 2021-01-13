@@ -1,0 +1,16 @@
+{
+  "decisions": {
+    "1500|@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1610408308920,
+      "expiresAt": 1613000302340
+    },
+    "1594|@mojaloop/central-services-shared>axios": {
+      "decision": "ignore",
+      "madeAt": 1610408313698,
+      "expiresAt": 1613000302340
+    }
+  },
+  "rules": {},
+  "version": 1
+}
