@@ -1,0 +1,47 @@
+version: "3.7"
+
+networks:
+  oracle-mojaloop-net:
+    name: oracle-mojaloop-net
+
+services:
+  als-consent-oracle:
+    build:
+      context: .
+    container_name: als-consent-oracle
+    command: sh -c "/opt/als-consent-oracle/wait4/wait4.js als-consent-oracle && node src/index.js server"
+    ports:
+      - "3000:3000"
+    networks:
+      - oracle-mojaloop-net
+    depends_on:
+      - oracle-mysql
+    volumes:
+      - ./config/default.json:/opt/als-consent-oracle/config/default.json
+      - ./docker/wait4:/opt/als-consent-oracle/wait4
+    healthcheck:
+      test: ["CMD", "sh", "-c" ,"apk --no-cache add curl", ";", "curl", "http://localhost:3000/health"]
+      timeout: 20s
+      retries: 10
+      interval: 30s
+
+  oracle-mysql:
+    image: mysql/mysql-server
+    container_name: oracle-mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/database/testing.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_USER=${DBUSER:-consent-oracle-db}
+      - MYSQL_PASSWORD=${DBPASS:-password}
+      - MYSQL_DATABASE=${DBUSER:-consent-oracle-db}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    networks:
+      - oracle-mojaloop-net
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "mysql-cl"]
+      timeout: 20s
+      retries: 10
+      start_period: 40s
+      interval: 30s

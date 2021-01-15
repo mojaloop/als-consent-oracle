@@ -10,17 +10,14 @@
 'use strict'
 
 const { Server } = require('@hapi/hapi')
-const Logger = require('@mojaloop/central-services-logger')
-const HeaderValidation = require('@mojaloop/central-services-shared').Util.Hapi.FSPIOPHeaderValidation
 const OpenapiBackend = require('@mojaloop/central-services-shared').Util.OpenapiBackend
 const ErrorHandler = require('@mojaloop/central-services-error-handling')
 const Path = require('path')
-const Config = require('./lib/config.js')
 
 const Handlers = require('./handlers')
 const Plugins = require('./plugins')
 
-const createServer = async function (port) {
+module.exports.createServer = async function (port, oracleDb) {
   try {
     const server = await new Server({
       port,
@@ -32,14 +29,6 @@ const createServer = async function (port) {
     })
     const api = await OpenapiBackend.initialise(Path.resolve(__dirname, './interface/openapi.yaml'), Handlers)
     await Plugins.registerPlugins(server, api)
-    await server.register([
-      {
-        plugin: HeaderValidation
-      },
-      {
-        plugin: require('./lib/logger-plugin')
-      }
-    ])
 
     server.ext([
       {
@@ -70,6 +59,16 @@ const createServer = async function (port) {
       }
     ])
 
+    server.app.db = oracleDb
+
+    // add a health-check endpoint on /
+    server.app.healthCheck = async () => {
+      // Check database connectivity is ok
+      if (!(await server.app.db.isConnected())) {
+        return { message: 'Database not connected' }
+      }
+    }
+
     // use as a catch-all handler
     server.route({
       method: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -94,14 +93,4 @@ const createServer = async function (port) {
   } catch (e) {
     console.error(e)
   }
-}
-
-const initialize = async (port = Config.PORT) => {
-  const server = await createServer(port)
-  Logger.info(`Server running on ${server.info.host}:${server.info.port}`)
-  return server
-}
-
-module.exports = {
-  initialize
 }

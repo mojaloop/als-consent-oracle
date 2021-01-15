@@ -8,33 +8,24 @@
  *       Lewis Daly - lewisd@crosslaketech.com                            *
  **************************************************************************/
 'use strict'
-
-const Sinon = require('sinon')
-
 const { registerPlugins } = require('../../src/plugins')
+const OpenapiBackend = require('@mojaloop/central-services-shared').Util.OpenapiBackend
+const Path = require('path')
+const Handlers = require('../../src/handlers')
 
-let sandbox
 describe('plugins', () => {
-  beforeAll(() => {
-    sandbox = Sinon.createSandbox()
-  })
-
-  afterEach(() => {
-    sandbox.restore()
+  beforeEach(() => {
+    jest.clearAllMocks()
   })
 
   describe('registerPlugins', () => {
     it('registers the plugins', async () => {
-      // Arrange
-      const serverStub = {
-        register: sandbox.stub()
+      const serverMock = {
+        register: jest.fn()
       }
-
-      // Act
-      await registerPlugins(serverStub)
-
-      // Assert
-      expect(serverStub.register.callCount).toBe(5)
+      const api = await OpenapiBackend.initialise(Path.resolve(__dirname, '../../src/interface/openapi.yaml'), Handlers)
+      await registerPlugins(serverMock, api)
+      expect(serverMock.register.mock.calls.length).toBe(5)
     })
   })
 })

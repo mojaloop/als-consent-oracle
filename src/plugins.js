@@ -16,6 +16,10 @@ const Blipp = require('blipp')
 const ErrorHandling = require('@mojaloop/central-services-error-handling')
 const EventPlugin = require('@mojaloop/central-services-shared').Util.Hapi.HapiEventPlugin
 const OpenapiBackendValidator = require('@mojaloop/central-services-shared').Util.Hapi.OpenapiBackendValidator
+const LoggerPlugin = require('./lib/logger-plugin')
+const HeaderValidation = require('@mojaloop/central-services-shared').Util.Hapi.FSPIOPHeaderValidation
+
+// TODO: Double check which plugins the oracle needs
 const registerPlugins = async (server, openAPIBackend) => {
   await server.register(OpenapiBackendValidator)
 
@@ -52,7 +56,15 @@ const registerPlugins = async (server, openAPIBackend) => {
     }
   })
 
-  await server.register([Inert, Vision, Blipp, ErrorHandling, EventPlugin])
+  await server.register([
+    Inert,
+    Vision,
+    Blipp,
+    ErrorHandling,
+    EventPlugin,
+    LoggerPlugin,
+    HeaderValidation
+  ])
 }
 
 module.exports = {
