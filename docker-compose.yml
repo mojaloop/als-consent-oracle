@@ -1,8 +1,8 @@
 version: "3.7"
 
 networks:
-  oracle-mojaloop-net:
-    name: oracle-mojaloop-net
+  mojaloop-net:
+    name: mojaloop-net
 
 services:
   als-consent-oracle:
@@ -13,7 +13,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - oracle-mojaloop-net
+      - mojaloop-net
     depends_on:
       - oracle-mysql
     volumes:
@@ -38,7 +38,7 @@ services:
       - MYSQL_DATABASE=${DBUSER:-consent-oracle-db}
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     networks:
-      - oracle-mojaloop-net
+      - mojaloop-net
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "mysql-cl"]
       timeout: 20s
