@@ -12,10 +12,6 @@
 jest.mock('../../src/db')
 
 describe('Index Tests', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   it('should start the server', () => {
     const mockCreateServer = jest.fn()
     jest.mock('../../src/server.js', () => ({ createServer: mockCreateServer }))

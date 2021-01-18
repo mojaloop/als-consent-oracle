@@ -14,10 +14,6 @@ const Path = require('path')
 const Handlers = require('../../src/handlers')
 
 describe('plugins', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   describe('registerPlugins', () => {
     it('registers the plugins', async () => {
       const serverMock = {

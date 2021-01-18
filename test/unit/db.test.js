@@ -22,10 +22,6 @@ const fakeConfig = {
 }
 
 describe('Database tests', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   test('Constructor constructs client', async () => {
     const client = jest.fn()
     const clientConstructor = jest.fn().mockImplementation(() => {

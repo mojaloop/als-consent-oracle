@@ -67,9 +67,6 @@ jest.mock('@hapi/hapi', () => ({
 }))
 
 describe('server', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
   describe('initialize', () => {
     it('initializes the server', async () => {
       const client = jest.fn()
