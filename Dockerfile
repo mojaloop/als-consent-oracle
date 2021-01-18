@@ -9,7 +9,7 @@ RUN apk add --no-cache -t build-dependencies git make gcc g++ python libtool aut
     && npm install -g node-gyp
 
 COPY ./package.json ./package-lock.json /opt/als-consent-oracle/
-RUN npm install --production
+RUN npm ci --only=production
 
 COPY ./src /opt/als-consent-oracle/src
 
@@ -35,7 +35,6 @@ RUN adduser -D als-oracle-user
 USER als-oracle-user
 
 COPY --chown=als-oracle-user --from=builder /opt/als-consent-oracle .
-RUN npm prune --production
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]
