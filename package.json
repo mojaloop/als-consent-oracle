@@ -1,14 +1,14 @@
 {
-    "name": "als-oracle-template",
+    "name": "als-consent-oracle",
     "description": "",
     "version": "1.0.0",
-    "author": "Valentin Genev <vgenev@gmail.com>",
+    "author": "Kevin Leyow <kevin.leyow@modusbox.com>",
     "contributors": [],
     "repository": {
         "type": "git",
-        "url": "git://github.com/mojaloop/als-oracle-template.git"
+        "url": "git://github.com/mojaloop/als-consent-oracle.git"
     },
-    "bugs": "http://github.com/mojaloop/als-oracle-template/issues",
+    "bugs": "http://github.com/mojaloop/als-consent-oracle/issues",
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
     },
