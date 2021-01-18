@@ -64,8 +64,8 @@ module.exports.createServer = async function (port, oracleDb) {
     // add a health-check endpoint on /
     server.app.healthCheck = async () => {
       // Check database connectivity is ok
-      if (!(await server.app.db.isConnected())) {
-        return { message: 'Database not connected' }
+      if (await server.app.db.isConnected()) {
+        return true
       }
     }
 

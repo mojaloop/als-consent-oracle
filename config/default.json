@@ -2,7 +2,7 @@
   "SERVER_PORT": 3000,
   "DATABASE": {
     "DIALECT": "mysql2",
-    "HOST": "localhost",
+    "HOST": "oracle-mysql",
     "PORT": 3306,
     "USER": "consent-oracle-db",
     "PASSWORD": "password",

@@ -17,11 +17,11 @@ const initialize = async () => {
   if (server) {
     try {
       // Perform initial health check
-      const unhealthy = await server.app.healthCheck()
-      if (unhealthy) {
-        throw new Error(unhealthy.message)
-      } else {
+      const healthy = await server.app.healthCheck()
+      if (healthy) {
         server.log('info', 'Database connected')
+      } else {
+        throw new Error(healthy.message)
       }
 
       server.log('info', `Server running on ${server.info.host}:${server.info.port}`)
