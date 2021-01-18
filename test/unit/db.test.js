@@ -1,25 +1,5 @@
 const { OracleDatabase } = require('../../src/db')
-
-const fakeConfig = {
-  client: 'mysql2',
-  connection: {
-    host: 'iouwerioj',
-    database: 'dfjdsak',
-    user: '90knvbzl',
-    port: 'fusiaodvj'
-  },
-  pool: {
-    min: 10,
-    max: 10,
-    acquireTimeoutMillis: 30000,
-    createTimeoutMillis: 30000,
-    destroyTimeoutMillis: 5000,
-    idleTimeoutMillis: 30000,
-    reapIntervalMillis: 1000,
-    createRetryIntervalMillis: 200
-  },
-  debug: false
-}
+const Config = require('../../src/config')
 
 describe('Database tests', () => {
   test('Constructor constructs client', async () => {
@@ -27,11 +7,11 @@ describe('Database tests', () => {
     const clientConstructor = jest.fn().mockImplementation(() => {
       return client
     })
-    const db = new OracleDatabase(fakeConfig, clientConstructor)
+    const db = new OracleDatabase(Config.DATABASE, clientConstructor)
     await db.isConnected()
     expect(clientConstructor).toBeCalled()
     expect(clientConstructor).toBeCalledWith(
-      { ...fakeConfig }
+      { ...Config.DATABASE }
     )
   })
 
@@ -40,7 +20,7 @@ describe('Database tests', () => {
     const clientConstructor = jest.fn().mockImplementation(() => {
       return client
     })
-    const db = new OracleDatabase(fakeConfig, clientConstructor)
+    const db = new OracleDatabase(Config.DATABASE, clientConstructor)
     client.raw = jest.fn()
     client.raw.mockReturnValueOnce(['2'])
     await db.isConnected()

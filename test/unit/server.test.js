@@ -10,27 +10,8 @@
 'use strict'
 const { OracleDatabase } = require('../../src/db')
 const { createServer } = require('../../src/server')
+const Config = require('../../src/config')
 
-const fakeConfig = {
-  client: 'mysql2',
-  connection: {
-    host: 'iouwerioj',
-    database: 'dfjdsak',
-    user: '90knvbzl',
-    port: 'fusiaodvj'
-  },
-  pool: {
-    min: 10,
-    max: 10,
-    acquireTimeoutMillis: 30000,
-    createTimeoutMillis: 30000,
-    destroyTimeoutMillis: 5000,
-    idleTimeoutMillis: 30000,
-    reapIntervalMillis: 1000,
-    createRetryIntervalMillis: 200
-  },
-  debug: false
-}
 jest.mock('@mojaloop/central-services-logger', () => {
   return {
     info: jest.fn(), // suppress info output
@@ -73,7 +54,7 @@ describe('server', () => {
       const clientConstructor = jest.fn().mockImplementation(() => {
         return client
       })
-      const db = new OracleDatabase(fakeConfig, clientConstructor)
+      const db = new OracleDatabase(Config.DATABASE, clientConstructor)
       await createServer(3000, db)
 
       expect(mockStart).toHaveBeenCalled()
