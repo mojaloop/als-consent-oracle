@@ -6,5 +6,5 @@ const Db: Knex = Knex(Config.test)
 const consentDB: ConsentDB = new ConsentDB(Db)
 
 export {
-  consentDB,
+  consentDB
 }
