@@ -8,8 +8,9 @@ services:
   als-consent-oracle:
     build:
       context: .
+      cache_from:
+        - mojaloop/als-consent-oracle:local
     container_name: als-consent-oracle
-    command: sh -c "/opt/als-consent-oracle/wait4/wait4.js als-consent-oracle && node src/index.js server"
     ports:
       - "3000:3000"
     networks:
@@ -17,8 +18,8 @@ services:
     depends_on:
       - oracle-mysql
     volumes:
-      - ./config/default.json:/opt/als-consent-oracle/config/default.json
-      - ./docker/wait4:/opt/als-consent-oracle/wait4
+      - ./scripts/wait4.js:/opt/als-consent-oracle/scripts/wait4.js
+      - ./scripts/wait4.config.js:/opt/als-consent-oracle/scripts/wait4.config.js
     healthcheck:
       test: ["CMD", "sh", "-c" ,"apk --no-cache add curl", ";", "curl", "http://localhost:3000/health"]
       timeout: 20s
