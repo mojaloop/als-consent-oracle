@@ -1,5 +1,4 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
-import Boom from '@hapi/boom'
 import Participants from '~/server/handlers/participants'
 import { postParticipantsRequest, h } from '../../../data/data';
 
@@ -29,6 +28,6 @@ describe('server/handlers/participants', (): void => {
         req,
         h as ResponseToolkit
       )
-      expect(response.message).toBe(Boom.notImplemented().message)
+      expect(response.statusCode).toBe(201)
   })
 })

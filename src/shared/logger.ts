@@ -21,25 +21,29 @@
  their names indented and be marked with a '-'. Email address can be added
  optionally within square brackets <email>.
  * Gates Foundation
-
  * Paweł Marzec <pawel.marzec@modusbox.com>
-
  --------------
  ******/
 
-import logger from '@mojaloop/central-services-logger'
-import inspect from './inspect'
 import { Request, ResponseObject } from '@hapi/hapi'
+import inspect from './inspect'
+import { Logger as SDKLogger } from '@mojaloop/sdk-standard-components'
 
-interface ResponseLogged extends ResponseObject {
+// default SDKLogger instance
+export const logger = new SDKLogger.Logger()
+export function createLogger (params?: SDKLogger.LoggerConstructorParams): SDKLogger.Logger {
+  return new SDKLogger.Logger(params)
+}
+
+export interface ResponseLogged extends ResponseObject {
   source: string;
   statusCode: number;
 }
-interface RequestLogged extends Request {
+export interface RequestLogged extends Request {
   response: ResponseLogged;
 }
 
-function logResponse (request: RequestLogged): void {
+export function logResponse (request: RequestLogged): void {
   if (request && request.response) {
     let response
     try {
@@ -48,15 +52,9 @@ function logResponse (request: RequestLogged): void {
       response = inspect(request.response.source)
     }
     if (!response) {
-      logger.info(`AS-Trace - Response: ${request.response}`)
+      logger.info(`CO-Trace - Response: ${request.response}`)
     } else {
-      logger.info(`AS-Trace - Response: ${response} Status: ${request.response.statusCode}`)
+      logger.info(`CO-Trace - Response: ${response} Status: ${request.response.statusCode}`)
     }
   }
-}
-
-export {
-  logResponse,
-  RequestLogged,
-  ResponseLogged
 }

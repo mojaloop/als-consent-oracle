@@ -1,5 +1,4 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
-import Boom from '@hapi/boom'
 import ParticipantsTypeId from '~/server/handlers/participants/{Type}/{ID}'
 import {
   getParticipantsTypeIDRequest,
@@ -35,7 +34,7 @@ describe('server/handlers/participants/{Type}/{ID}', (): void => {
         req,
         h as ResponseToolkit
       )
-      expect(response.message).toBe(Boom.notImplemented().message)
+      expect(response.statusCode).toBe(200)
   })
 
 
@@ -53,7 +52,7 @@ describe('server/handlers/participants/{Type}/{ID}', (): void => {
         req,
         h as ResponseToolkit
       )
-      expect(response.message).toBe(Boom.notImplemented().message)
+      expect(response.statusCode).toBe(201)
   })
 
 
@@ -71,7 +70,7 @@ describe('server/handlers/participants/{Type}/{ID}', (): void => {
         req,
         h as ResponseToolkit
       )
-      expect(response.message).toBe(Boom.notImplemented().message)
+      expect(response.statusCode).toBe(200)
   })
 
 
@@ -89,6 +88,6 @@ describe('server/handlers/participants/{Type}/{ID}', (): void => {
         req,
         h as ResponseToolkit
       )
-      expect(response.message).toBe(Boom.notImplemented().message)
+      expect(response.statusCode).toBe(204)
   })
 })

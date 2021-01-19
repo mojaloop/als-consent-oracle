@@ -335,7 +335,178 @@ paths:
                   description: FSP identifier.
                   example: 1234
                 currency:
-                  $ref: '#/paths/~1participants/post/requestBody/content/application~1json/schema/properties/currency'
+                  title: Currency
+                  description: |
+                    The currency codes defined in
+                    [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
+                    as three-letter alphabetic codes are used as the standard naming representation for currencies.
+                  type: string
+                  minLength: 3
+                  maxLength: 3
+                  enum:
+                    - AED
+                    - AFN
+                    - ALL
+                    - AMD
+                    - ANG
+                    - AOA
+                    - ARS
+                    - AUD
+                    - AWG
+                    - AZN
+                    - BAM
+                    - BBD
+                    - BDT
+                    - BGN
+                    - BHD
+                    - BIF
+                    - BMD
+                    - BND
+                    - BOB
+                    - BRL
+                    - BSD
+                    - BTN
+                    - BWP
+                    - BYN
+                    - BZD
+                    - CAD
+                    - CDF
+                    - CHF
+                    - CLP
+                    - CNY
+                    - COP
+                    - CRC
+                    - CUC
+                    - CUP
+                    - CVE
+                    - CZK
+                    - DJF
+                    - DKK
+                    - DOP
+                    - DZD
+                    - EGP
+                    - ERN
+                    - ETB
+                    - EUR
+                    - FJD
+                    - FKP
+                    - GBP
+                    - GEL
+                    - GGP
+                    - GHS
+                    - GIP
+                    - GMD
+                    - GNF
+                    - GTQ
+                    - GYD
+                    - HKD
+                    - HNL
+                    - HRK
+                    - HTG
+                    - HUF
+                    - IDR
+                    - ILS
+                    - IMP
+                    - INR
+                    - IQD
+                    - IRR
+                    - ISK
+                    - JEP
+                    - JMD
+                    - JOD
+                    - JPY
+                    - KES
+                    - KGS
+                    - KHR
+                    - KMF
+                    - KPW
+                    - KRW
+                    - KWD
+                    - KYD
+                    - KZT
+                    - LAK
+                    - LBP
+                    - LKR
+                    - LRD
+                    - LSL
+                    - LYD
+                    - MAD
+                    - MDL
+                    - MGA
+                    - MKD
+                    - MMK
+                    - MNT
+                    - MOP
+                    - MRO
+                    - MUR
+                    - MVR
+                    - MWK
+                    - MXN
+                    - MYR
+                    - MZN
+                    - NAD
+                    - NGN
+                    - NIO
+                    - NOK
+                    - NPR
+                    - NZD
+                    - OMR
+                    - PAB
+                    - PEN
+                    - PGK
+                    - PHP
+                    - PKR
+                    - PLN
+                    - PYG
+                    - QAR
+                    - RON
+                    - RSD
+                    - RUB
+                    - RWF
+                    - SAR
+                    - SBD
+                    - SCR
+                    - SDG
+                    - SEK
+                    - SGD
+                    - SHP
+                    - SLL
+                    - SOS
+                    - SPL
+                    - SRD
+                    - STD
+                    - SVC
+                    - SYP
+                    - SZL
+                    - THB
+                    - TJS
+                    - TMT
+                    - TND
+                    - TOP
+                    - TRY
+                    - TTD
+                    - TVD
+                    - TWD
+                    - TZS
+                    - UAH
+                    - UGX
+                    - USD
+                    - UYU
+                    - UZS
+                    - VEF
+                    - VND
+                    - VUV
+                    - WST
+                    - XAF
+                    - XCD
+                    - XDR
+                    - XOF
+                    - XPF
+                    - YER
+                    - ZAR
+                    - ZMW
+                    - ZWD
+                  example: USD
                 extensionList:
                   title: ExtensionList
                   type: object
@@ -585,7 +756,12 @@ paths:
                           - ACCOUNT_ID
                           - IBAN
                           - ALIAS
+                          - CONSENT
+                          - THIRD_PARTY_LINK
                         description: |
+                          This is a variant based on FSPIOP `PartyIdType` specification.
+                          Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+
                           Below are the allowed values for the enumeration.
                           - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                           Number, that is, the phone number) is used as reference to a participant.
@@ -621,6 +797,8 @@ paths:
                           The ALIAS identifier can be in any format. It is also possible to use the
                           PartySubIdOrType element for identifying an account under an Alias defined
                           by the PartyIdentifier.
+                          - CONSENT - TBD
+                          - THIRD_PARTY_LINK - TBD
                         example: PERSONAL_ID
                       partyIdentifier:
                         title: PartyIdentifier
@@ -639,9 +817,46 @@ paths:
                           PartyIdType, normally a PersonalIdentifierType.
                         example: DRIVING_LICENSE
                       fspId:
-                        $ref: '#/paths/~1participants~1%7BType%7D~1%7BID%7D/post/requestBody/content/application~1json/schema/properties/fspId'
+                        title: FspId
+                        type: string
+                        minLength: 1
+                        maxLength: 32
+                        description: FSP identifier.
+                        example: 1234
                       extensionList:
-                        $ref: '#/paths/~1participants~1%7BType%7D~1%7BID%7D/post/requestBody/content/application~1json/schema/properties/extensionList'
+                        title: ExtensionList
+                        type: object
+                        description: |
+                          Data model for the complex type ExtensionList.
+                          An optional list of extensions, specific to deployment.
+                        properties:
+                          extension:
+                            type: array
+                            items:
+                              title: Extension
+                              type: object
+                              description: Data model for the complex type Extension.
+                              properties:
+                                key:
+                                  title: ExtensionKey
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 32
+                                  description: Extension key.
+                                value:
+                                  title: ExtensionValue
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 128
+                                  description: Extension value.
+                              required:
+                                - key
+                                - value
+                            minItems: 1
+                            maxItems: 16
+                            description: Number of Extension elements.
+                        required:
+                          - extension
                     required:
                       - partyIdType
                       - partyIdentifier

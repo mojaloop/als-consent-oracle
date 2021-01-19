@@ -1,9 +1,12 @@
 
-import { Request, ResponseToolkit } from '@hapi/hapi'
-import Boom from '@hapi/boom'
+import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi';
+import { Context } from '~/server/plugins';
 
-export function post (_context: any, _request: Request, _h: ResponseToolkit): any {
-  return Boom.notImplemented()
+export async function post (
+  _context: Context,
+  _request: Request,
+  h: ResponseToolkit): Promise<ResponseObject> {
+  return h.response().code(201)
 }
 
 export default {

@@ -1,21 +1,32 @@
-import { Request, ResponseToolkit } from '@hapi/hapi'
-import Boom from '@hapi/boom'
+import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi';
+import { Context } from '~/server/plugins';
 
-function get (_context: any, _request: Request, _h: ResponseToolkit): any {
-  return Boom.notImplemented()
+export async function get (
+  _context: Context,
+  _request: Request,
+  h: ResponseToolkit): Promise<ResponseObject> {
+  return h.response().code(200)
 }
 
-
-function post (_context: any, _request: Request, _h: ResponseToolkit): any {
-  return Boom.notImplemented()
+export async function post (
+  _context: Context,
+  _request: Request,
+  h: ResponseToolkit): Promise<ResponseObject> {
+  return h.response().code(201)
 }
 
-function put (_context: any, _request: Request, _h: ResponseToolkit): any {
-  return Boom.notImplemented()
+export async function put (
+  _context: Context,
+  _request: Request,
+  h: ResponseToolkit): Promise<ResponseObject> {
+  return h.response().code(200)
 }
 
-function del (_context: any, _request: Request, _h: ResponseToolkit): any {
-  return Boom.notImplemented()
+export async function del (
+  _context: Context,
+  _request: Request,
+  h: ResponseToolkit): Promise<ResponseObject> {
+  return h.response().code(204)
 }
 
 export default {

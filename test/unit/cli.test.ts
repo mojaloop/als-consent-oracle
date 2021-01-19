@@ -29,39 +29,17 @@ describe('cli', (): void => {
   it('should use default port & host', async (): Promise<void> => {
     const cli = await import('~/cli')
     expect(cli).toBeDefined()
-    expect(server.run).toHaveBeenCalledWith({
-      PACKAGE: Config.PACKAGE,
-      PORT: Config.PORT,
-      HOST: Config.HOST,
-      DB_ENVIRONMENT: Config.DB_ENVIRONMENT,
-      INSPECT: {
-        DEPTH: 4,
-        SHOW_HIDDEN: false,
-        COLOR: true
-      },
-      DATABASE: {
-        ACQUIRE_TIMEOUT_MILLIS: 30000,
-        CREATE_RETRY_INTERVAL_MILLIS: 200,
-        CREATE_TIMEOUT_MILLIS: 30000,
-        DEBUG: false,
-        DESTROY_TIMEOUT_MILLIS: 5000,
-        DIALECT: 'mysql2',
-        HOST: 'localhost',
-        IDLE_TIMEOUT_MILLIS: 30000,
-        PASSWORD: 'password',
-        POOL_MAX_SIZE: 10,
-        POOL_MIN_SIZE: 10,
-        PORT: 3306,
-        REAP_INTERVAL_MILLIS: 1000,
-        SCHEMA: 'als-consent-oracle-db',
-        USER: 'als-consent-oracle-db'
-      },
-      MIGRATIONS: {
-        DISABLED: false,
-        RUN_DATA_MIGRATIONS: true
-      },
-      ALS_SERVICE_NAME: "als-consent-oracle",
-      _: []
-    })
+    expect(server.run).toHaveBeenCalledWith(
+      expect.objectContaining({
+        ENV: Config.ENV,
+        PORT: Config.PORT,
+        HOST: Config.HOST,
+        INSPECT: {
+          DEPTH: 4,
+          SHOW_HIDDEN: false,
+          COLOR: true
+        }
+      })
+    )
   })
 })

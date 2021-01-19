@@ -24,10 +24,10 @@
  ******/
 
 import { Server } from '@hapi/hapi'
-import Logger from '@mojaloop/central-services-logger'
+import { logger } from '~/shared/logger'
 
 export default async function start (server: Server): Promise<Server> {
   await server.start()
-  Logger.info(`als-consent-oracle is running @ ${server.info.uri}`)
+  logger.info(`als-consent-oracle is running @ ${server.info.uri}`)
   return server
 }

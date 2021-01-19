@@ -1,84 +1,75 @@
-/*****
- License
- --------------
- Copyright © 2020 Mojaloop Foundation
- The Mojaloop files are made available by the Mojaloop Foundation under the
- Apache License, Version 2.0 (the 'License') and you may not use these files
- except in compliance with the License. You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, the Mojaloop
- files are distributed onan 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
- ANY KIND, either express or implied. See the License for the specific language
- governing permissions and limitations under the License.
- Contributors
- --------------
- This is the official list of the Mojaloop project contributors for this file.
- Names of the original copyright holders (individuals or organizations)
- should be listed with a '*' in the first column. People who have
- contributed from an organization can be listed under the organization
- that actually holds the copyright for their contributions (see the
- Gates Foundation organization for an example). Those individuals should have
- their names indented and be marked with a '-'. Email address can be added
- optionally within square brackets <email>.
- * Gates Foundation
- - Name Surname <name.surname@gatesfoundation.com>
+import Convict from 'convict'
+import DBConfig, { DatabaseConfig } from '~/../config/knexfile'
+import PACKAGE from '../../package.json'
 
- - Paweł Marzec <pawel.marzec@modusbox.com>
- - Abhimanyu Kapur <abhi.kapur09@gmail.com>
- --------------
- ******/
-
-import rc from 'rc'
-import parse from 'parse-strings-in-object'
-import Config from '../../config/default.json'
-import Package from '../../package.json'
-export interface ServiceConfig {
-  // package.json
-  PACKAGE: object;
-
-  // ../server.ts
+interface ServiceConfig {
   PORT: number;
   HOST: string;
-
-  // TODO: Comment
-  PARTICIPANT_ID: string;
-
-  // ../lib/config.
-  DB_ENVIRONMENT: string;
-  DATABASE?: {
-    ACQUIRE_TIMEOUT_MILLIS: number;
-    CREATE_RETRY_INTERVAL_MILLIS: number;
-    CREATE_TIMEOUT_MILLIS: number;
-    DEBUG: boolean;
-    DESTROY_TIMEOUT_MILLIS: number;
-    DIALECT: string;
-    HOST: string;
-    IDLE_TIMEOUT_MILLIS: number;
-    PASSWORD: string;
-    POOL_MAX_SIZE: number;
-    POOL_MIN_SIZE: number;
-    PORT: number;
-    REAP_INTERVAL_MILLIS: number;
-    SCHEMA: string;
-    USER: string;
-  };
-
-  MIGRATIONS?: {
-    DISABLED: boolean;
-    RUN_DATA_MIGRATIONS: boolean;
-  };
-
-  // inspect.ts
-  INSPECT?: {
-    DEPTH?: number;
-    SHOW_HIDDEN?: boolean;
-    COLOR?: boolean;
+  DATABASE?: DatabaseConfig;
+  ENV: string;
+  INSPECT: {
+    DEPTH: number;
+    SHOW_HIDDEN: boolean;
+    COLOR: boolean;
   };
 }
 
-const RC = parse(rc('AS', Config)) as ServiceConfig
+const ConvictConfig = Convict<ServiceConfig>({
+  ENV: {
+    doc: 'The environment that the auth-service is running in',
+    format: ['development', 'test', 'production', 'integration'],
+    default: 'production',
+    env: 'NODE_ENV'
+  },
+  HOST: {
+    doc: 'The Hostname/IP address to bind.',
+    format: '*',
+    default: '0.0.0.0',
+    env: 'HOST',
+    arg: 'host'
+  },
+  PORT: {
+    doc: 'The port to bind.',
+    format: 'port',
+    default: 3000,
+    env: 'PORT',
+    arg: 'port'
+  },
+  INSPECT: {
+    DEPTH: {
+      doc: 'Inspection depth',
+      format: 'nat',
+      env: 'INSPECT_DEPTH',
+      default: 4
+    },
+    SHOW_HIDDEN: {
+      doc: 'Show hidden properties',
+      format: 'Boolean',
+      default: false
+    },
+    COLOR: {
+      doc: 'Show colors in output',
+      format: 'Boolean',
+      default: true
+    }
+  }
+})
 
-export default {
-  ...RC,
-  PACKAGE: Package
+// Load and validate general config based on environment variable
+const env = ConvictConfig.get('ENV')
+
+ConvictConfig.loadFile(`${__dirname}/../../config/${env}.json`)
+ConvictConfig.validate({ allowed: 'strict' })
+
+// Extract simplified config from Convict object
+const config: ServiceConfig = ConvictConfig.getProperties()
+
+// Inject DBConfig into shared config
+config.DATABASE = DBConfig
+
+export default config
+export {
+  PACKAGE,
+  ServiceConfig,
+  DatabaseConfig
 }

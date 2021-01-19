@@ -24,10 +24,11 @@
  ******/
 
 import Shared from '@mojaloop/central-services-shared'
-import Config from '../../shared/config'
-import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi';
+import { PACKAGE } from '../../shared/config'
+import { Context } from '../plugins'
+import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi'
 
-const healthCheck = new Shared.HealthCheck.HealthCheck(Config.PACKAGE, [])
+const healthCheck = new Shared.HealthCheck.HealthCheck(PACKAGE, [])
 
 /**
  * Operations on /health
@@ -40,7 +41,7 @@ const healthCheck = new Shared.HealthCheck.HealthCheck(Config.PACKAGE, [])
  * produces: application/json
  * responses: 200, 400, 401, 403, 404, 405, 406, 501, 503
  */
-async function get (_context: any, _request: Request, h: ResponseToolkit): Promise<ResponseObject> {
+async function get (_context: Context, _request: Request, h: ResponseToolkit): Promise<ResponseObject> {
   return h.response(await healthCheck.getHealth()).code(200)
 }
 
