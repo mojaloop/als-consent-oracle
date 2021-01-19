@@ -11,7 +11,59 @@ paths:
         - health
       responses:
         '200':
-          $ref: '#/components/responses/ResponseHealth200'
+          $ref: '#/paths/~1hello/get/responses/200'
+        '400':
+          $ref: '#/paths/~1hello/get/responses/400'
+        '401':
+          $ref: '#/paths/~1hello/get/responses/401'
+        '403':
+          $ref: '#/paths/~1hello/get/responses/403'
+        '404':
+          $ref: '#/paths/~1hello/get/responses/404'
+        '405':
+          $ref: '#/paths/~1hello/get/responses/405'
+        '406':
+          $ref: '#/paths/~1hello/get/responses/406'
+        '501':
+          $ref: '#/paths/~1hello/get/responses/501'
+        '503':
+          $ref: '#/paths/~1hello/get/responses/503'
+      operationId: HealthGet
+      summary: Get Server
+      description: The HTTP request GET /health is used to return the current status of the API.
+  /metrics:
+    get:
+      tags:
+        - metrics
+      responses:
+        '200':
+          $ref: '#/paths/~1hello/get/responses/200'
+        '400':
+          $ref: '#/paths/~1hello/get/responses/400'
+        '401':
+          $ref: '#/paths/~1hello/get/responses/401'
+        '403':
+          $ref: '#/paths/~1hello/get/responses/403'
+        '404':
+          $ref: '#/paths/~1hello/get/responses/404'
+        '405':
+          $ref: '#/paths/~1hello/get/responses/405'
+        '406':
+          $ref: '#/paths/~1hello/get/responses/406'
+        '501':
+          $ref: '#/paths/~1hello/get/responses/501'
+        '503':
+          $ref: '#/paths/~1hello/get/responses/503'
+      operationId: MetricsGet
+      summary: Prometheus metrics endpoint
+      description: The HTTP request GET /metrics is used to return metrics for the API.
+  /hello:
+    get:
+      tags:
+        - metrics
+      responses:
+        '200':
+          description: OK
         '400':
           description: Bad Request
           content:
@@ -72,81 +124,81 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
         '403':
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
         '405':
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
         '406':
           description: Not Acceptable
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
         '501':
           description: Not Implemented
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
         '503':
           description: Service Unavailable
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
-      operationId: HealthGet
-      summary: Get Server
-      description: The HTTP request GET /health is used to return the current status of the API.
+              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+      operationId: HelloGet
+      summary: example get
+      description: The HTTP request GET /hello is used to return some example json.
   '/participants/{Type}/{ID}':
     parameters:
       - name: Type
@@ -248,7 +300,14 @@ paths:
           Required if signature verification is used, for more information, see
           [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
-      description: 'The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1'
+      description: |
+        The HTTP request `POST /participants/{Type}/{ID}`
+        (or `POST /participants/{Type}/{ID}/{SubId}`)
+        is used to create information in the server regarding the provided identity,
+        defined by `{Type}`, `{ID}`, and optionally `{SubId}`
+        (for example, `POST /participants/MSISDN/123456789` or
+        `POST /participants/BUSINESS/shoecompany/employee1`).
+        An ExtensionList element has been added to this request in version v1.1
       summary: Create participant information
       tags:
         - participants
@@ -269,7 +328,12 @@ paths:
                 /participants/{Type}/{ID} requests.
               properties:
                 fspId:
-                  $ref: '#/paths/~1participants~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/fspId'
+                  title: FspId
+                  type: string
+                  minLength: 1
+                  maxLength: 32
+                  description: FSP identifier.
+                  example: 1234
                 currency:
                   $ref: '#/paths/~1participants/post/requestBody/content/application~1json/schema/properties/currency'
                 extensionList:
@@ -309,26 +373,34 @@ paths:
               required:
                 - fspId
       responses:
-        '202':
-          $ref: '#/paths/~1participants/post/responses/202'
+        '201':
+          description: Created
+          headers: {}
         '400':
-          $ref: '#/paths/~1health/get/responses/400'
+          $ref: '#/paths/~1hello/get/responses/400'
         '401':
-          $ref: '#/paths/~1health/get/responses/401'
+          $ref: '#/paths/~1hello/get/responses/401'
         '403':
-          $ref: '#/paths/~1health/get/responses/403'
+          $ref: '#/paths/~1hello/get/responses/403'
         '404':
-          $ref: '#/paths/~1health/get/responses/404'
+          $ref: '#/paths/~1hello/get/responses/404'
         '405':
-          $ref: '#/paths/~1health/get/responses/405'
+          $ref: '#/paths/~1hello/get/responses/405'
         '406':
-          $ref: '#/paths/~1health/get/responses/406'
+          $ref: '#/paths/~1hello/get/responses/406'
         '501':
-          $ref: '#/paths/~1health/get/responses/501'
+          $ref: '#/paths/~1hello/get/responses/501'
         '503':
-          $ref: '#/paths/~1health/get/responses/503'
+          $ref: '#/paths/~1hello/get/responses/503'
     get:
-      description: 'The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.'
+      description: |
+        The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`)
+        is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`,
+         is located (for example, `GET /participants/MSISDN/123456789`, or
+         `GET /participants/BUSINESS/shoecompany/employee1`).
+         This HTTP request should support a query string for filtering of currency.
+         To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ`
+         should be used, where `XYZ` is the requested currency.
       summary: Look up participant information
       tags:
         - participants
@@ -336,27 +408,38 @@ paths:
       parameters:
         - $ref: '#/paths/~1participants/post/parameters/0'
       responses:
-        '202':
-          $ref: '#/paths/~1participants/post/responses/202'
+        '200':
+          description: OK
+          headers:
+            Content-Length:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantsTypeIDGetResponse'
         '400':
-          $ref: '#/paths/~1health/get/responses/400'
+          $ref: '#/paths/~1hello/get/responses/400'
         '401':
-          $ref: '#/paths/~1health/get/responses/401'
+          $ref: '#/paths/~1hello/get/responses/401'
         '403':
-          $ref: '#/paths/~1health/get/responses/403'
+          $ref: '#/paths/~1hello/get/responses/403'
         '404':
-          $ref: '#/paths/~1health/get/responses/404'
+          $ref: '#/paths/~1hello/get/responses/404'
         '405':
-          $ref: '#/paths/~1health/get/responses/405'
+          $ref: '#/paths/~1hello/get/responses/405'
         '406':
-          $ref: '#/paths/~1health/get/responses/406'
+          $ref: '#/paths/~1hello/get/responses/406'
         '501':
-          $ref: '#/paths/~1health/get/responses/501'
+          $ref: '#/paths/~1hello/get/responses/501'
         '503':
-          $ref: '#/paths/~1health/get/responses/503'
+          $ref: '#/paths/~1hello/get/responses/503'
     put:
-      description: 'The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party.'
-      summary: Return participant information
+      description: |
+        The PUT /participants/{Type}/{ID} is used to update information in the
+        server regarding the provided identity, defined by {Type} and {ID}
+        (for example, PUT /participants/MSISDN/123456789).
+      summary: Update participant information
       tags:
         - participants
       operationId: ParticipantsByTypeAndIDPut
@@ -368,41 +451,38 @@ paths:
         content:
           application/json:
             schema:
-              title: ParticipantsTypeIDPutResponse
-              type: object
-              description: |
-                The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
-                /participants/{Type}/{ID} callbacks.
-              properties:
-                fspId:
-                  title: FspId
-                  type: string
-                  minLength: 1
-                  maxLength: 32
-                  description: FSP identifier.
-                  example: 1234
+              $ref: '#/components/schemas/ParticipantsTypeIDPutRequest'
       responses:
         '200':
-          description: OK
+          $ref: '#/paths/~1hello/get/responses/200'
         '400':
-          $ref: '#/paths/~1health/get/responses/400'
+          $ref: '#/paths/~1hello/get/responses/400'
         '401':
-          $ref: '#/paths/~1health/get/responses/401'
+          $ref: '#/paths/~1hello/get/responses/401'
         '403':
-          $ref: '#/paths/~1health/get/responses/403'
+          $ref: '#/paths/~1hello/get/responses/403'
         '404':
-          $ref: '#/paths/~1health/get/responses/404'
+          $ref: '#/paths/~1hello/get/responses/404'
         '405':
-          $ref: '#/paths/~1health/get/responses/405'
+          $ref: '#/paths/~1hello/get/responses/405'
         '406':
-          $ref: '#/paths/~1health/get/responses/406'
+          $ref: '#/paths/~1hello/get/responses/406'
         '501':
-          $ref: '#/paths/~1health/get/responses/501'
+          $ref: '#/paths/~1hello/get/responses/501'
         '503':
-          $ref: '#/paths/~1health/get/responses/503'
+          $ref: '#/paths/~1hello/get/responses/503'
     delete:
-      description: |-
-        The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
+      description: |
+        The HTTP request `DELETE /participants/{Type}/{ID}`
+        (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete
+        information in the server regarding the provided identity,
+        defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`),
+        and optionally `{SubId}`. This HTTP request should support a query
+        string to delete FSP information regarding a specific currency only.
+        To delete a specific currency only, the HTTP request
+        `DELETE /participants/{Type}/{ID}?currency=XYZ`
+        should be used, where `XYZ` is the requested currency.
+
 
         **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
       summary: Delete participant information
@@ -412,24 +492,25 @@ paths:
       parameters:
         - $ref: '#/paths/~1participants/post/parameters/0'
       responses:
-        '202':
-          $ref: '#/paths/~1participants/post/responses/202'
+        '204':
+          description: No Content
+          headers: {}
         '400':
-          $ref: '#/paths/~1health/get/responses/400'
+          $ref: '#/paths/~1hello/get/responses/400'
         '401':
-          $ref: '#/paths/~1health/get/responses/401'
+          $ref: '#/paths/~1hello/get/responses/401'
         '403':
-          $ref: '#/paths/~1health/get/responses/403'
+          $ref: '#/paths/~1hello/get/responses/403'
         '404':
-          $ref: '#/paths/~1health/get/responses/404'
+          $ref: '#/paths/~1hello/get/responses/404'
         '405':
-          $ref: '#/paths/~1health/get/responses/405'
+          $ref: '#/paths/~1hello/get/responses/405'
         '406':
-          $ref: '#/paths/~1health/get/responses/406'
+          $ref: '#/paths/~1hello/get/responses/406'
         '501':
-          $ref: '#/paths/~1health/get/responses/501'
+          $ref: '#/paths/~1hello/get/responses/501'
         '503':
-          $ref: '#/paths/~1health/get/responses/503'
+          $ref: '#/paths/~1hello/get/responses/503'
   /participants:
     post:
       description: The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency.
@@ -558,7 +639,7 @@ paths:
                           PartyIdType, normally a PersonalIdentifierType.
                         example: DRIVING_LICENSE
                       fspId:
-                        $ref: '#/paths/~1participants~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/fspId'
+                        $ref: '#/paths/~1participants~1%7BType%7D~1%7BID%7D/post/requestBody/content/application~1json/schema/properties/fspId'
                       extensionList:
                         $ref: '#/paths/~1participants~1%7BType%7D~1%7BID%7D/post/requestBody/content/application~1json/schema/properties/extensionList'
                     required:
@@ -746,24 +827,25 @@ paths:
                 - requestId
                 - partyList
       responses:
-        '202':
-          description: Accepted
+        '201':
+          description: Created
+          headers: {}
         '400':
-          $ref: '#/paths/~1health/get/responses/400'
+          $ref: '#/paths/~1hello/get/responses/400'
         '401':
-          $ref: '#/paths/~1health/get/responses/401'
+          $ref: '#/paths/~1hello/get/responses/401'
         '403':
-          $ref: '#/paths/~1health/get/responses/403'
+          $ref: '#/paths/~1hello/get/responses/403'
         '404':
-          $ref: '#/paths/~1health/get/responses/404'
+          $ref: '#/paths/~1hello/get/responses/404'
         '405':
-          $ref: '#/paths/~1health/get/responses/405'
+          $ref: '#/paths/~1hello/get/responses/405'
         '406':
-          $ref: '#/paths/~1health/get/responses/406'
+          $ref: '#/paths/~1hello/get/responses/406'
         '501':
-          $ref: '#/paths/~1health/get/responses/501'
+          $ref: '#/paths/~1hello/get/responses/501'
         '503':
-          $ref: '#/paths/~1health/get/responses/503'
+          $ref: '#/paths/~1hello/get/responses/503'
 tags:
   - name: participants
     description: ''
@@ -793,6 +875,51 @@ components:
           description: An list of the statuses of services that the API requires
           type: array
           items: {}
+    ParticipantsTypeIDPutRequest:
+      title: ParticipantsTypeIDPutRequest
+      description: 'PUT /participants/{Type}/{ID} object'
+      type: object
+      properties:
+        fspId:
+          description: FSP Identifier that the Party belongs to.
+          type: string
+        currency:
+          description: Indicate that the provided Currency was set to be supported by each successfully added PartyIdInfo.
+          type: string
+        partySubIdOrType:
+          description: A sub-identifier or sub-type for the Party.
+          type: string
+      required:
+        - fspId
+        - currency
+    ParticipantsTypeIDGetResponse:
+      title: ParticipantsTypeIDGetResponse
+      description: OK
+      type: object
+      properties:
+        partyList:
+          description: List of PartyTypeIdInfo elements that were either created or failed to be created.
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyTypeIdInfo'
+          minItems: 1
+          maxItems: 10000
+    PartyTypeIdInfo:
+      title: PartyTypeIdInfo
+      description: Data model for the complex type PartyIdInfo.
+      type: object
+      properties:
+        fspId:
+          description: FSP ID
+          type: string
+        currency:
+          description: Indicate that the provided Currency was set to be supported by each successfully added PartyIdInfo.
+          type: string
+        partySubIdOrType:
+          description: A sub-identifier or sub-type for the Party.
+          type: string
+      required:
+        - fspId
   responses:
     ResponseHealth200:
       description: OK

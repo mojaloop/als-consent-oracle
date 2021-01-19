@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="12" failures="0" time="4.017">
+  <testsuite name="shared/logger" errors="0" failures="0" skipped="0" timestamp="2021-01-19T03:36:43" time="0.435" tests="4">
+    <testcase classname="shared/logger should do nothing if no request" name="shared/logger should do nothing if no request" time="0.001">
+    </testcase>
+    <testcase classname="shared/logger should log response via JSON.stringify" name="shared/logger should log response via JSON.stringify" time="0.005">
+    </testcase>
+    <testcase classname="shared/logger should log response via inspect" name="shared/logger should log response via inspect" time="0.001">
+    </testcase>
+    <testcase classname="shared/logger should log if there is no request.response" name="shared/logger should log if there is no request.response" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="server/handlers/onValidateFail" errors="0" failures="0" skipped="0" timestamp="2021-01-19T03:36:43" time="0.44" tests="1">
+    <testcase classname="server/handlers/onValidateFail should throw error from Boom.boomify" name="server/handlers/onValidateFail should throw error from Boom.boomify" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="shared/inspect" errors="0" failures="0" skipped="0" timestamp="2021-01-19T03:36:43" time="0.454" tests="2">
+    <testcase classname="shared/inspect should properly call util.inspect" name="shared/inspect should properly call util.inspect" time="0.003">
+    </testcase>
+    <testcase classname="shared/inspect should call util.inspect with defaults" name="shared/inspect should call util.inspect with defaults" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="index" errors="0" failures="0" skipped="0" timestamp="2021-01-19T03:36:43" time="1.86" tests="4">
+    <testcase classname="index should have proper layout" name="index should have proper layout" time="0.002">
+    </testcase>
+    <testcase classname="index api routes /health" name="index api routes /health" time="0.009">
+    </testcase>
+    <testcase classname="index api routes /hello" name="index api routes /hello" time="0.002">
+    </testcase>
+    <testcase classname="index api routes /metrics" name="index api routes /metrics" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="cli" errors="0" failures="0" skipped="0" timestamp="2021-01-19T03:36:43" time="2.229" tests="1">
+    <testcase classname="cli should use default port &amp; host" name="cli should use default port &amp; host" time="0.005">
+    </testcase>
+  </testsuite>
+</testsuites>
