@@ -35,13 +35,6 @@
  --------------
  ******/
 
-/*
- * Unlike MySQL, SQLite (testing DB) doesn't support Timestamp type natively.
- * It returns ISO strings using the inbuilt Date() function.
- * Thus, return value for MySQL Timestamp as Date object for insertion/retrieval
- * of 'createdAt' field may need to be tested in the future.
- */
-
 import { NotFoundError } from '../errors'
 import Knex from 'knex'
 
@@ -51,7 +44,6 @@ import Knex from 'knex'
 export interface Consent {
   id: string;
   fspId: string;
-  consentId: string;
 }
 
 /*

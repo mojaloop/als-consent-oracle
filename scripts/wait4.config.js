@@ -18,7 +18,7 @@ module.exports = {
       wait4: [
         {
           description: 'MySQL Database',
-          /* Change host:port accordingly based on default.json attributbes. */
+          /* Change host:port accordingly based on default.json attributes. */
           uri: 'localhost:3306',
           method: 'mysql',
           retries: 30
