@@ -21,13 +21,13 @@ module.exports = {
           /* Change host:port accordingly based on knexfile.ts attributbes. */
           uri: 'localhost:3306',
           method: 'mysql',
-          retries: 30
+          retries: 60
         },
         {
           description: 'als-consent-oracle',
           uri: 'localhost:3000',
           method: 'ncat',
-          retries: 30
+          retries: 60
         }
       ]
     }
