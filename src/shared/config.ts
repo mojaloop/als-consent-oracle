@@ -33,13 +33,14 @@
 import Convict from 'convict'
 import DBConfig, { DatabaseConfig } from '~/../config/knexfile'
 import PACKAGE from '../../package.json'
+import Path from 'path'
 
 interface ServiceConfig {
   PORT: number;
   HOST: string;
   DATABASE?: DatabaseConfig;
   ENV: string;
-  INSPECT: {
+  INSPECT? : {
     DEPTH: number;
     SHOW_HIDDEN: boolean;
     COLOR: boolean;
@@ -90,7 +91,7 @@ const ConvictConfig = Convict<ServiceConfig>({
 // Load and validate general config based on environment variable
 const env = ConvictConfig.get('ENV')
 
-ConvictConfig.loadFile(`${__dirname}/../../config/${env}.json`)
+ConvictConfig.loadFile(Path.join(__dirname, `/../../config/${env}.json`))
 ConvictConfig.validate({ allowed: 'strict' })
 
 // Extract simplified config from Convict object

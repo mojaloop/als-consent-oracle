@@ -26,6 +26,6 @@
 /**
  * the example hello function
  */
-export async function findHello (): Promise<object> {
+export async function findHello (): Promise<Record<string, unknown>> {
   return Promise.resolve({ hello: 'world' })
 }
