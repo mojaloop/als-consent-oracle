@@ -3,7 +3,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber'
 import { Server, ServerInjectResponse } from '@hapi/hapi'
 import Config from '~/shared/config'
 
-import AuthService from '../../src/server'
+import OracleServer from '../../src/server'
 
 const featurePath = path.join(__dirname, '../features/template.scenario.feature')
 const feature = loadFeature(featurePath)
@@ -19,7 +19,7 @@ defineFeature(feature, (test): void => {
 
   test('Health Check', ({ given, when, then }): void => {
     given('als-consent-oracle server', async (): Promise<Server> => {
-      server = await AuthService.run(Config)
+      server = await OracleServer.run(Config)
       return server
     })
 
@@ -43,27 +43,6 @@ defineFeature(feature, (test): void => {
       expect(response.statusCode).toBe(200)
       expect(healthResponse.status).toEqual('OK')
       expect(healthResponse.uptime).toBeGreaterThan(1.0)
-    })
-  })
-
-  test('Hello', ({ given, when, then }): void => {
-    given('als-consent-oracle server', async (): Promise<Server> => {
-      server = await AuthService.run(Config)
-      return server
-    })
-
-    when('I get \'Hello\' response', async (): Promise<ServerInjectResponse> => {
-      const request = {
-        method: 'GET',
-        url: '/hello'
-      }
-      response = await server.inject(request)
-      return response
-    })
-
-    then('I see \'Hello world\'', (): void => {
-      expect(response.statusCode).toBe(200)
-      expect(response.result).toEqual({ hello: 'world' })
     })
   })
 })

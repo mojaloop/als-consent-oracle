@@ -1,7 +1,7 @@
 {
   "name": "@mojaloop/als-consent-oracle",
-  "version": "11.2.8",
-  "description": "PISP authorization service",
+  "version": "0.0.1",
+  "description": "An Account Lookup Service Oracle for consents",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -56,7 +56,7 @@
     "central",
     "services"
   ],
-  "author": "lewisdaly",
+  "author": "Kevin Leyow <kevin.leyow@modusbox.com",
   "contributors": [
     "Lewis Daly <lewis@vesselstech.com>",
     "Paweł Marzec <pawel.marzec@modusbox.com>"

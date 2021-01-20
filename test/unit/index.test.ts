@@ -80,24 +80,6 @@ describe('api routes', (): void => {
     expect(result.uptime).toBeGreaterThan(1.0)
   })
 
-  it('/hello', async (): Promise<void> => {
-    interface HelloResponse {
-      hello: string;
-    }
-
-    const request = {
-      method: 'GET',
-      url: '/hello'
-    }
-
-    const response = await server.inject(request)
-    expect(response.statusCode).toBe(200)
-    expect(response.result).toBeDefined()
-
-    const result = response.result as HelloResponse
-    expect(result.hello).toEqual('world')
-  })
-
   it('/metrics', async (): Promise<void> => {
     const request = {
       method: 'GET',

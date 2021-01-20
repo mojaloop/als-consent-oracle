@@ -14,7 +14,7 @@ simplified usage:
 ```typescript
 import { Server } from '@hapi/hapi'
 import Config from 'src/shared/config'
-import AuthService from 'src/server'
+import OracleServer from 'src/server'
 
-const runningServer = await AuthService.run(Config)
+const runningServer = await OracleServer.run(Config)
 ```

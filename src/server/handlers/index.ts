@@ -24,13 +24,11 @@
 import { Util } from '@mojaloop/central-services-shared'
 import Health from './health'
 import Metrics from './metrics'
-import Hello from './hello'
 const OpenapiBackend = Util.OpenapiBackend
 
 export default {
   HealthGet: Health.get,
   MetricsGet: Metrics.get,
-  HelloGet: Hello.get,
   validationFail: OpenapiBackend.validationFail,
   notFound: OpenapiBackend.notFound,
   methodNotAllowed: OpenapiBackend.methodNotAllowed
