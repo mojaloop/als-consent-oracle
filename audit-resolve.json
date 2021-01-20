@@ -4,6 +4,16 @@
       "decision": "ignore",
       "madeAt": 1611100930722,
       "expiresAt": 1613692926295
+    },
+    "1500|@mojaloop/central-services-health>@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1611102533934,
+      "expiresAt": 1613694530151
+    },
+    "1500|@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
+      "decision": "ignore",
+      "madeAt": 1611102533934,
+      "expiresAt": 1613694530151
     }
   },
   "rules": {},
