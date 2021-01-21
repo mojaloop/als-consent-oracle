@@ -6,7 +6,7 @@ networks:
 
 services:
   als-consent-oracle:
-    container_name: as_als-consent-oracle
+    container_name: co_als-consent-oracle
     image: mojaloop/als-consent-oracle:local
     build:
       context: .
@@ -29,7 +29,7 @@ services:
 
   mysql:
     image: mysql/mysql-server
-    container_name: as_mysql
+    container_name: co_mysql
     ports:
       - "3306:3306"
     volumes:

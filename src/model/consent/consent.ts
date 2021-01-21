@@ -22,7 +22,7 @@ export class ConsentDB {
 
   // Add initial Consent parameters
   // Error bubbles up in case of primary key violation
-  public async insert (consent: Consent): Promise<boolean> {
+  public async insert (consent: Consent|Array<Consent>): Promise<boolean> {
     // Returns [0] for MySQL-Knex and [Row Count] for SQLite-Knex
     await this
       .Db<Consent>('Consent')

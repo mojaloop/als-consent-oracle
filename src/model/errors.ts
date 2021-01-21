@@ -33,3 +33,10 @@ export class NotFoundError extends Error {
     this.name = 'NotFoundError'
   }
 }
+
+export class IDTypeNotSupported extends Error {
+  public constructor () {
+    super('This service supports only MSISDN ID types')
+    this.name = 'IDTypeNotSupported'
+  }
+}
