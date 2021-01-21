@@ -19,6 +19,7 @@ export const h: ResponseToolkit = {
 
 // @ts-ignore
 export const postParticipantsRequest: Request = {
+  method: 'post',
   headers: {
     'fspiop-source': 'als',
     'fspiop-destination': 'als-consent-oracle'
@@ -32,6 +33,134 @@ export const postParticipantsRequest: Request = {
         'fspId': 'dfspa'
       }
     ]
+  }
+}
+
+// @ts-ignore
+export const getParticipantsByTypeAndIDRequest: Request = {
+  method: 'get',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'CONSENT'
+  }
+}
+
+// @ts-ignore
+export const postParticipantsByTypeAndIDRequest: Request = {
+  method: 'post',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+    "currency": "USD",
+    "fspId": "dfspa"
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'CONSENT'
+  }
+}
+
+// @ts-ignore
+export const putParticipantsByTypeAndIDRequest: Request = {
+  method: 'put',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+    "currency": "USD",
+    "fspId": "dfspa"
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'CONSENT'
+  }
+}
+
+// @ts-ignore
+export const deleteParticipantsByTypeAndIDRequest: Request = {
+  method: 'delete',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'CONSENT'
+  }
+}
+
+// @ts-ignore
+export const getParticipantsByWrongTypeAndIDRequest: Request = {
+  method: 'get',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'ACCOUNT_ID'
+  }
+}
+
+// @ts-ignore
+export const postParticipantsByWrongTypeAndIDRequest: Request = {
+  method: 'post',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+    "currency": "USD",
+    "fspId": "dfspa"
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'ACCOUNT_ID'
+  }
+}
+
+// @ts-ignore
+export const putParticipantsByWrongTypeAndIDRequest: Request = {
+  method: 'put',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+    "currency": "USD",
+    "fspId": "dfspa"
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'ACCOUNT_ID'
+  }
+}
+
+// @ts-ignore
+export const deleteParticipantsByWrongTypeAndIDRequest: Request = {
+  method: 'delete',
+  headers: {
+    'fspiop-source': 'als',
+    'fspiop-destination': 'als-consent-oracle'
+  },
+  payload: {
+  },
+  params: {
+    ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+    Type: 'ACCOUNT_ID'
   }
 }
 

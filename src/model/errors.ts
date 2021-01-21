@@ -36,7 +36,7 @@ export class NotFoundError extends Error {
 
 export class IDTypeNotSupported extends Error {
   public constructor () {
-    super('This service supports only MSISDN ID types')
+    super('This service supports only CONSENT ID types')
     this.name = 'IDTypeNotSupported'
   }
 }

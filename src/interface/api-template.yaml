@@ -294,28 +294,6 @@ servers:
   - url: /
 components:
   schemas:
-    Status:
-      title: Status
-      description: Data model for the api status.
-      type: object
-      additionalProperties: false
-      properties:
-        status:
-          description: 'The return status, usually "OK"'
-          type: string
-        uptime:
-          description: The amount of time in seconds that the server has been up for.
-          type: number
-        startTime:
-          description: The UTC time that the server started up
-          type: string
-        versionNumber:
-          description: Current version of the API
-          type: string
-        services:
-          description: An list of the statuses of services that the API requires
-          type: array
-          items: {}
     ParticipantsTypeIDPutRequest:
       title: ParticipantsTypeIDPutRequest
       description: PUT /participants/{Type}/{ID} object
@@ -333,7 +311,6 @@ components:
           type: string
       required:
         - fspId
-        - currency
     ParticipantsTypeIDGetResponse:
       title: ParticipantsTypeIDGetResponse
       description: OK
@@ -352,22 +329,9 @@ components:
       description: Data model for the complex type PartyIdInfo.
       type: object
       properties:
+        id:
+          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/CorrelationId.yaml'
         fspId:
-          description: FSP ID
-          type: string
-        currency:
-          description: Indicate that the provided Currency was set to be supported by each
-            successfully added PartyIdInfo.
-          type: string
-        partySubIdOrType:
-          description: A sub-identifier or sub-type for the Party.
-          type: string
+          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/FspId.yaml'
       required:
         - fspId
-  responses:
-    ResponseHealth200:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'
