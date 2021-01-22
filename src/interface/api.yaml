@@ -11,58 +11,6 @@ paths:
         - health
       responses:
         '200':
-          $ref: '#/paths/~1hello/get/responses/200'
-        '400':
-          $ref: '#/paths/~1hello/get/responses/400'
-        '401':
-          $ref: '#/paths/~1hello/get/responses/401'
-        '403':
-          $ref: '#/paths/~1hello/get/responses/403'
-        '404':
-          $ref: '#/paths/~1hello/get/responses/404'
-        '405':
-          $ref: '#/paths/~1hello/get/responses/405'
-        '406':
-          $ref: '#/paths/~1hello/get/responses/406'
-        '501':
-          $ref: '#/paths/~1hello/get/responses/501'
-        '503':
-          $ref: '#/paths/~1hello/get/responses/503'
-      operationId: HealthGet
-      summary: Get Server
-      description: The HTTP request GET /health is used to return the current status of the API.
-  /metrics:
-    get:
-      tags:
-        - metrics
-      responses:
-        '200':
-          $ref: '#/paths/~1hello/get/responses/200'
-        '400':
-          $ref: '#/paths/~1hello/get/responses/400'
-        '401':
-          $ref: '#/paths/~1hello/get/responses/401'
-        '403':
-          $ref: '#/paths/~1hello/get/responses/403'
-        '404':
-          $ref: '#/paths/~1hello/get/responses/404'
-        '405':
-          $ref: '#/paths/~1hello/get/responses/405'
-        '406':
-          $ref: '#/paths/~1hello/get/responses/406'
-        '501':
-          $ref: '#/paths/~1hello/get/responses/501'
-        '503':
-          $ref: '#/paths/~1hello/get/responses/503'
-      operationId: MetricsGet
-      summary: Prometheus metrics endpoint
-      description: The HTTP request GET /metrics is used to return metrics for the API.
-  /hello:
-    get:
-      tags:
-        - metrics
-      responses:
-        '200':
           description: OK
         '400':
           description: Bad Request
@@ -124,81 +72,107 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
         '403':
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
         '405':
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
         '406':
           description: Not Acceptable
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
         '501':
           description: Not Implemented
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
         '503':
           description: Service Unavailable
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1hello/get/responses/400/content/application~1json/schema'
+                $ref: '#/paths/~1health/get/responses/400/content/application~1json/schema'
           headers:
             Content-Length:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Length'
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Length'
             Content-Type:
-              $ref: '#/paths/~1hello/get/responses/400/headers/Content-Type'
-      operationId: HelloGet
-      summary: example get
-      description: The HTTP request GET /hello is used to return some example json.
+              $ref: '#/paths/~1health/get/responses/400/headers/Content-Type'
+      operationId: HealthGet
+      summary: Get Server
+      description: The HTTP request GET /health is used to return the current status of the API.
+  /metrics:
+    get:
+      tags:
+        - metrics
+      responses:
+        '200':
+          $ref: '#/paths/~1health/get/responses/200'
+        '400':
+          $ref: '#/paths/~1health/get/responses/400'
+        '401':
+          $ref: '#/paths/~1health/get/responses/401'
+        '403':
+          $ref: '#/paths/~1health/get/responses/403'
+        '404':
+          $ref: '#/paths/~1health/get/responses/404'
+        '405':
+          $ref: '#/paths/~1health/get/responses/405'
+        '406':
+          $ref: '#/paths/~1health/get/responses/406'
+        '501':
+          $ref: '#/paths/~1health/get/responses/501'
+        '503':
+          $ref: '#/paths/~1health/get/responses/503'
+      operationId: MetricsGet
+      summary: Prometheus metrics endpoint
+      description: The HTTP request GET /metrics is used to return metrics for the API.
   '/participants/{Type}/{ID}':
     parameters:
       - name: Type
@@ -548,21 +522,21 @@ paths:
           description: Created
           headers: {}
         '400':
-          $ref: '#/paths/~1hello/get/responses/400'
+          $ref: '#/paths/~1health/get/responses/400'
         '401':
-          $ref: '#/paths/~1hello/get/responses/401'
+          $ref: '#/paths/~1health/get/responses/401'
         '403':
-          $ref: '#/paths/~1hello/get/responses/403'
+          $ref: '#/paths/~1health/get/responses/403'
         '404':
-          $ref: '#/paths/~1hello/get/responses/404'
+          $ref: '#/paths/~1health/get/responses/404'
         '405':
-          $ref: '#/paths/~1hello/get/responses/405'
+          $ref: '#/paths/~1health/get/responses/405'
         '406':
-          $ref: '#/paths/~1hello/get/responses/406'
+          $ref: '#/paths/~1health/get/responses/406'
         '501':
-          $ref: '#/paths/~1hello/get/responses/501'
+          $ref: '#/paths/~1health/get/responses/501'
         '503':
-          $ref: '#/paths/~1hello/get/responses/503'
+          $ref: '#/paths/~1health/get/responses/503'
     get:
       description: |
         The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`)
@@ -590,21 +564,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ParticipantsTypeIDGetResponse'
         '400':
-          $ref: '#/paths/~1hello/get/responses/400'
+          $ref: '#/paths/~1health/get/responses/400'
         '401':
-          $ref: '#/paths/~1hello/get/responses/401'
+          $ref: '#/paths/~1health/get/responses/401'
         '403':
-          $ref: '#/paths/~1hello/get/responses/403'
+          $ref: '#/paths/~1health/get/responses/403'
         '404':
-          $ref: '#/paths/~1hello/get/responses/404'
+          $ref: '#/paths/~1health/get/responses/404'
         '405':
-          $ref: '#/paths/~1hello/get/responses/405'
+          $ref: '#/paths/~1health/get/responses/405'
         '406':
-          $ref: '#/paths/~1hello/get/responses/406'
+          $ref: '#/paths/~1health/get/responses/406'
         '501':
-          $ref: '#/paths/~1hello/get/responses/501'
+          $ref: '#/paths/~1health/get/responses/501'
         '503':
-          $ref: '#/paths/~1hello/get/responses/503'
+          $ref: '#/paths/~1health/get/responses/503'
     put:
       description: |
         The PUT /participants/{Type}/{ID} is used to update information in the
@@ -625,23 +599,23 @@ paths:
               $ref: '#/components/schemas/ParticipantsTypeIDPutRequest'
       responses:
         '200':
-          $ref: '#/paths/~1hello/get/responses/200'
+          $ref: '#/paths/~1health/get/responses/200'
         '400':
-          $ref: '#/paths/~1hello/get/responses/400'
+          $ref: '#/paths/~1health/get/responses/400'
         '401':
-          $ref: '#/paths/~1hello/get/responses/401'
+          $ref: '#/paths/~1health/get/responses/401'
         '403':
-          $ref: '#/paths/~1hello/get/responses/403'
+          $ref: '#/paths/~1health/get/responses/403'
         '404':
-          $ref: '#/paths/~1hello/get/responses/404'
+          $ref: '#/paths/~1health/get/responses/404'
         '405':
-          $ref: '#/paths/~1hello/get/responses/405'
+          $ref: '#/paths/~1health/get/responses/405'
         '406':
-          $ref: '#/paths/~1hello/get/responses/406'
+          $ref: '#/paths/~1health/get/responses/406'
         '501':
-          $ref: '#/paths/~1hello/get/responses/501'
+          $ref: '#/paths/~1health/get/responses/501'
         '503':
-          $ref: '#/paths/~1hello/get/responses/503'
+          $ref: '#/paths/~1health/get/responses/503'
     delete:
       description: |
         The HTTP request `DELETE /participants/{Type}/{ID}`
@@ -667,21 +641,21 @@ paths:
           description: No Content
           headers: {}
         '400':
-          $ref: '#/paths/~1hello/get/responses/400'
+          $ref: '#/paths/~1health/get/responses/400'
         '401':
-          $ref: '#/paths/~1hello/get/responses/401'
+          $ref: '#/paths/~1health/get/responses/401'
         '403':
-          $ref: '#/paths/~1hello/get/responses/403'
+          $ref: '#/paths/~1health/get/responses/403'
         '404':
-          $ref: '#/paths/~1hello/get/responses/404'
+          $ref: '#/paths/~1health/get/responses/404'
         '405':
-          $ref: '#/paths/~1hello/get/responses/405'
+          $ref: '#/paths/~1health/get/responses/405'
         '406':
-          $ref: '#/paths/~1hello/get/responses/406'
+          $ref: '#/paths/~1health/get/responses/406'
         '501':
-          $ref: '#/paths/~1hello/get/responses/501'
+          $ref: '#/paths/~1health/get/responses/501'
         '503':
-          $ref: '#/paths/~1hello/get/responses/503'
+          $ref: '#/paths/~1health/get/responses/503'
   /participants:
     post:
       description: The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency.
@@ -727,16 +701,7 @@ paths:
               description: The object sent in the POST /participants request.
               properties:
                 requestId:
-                  title: CorrelationId
-                  type: string
-                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
-                  description: |
-                    Identifier that correlates all messages of the same sequence.
-                    The API data type UUID (Universally Unique Identifier) is a JSON String
-                    in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122),
-                    that is restricted by a regular expression for interoperability reasons.
-                    A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                  example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                  $ref: '#/components/schemas/PartyTypeIdInfo/properties/id'
                 partyList:
                   type: array
                   items:
@@ -817,12 +782,7 @@ paths:
                           PartyIdType, normally a PersonalIdentifierType.
                         example: DRIVING_LICENSE
                       fspId:
-                        title: FspId
-                        type: string
-                        minLength: 1
-                        maxLength: 32
-                        description: FSP identifier.
-                        example: 1234
+                        $ref: '#/components/schemas/PartyTypeIdInfo/properties/fspId'
                       extensionList:
                         title: ExtensionList
                         type: object
@@ -1046,21 +1006,21 @@ paths:
           description: Created
           headers: {}
         '400':
-          $ref: '#/paths/~1hello/get/responses/400'
+          $ref: '#/paths/~1health/get/responses/400'
         '401':
-          $ref: '#/paths/~1hello/get/responses/401'
+          $ref: '#/paths/~1health/get/responses/401'
         '403':
-          $ref: '#/paths/~1hello/get/responses/403'
+          $ref: '#/paths/~1health/get/responses/403'
         '404':
-          $ref: '#/paths/~1hello/get/responses/404'
+          $ref: '#/paths/~1health/get/responses/404'
         '405':
-          $ref: '#/paths/~1hello/get/responses/405'
+          $ref: '#/paths/~1health/get/responses/405'
         '406':
-          $ref: '#/paths/~1hello/get/responses/406'
+          $ref: '#/paths/~1health/get/responses/406'
         '501':
-          $ref: '#/paths/~1hello/get/responses/501'
+          $ref: '#/paths/~1health/get/responses/501'
         '503':
-          $ref: '#/paths/~1hello/get/responses/503'
+          $ref: '#/paths/~1health/get/responses/503'
 tags:
   - name: participants
     description: ''
@@ -1068,28 +1028,6 @@ servers:
   - url: /
 components:
   schemas:
-    Status:
-      title: Status
-      description: Data model for the api status.
-      type: object
-      additionalProperties: false
-      properties:
-        status:
-          description: 'The return status, usually "OK"'
-          type: string
-        uptime:
-          description: The amount of time in seconds that the server has been up for.
-          type: number
-        startTime:
-          description: The UTC time that the server started up
-          type: string
-        versionNumber:
-          description: Current version of the API
-          type: string
-        services:
-          description: An list of the statuses of services that the API requires
-          type: array
-          items: {}
     ParticipantsTypeIDPutRequest:
       title: ParticipantsTypeIDPutRequest
       description: 'PUT /participants/{Type}/{ID} object'
@@ -1106,7 +1044,6 @@ components:
           type: string
       required:
         - fspId
-        - currency
     ParticipantsTypeIDGetResponse:
       title: ParticipantsTypeIDGetResponse
       description: OK
@@ -1124,21 +1061,23 @@ components:
       description: Data model for the complex type PartyIdInfo.
       type: object
       properties:
+        id:
+          title: CorrelationId
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+          description: |
+            Identifier that correlates all messages of the same sequence.
+            The API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122),
+            that is restricted by a regular expression for interoperability reasons.
+            A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         fspId:
-          description: FSP ID
+          title: FspId
           type: string
-        currency:
-          description: Indicate that the provided Currency was set to be supported by each successfully added PartyIdInfo.
-          type: string
-        partySubIdOrType:
-          description: A sub-identifier or sub-type for the Party.
-          type: string
+          minLength: 1
+          maxLength: 32
+          description: FSP identifier.
+          example: 1234
       required:
         - fspId
-  responses:
-    ResponseHealth200:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Status'

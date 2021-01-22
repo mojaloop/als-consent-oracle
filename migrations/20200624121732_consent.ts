@@ -1,9 +1,15 @@
 import * as Knex from 'knex'
 
-export function up (knex: Knex): Knex.SchemaBuilder {
-  return knex.schema.createTableIfNotExists('Consent', (t: Knex.CreateTableBuilder): void => {
-    t.uuid('id').primary().notNullable()
-    t.string('fspId', 32).notNullable()
+export async function up (knex: Knex): Promise<void | Knex.SchemaBuilder> {
+  return knex.schema.hasTable('Consent')
+    .then((exists: boolean): Knex.SchemaBuilder | void => {
+      if (!exists) {
+        return knex.schema.createTable('Consent',
+          (t: Knex.CreateTableBuilder): void => {
+            t.uuid('id').primary().notNullable()
+            t.string('fspId', 32).notNullable()
+          })
+      }
   })
 }
 

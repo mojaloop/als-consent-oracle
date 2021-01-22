@@ -14,6 +14,11 @@
       "decision": "ignore",
       "madeAt": 1611102533934,
       "expiresAt": 1613694530151
+    },
+    "1594|@mojaloop/central-services-shared>axios": {
+      "decision": "ignore",
+      "madeAt": 1611199612789,
+      "expiresAt": 1613791604170
     }
   },
   "rules": {},

@@ -24,6 +24,8 @@
 import { Util } from '@mojaloop/central-services-shared'
 import Health from './health'
 import Metrics from './metrics'
+import Participants from './participants'
+import ParticipantsTypeId from './participants/{Type}/{ID}'
 const OpenapiBackend = Util.OpenapiBackend
 
 export default {
@@ -31,5 +33,10 @@ export default {
   MetricsGet: Metrics.get,
   validationFail: OpenapiBackend.validationFail,
   notFound: OpenapiBackend.notFound,
-  methodNotAllowed: OpenapiBackend.methodNotAllowed
+  methodNotAllowed: OpenapiBackend.methodNotAllowed,
+  ParticipantsPost: Participants.post,
+  ParticipantsByTypeAndIDGet: ParticipantsTypeId.get,
+  ParticipantsByTypeAndIDPost: ParticipantsTypeId.post,
+  ParticipantsByTypeAndIDPut: ParticipantsTypeId.put,
+  ParticipantsByTypeAndIDDelete: ParticipantsTypeId.del
 }
