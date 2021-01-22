@@ -2,7 +2,7 @@ import { Request } from '@hapi/hapi'
 import { Enum } from '@mojaloop/central-services-shared'
 import * as Handler from '~/server/handlers/participants/{Type}/{ID}'
 import * as Domain from '~/domain/participants'
-import { Consent } from '~/model/consent';
+import { Consent } from '~/model/consent'
 import {
   deleteParticipantsByTypeAndIDRequest,
   putParticipantsByTypeAndIDRequest,
@@ -10,12 +10,11 @@ import {
   deleteParticipantsByWrongTypeAndIDRequest,
   putParticipantsByWrongTypeAndIDRequest,
   postParticipantsByWrongTypeAndIDRequest
-} from 'test/data/data'
-import { IDTypeNotSupported } from '~/model/errors';
-import {
+  ,
   h,
   getParticipantsByTypeAndIDRequest
 } from 'test/data/data'
+import { IDTypeNotSupported } from '~/model/errors'
 
 jest.mock('~/shared/logger')
 
@@ -31,15 +30,7 @@ const retrievedConsent: Consent = {
 }
 
 describe('server/handler/participants/{Type}/{ID}', (): void => {
-  beforeAll((): void => {
-  })
-
-  beforeEach((): void => {
-    jest.clearAllMocks()
-  })
-
   describe('GET Handler', (): void => {
-
     beforeAll((): void => {
       mockRetrieveConsent.mockResolvedValue(retrievedConsent)
     })
@@ -60,7 +51,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      let req = deleteParticipantsByWrongTypeAndIDRequest as Request
+      const req = deleteParticipantsByWrongTypeAndIDRequest as Request
       req.params.Type = 'ACCOUNT_ID'
 
       const response = await Handler.get(
@@ -98,7 +89,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      let req = postParticipantsByWrongTypeAndIDRequest as Request
+      const req = postParticipantsByWrongTypeAndIDRequest as Request
       req.params.Type = 'ACCOUNT_ID'
 
       const response = await Handler.post(
@@ -136,7 +127,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      let req = putParticipantsByWrongTypeAndIDRequest as Request
+      const req = putParticipantsByWrongTypeAndIDRequest as Request
       req.params.Type = 'ACCOUNT_ID'
 
       const response = await Handler.put(

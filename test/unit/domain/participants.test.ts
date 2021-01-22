@@ -4,11 +4,12 @@ import {
   retrieveConsent,
   createConsent,
   updateConsent,
-  deleteConsent }
-from '~/domain/participants'
+  deleteConsent
+}
+  from '~/domain/participants'
 
 import { logger } from '~/shared/logger'
-import { Consent } from '~/model/consent';
+import { Consent } from '~/model/consent'
 
 jest.mock('~/shared/logger')
 
@@ -28,10 +29,6 @@ describe('server/domain/consents', (): void => {
     mockUpdateConsent.mockResolvedValue(1)
     mockDeleteConsent.mockResolvedValue(1)
     mockRetrieveConsent.mockResolvedValue(mockConsent)
-  })
-
-  beforeEach((): void => {
-    jest.clearAllMocks()
   })
 
   it('test logger', (): void => {

@@ -1,12 +1,11 @@
-import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi';
-import { Context } from '~/server/plugins';
-import { retrieveConsent, createConsent, updateConsent, deleteConsent } from '~/domain/participants';
-import { Schemas } from '@mojaloop/api-snippets/lib/v1_1';
-import { Consent } from '~/model/consent';
+import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi'
+import { Context } from '~/server/plugins'
+import { retrieveConsent, createConsent, updateConsent, deleteConsent } from '~/domain/participants'
+import { Schemas } from '@mojaloop/api-snippets/lib/v1_1'
+import { Consent } from '~/model/consent'
 import * as Types from '~/interface/types'
-import { IDTypeNotSupported } from '../../../../model/errors';
-import Boom from '@hapi/boom';
-
+import { IDTypeNotSupported } from '../../../../model/errors'
+import Boom from '@hapi/boom'
 
 export async function get (
   _context: Context,
@@ -54,7 +53,7 @@ export async function put (
     fspId: payload.fspId
   }
   await updateConsent(consent)
-  return h.response(consent).code(200)
+  return h.response().code(200)
 }
 
 export async function del (

@@ -53,11 +53,6 @@ describe('api routes', (): void => {
   afterAll(async (done): Promise<void> => {
     server.events.on('stop', done)
     await server.stop()
-    jest.clearAllMocks()
-  })
-
-  beforeEach((): void => {
-    jest.clearAllMocks()
   })
 
   it('/health', async (): Promise<void> => {
@@ -153,15 +148,15 @@ describe('api routes', (): void => {
       const request = {
         method: 'GET',
         url: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
-        headers: Headers,
+        headers: Headers
       }
 
       const expectedArgs = expect.objectContaining({
         path: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
         method: 'get',
         params: {
-          ID: "73f22dbf-e322-44df-b407-f5a80ace9e02",
-          Type: "CONSENTS"
+          ID: '73f22dbf-e322-44df-b407-f5a80ace9e02',
+          Type: 'CONSENTS'
         }
       })
 
@@ -187,8 +182,8 @@ describe('api routes', (): void => {
         path: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
         method: 'post',
         params: {
-          ID: "73f22dbf-e322-44df-b407-f5a80ace9e02",
-          Type: "CONSENTS"
+          ID: '73f22dbf-e322-44df-b407-f5a80ace9e02',
+          Type: 'CONSENTS'
         },
         payload: MockParticipantsByTypeAndIDPost.payload
       })
@@ -204,7 +199,7 @@ describe('api routes', (): void => {
       const ParticipantsByTypeAndIDPost = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPost')
       ParticipantsByTypeAndIDPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(201)))
 
-      const payloadMissingId = Object.assign({}, MockParticipantsByTypeAndIDPost.payload as any)
+      const payloadMissingId = Object.assign({}, MockParticipantsByTypeAndIDPost.payload as Record<string, unknown>)
       delete payloadMissingId.fspId
 
       const request = {
@@ -241,8 +236,8 @@ describe('api routes', (): void => {
         path: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
         method: 'put',
         params: {
-          ID: "73f22dbf-e322-44df-b407-f5a80ace9e02",
-          Type: "CONSENTS"
+          ID: '73f22dbf-e322-44df-b407-f5a80ace9e02',
+          Type: 'CONSENTS'
         },
         payload: MockParticipantsByTypeAndIDPut.payload
       })
@@ -287,15 +282,15 @@ describe('api routes', (): void => {
       const request = {
         method: 'DELETE',
         url: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
-        headers: Headers,
+        headers: Headers
       }
 
       const expectedArgs = expect.objectContaining({
         path: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
         method: 'delete',
         params: {
-          ID: "73f22dbf-e322-44df-b407-f5a80ace9e02",
-          Type: "CONSENTS"
+          ID: '73f22dbf-e322-44df-b407-f5a80ace9e02',
+          Type: 'CONSENTS'
         }
       })
 
