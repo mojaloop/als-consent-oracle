@@ -1,4 +1,4 @@
-import { Request } from '@hapi/hapi'
+import { Request, ResponseToolkit } from '@hapi/hapi'
 import { Enum } from '@mojaloop/central-services-shared'
 import * as Handler from '~/server/handlers/participants/{Type}/{ID}'
 import * as Domain from '~/domain/participants'
@@ -36,7 +36,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should return a 200 success code.', async (): Promise<void> => {
-      const req = getParticipantsByTypeAndIDRequest as Request
+      const req = getParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.get(
         {
           method: req.method,
@@ -46,12 +46,12 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.OK.CODE)
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      const req = deleteParticipantsByWrongTypeAndIDRequest as Request
+      const req = deleteParticipantsByWrongTypeAndIDRequest as unknown as Request
       req.params.Type = 'ACCOUNT_ID'
 
       const response = await Handler.get(
@@ -63,7 +63,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
@@ -74,7 +74,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should return a 201 success code.', async (): Promise<void> => {
-      const req = postParticipantsByTypeAndIDRequest as Request
+      const req = postParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.post(
         {
           method: req.method,
@@ -84,12 +84,12 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.CREATED.CODE)
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      const req = postParticipantsByWrongTypeAndIDRequest as Request
+      const req = postParticipantsByWrongTypeAndIDRequest as unknown as Request
       req.params.Type = 'ACCOUNT_ID'
 
       const response = await Handler.post(
@@ -101,7 +101,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
@@ -112,7 +112,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should return a 200 success code.', async (): Promise<void> => {
-      const req = putParticipantsByTypeAndIDRequest as Request
+      const req = putParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.put(
         {
           method: req.method,
@@ -122,12 +122,12 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.OK.CODE)
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      const req = putParticipantsByWrongTypeAndIDRequest as Request
+      const req = putParticipantsByWrongTypeAndIDRequest as unknown as Request
       req.params.Type = 'ACCOUNT_ID'
 
       const response = await Handler.put(
@@ -139,7 +139,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
@@ -150,7 +150,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
     })
 
     it('should return a 204 no content code.', async (): Promise<void> => {
-      const req = deleteParticipantsByTypeAndIDRequest as Request
+      const req = deleteParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.del(
         {
           method: req.method,
@@ -160,12 +160,12 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.NOCONTENT.CODE)
     })
 
     it('should fail if {Type} is not CONSENT', async (): Promise<void> => {
-      const req = deleteParticipantsByWrongTypeAndIDRequest as Request
+      const req = deleteParticipantsByWrongTypeAndIDRequest as unknown as Request
 
       const response = await Handler.del(
         {
@@ -176,7 +176,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h)
+        h as unknown as ResponseToolkit)
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
