@@ -701,7 +701,16 @@ paths:
               description: The object sent in the POST /participants request.
               properties:
                 requestId:
-                  $ref: '#/components/schemas/PartyTypeIdInfo/properties/id'
+                  title: CorrelationId
+                  type: string
+                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+                  description: |
+                    Identifier that correlates all messages of the same sequence.
+                    The API data type UUID (Universally Unique Identifier) is a JSON String
+                    in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122),
+                    that is restricted by a regular expression for interoperability reasons.
+                    A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                  example: b51ec534-ee48-4575-b6a9-ead2955b8069
                 partyList:
                   type: array
                   items:
@@ -773,14 +782,7 @@ paths:
                         description: Identifier of the Party.
                         example: 16135551212
                       partySubIdOrType:
-                        title: PartySubIdOrType
-                        type: string
-                        minLength: 1
-                        maxLength: 128
-                        description: |
-                          Either a sub-identifier of a PartyIdentifier, or a sub-type of the
-                          PartyIdType, normally a PersonalIdentifierType.
-                        example: DRIVING_LICENSE
+                        $ref: '#/components/schemas/PartyTypeIdInfo/properties/partySubIdOrType'
                       fspId:
                         $ref: '#/components/schemas/PartyTypeIdInfo/properties/fspId'
                       extensionList:
@@ -1061,17 +1063,6 @@ components:
       description: Data model for the complex type PartyIdInfo.
       type: object
       properties:
-        id:
-          title: CorrelationId
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
-          description: |
-            Identifier that correlates all messages of the same sequence.
-            The API data type UUID (Universally Unique Identifier) is a JSON String
-            in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122),
-            that is restricted by a regular expression for interoperability reasons.
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         fspId:
           title: FspId
           type: string
@@ -1079,5 +1070,14 @@ components:
           maxLength: 32
           description: FSP identifier.
           example: 1234
+        partySubIdOrType:
+          title: PartySubIdOrType
+          type: string
+          minLength: 1
+          maxLength: 128
+          description: |
+            Either a sub-identifier of a PartyIdentifier, or a sub-type of the
+            PartyIdType, normally a PersonalIdentifierType.
+          example: DRIVING_LICENSE
       required:
         - fspId

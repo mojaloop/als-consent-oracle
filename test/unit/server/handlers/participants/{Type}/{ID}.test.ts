@@ -2,7 +2,6 @@ import { Request, ResponseToolkit } from '@hapi/hapi'
 import { Enum } from '@mojaloop/central-services-shared'
 import * as Handler from '~/server/handlers/participants/{Type}/{ID}'
 import * as Domain from '~/domain/participants'
-import { Consent } from '~/model/consent'
 import {
   deleteParticipantsByTypeAndIDRequest,
   putParticipantsByTypeAndIDRequest,
@@ -13,6 +12,7 @@ import {
   ,
   h,
   getParticipantsByTypeAndIDRequest
+  , mockConsent
 } from 'test/data/data'
 import { IDTypeNotSupported } from '~/model/errors'
 
@@ -23,16 +23,10 @@ const mockCreateConsent = jest.spyOn(Domain, 'createConsent')
 const mockUpdateConsent = jest.spyOn(Domain, 'updateConsent')
 const mockDeleteConsent = jest.spyOn(Domain, 'deleteConsent')
 
-/* Mock the retrieved consent value. */
-const retrievedConsent: Consent = {
-  id: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
-  fspId: 'dfspa'
-}
-
 describe('server/handler/participants/{Type}/{ID}', (): void => {
   describe('GET Handler', (): void => {
     beforeAll((): void => {
-      mockRetrieveConsent.mockResolvedValue(retrievedConsent)
+      mockRetrieveConsent.mockResolvedValue(mockConsent)
     })
 
     it('should return a 200 success code.', async (): Promise<void> => {

@@ -1,4 +1,5 @@
 import { ResponseObject } from '@hapi/hapi'
+import { Consent } from '~/model/consent'
 
 /*
  * Mock Request Resources
@@ -13,6 +14,17 @@ export const h: Record<string, unknown> = {
       }
     } as unknown as ResponseObject
   }
+}
+
+export const mockConsent: Consent = {
+  id: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
+  fspId: 'dfspa'
+}
+
+export const getParticipantsByTypeAndIDResponse: Record<string, unknown> = {
+  partyList: [
+    { fspId: 'dfspa' }
+  ]
 }
 
 export const postParticipantsRequest: Record<string, unknown> = {

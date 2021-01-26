@@ -34,6 +34,7 @@ import Headers from '../data/headers.json'
 import MockParticipantPostData from '../data/mockParticipantsPost.json'
 import MockParticipantsByTypeAndIDPost from '../data/mockParticipantsByTypeAndIDPost.json'
 import MockParticipantsByTypeAndIDPut from '../data/mockParticipantsByTypeAndIDPut.json'
+import { getParticipantsByTypeAndIDResponse } from '../data/data'
 jest.mock('~/shared/logger')
 
 describe('index', (): void => {
@@ -143,7 +144,8 @@ describe('api routes', (): void => {
   describe('Endpoint: /participants/{Type}/{ID}', (): void => {
     it('GET', async (): Promise<void> => {
       const ParticipantsByTypeAndIDGet = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDGet')
-      ParticipantsByTypeAndIDGet.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(200)))
+      ParticipantsByTypeAndIDGet.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+        Promise.resolve(h.response(getParticipantsByTypeAndIDResponse).code(200)))
 
       const request = {
         method: 'GET',
@@ -164,7 +166,7 @@ describe('api routes', (): void => {
       expect(ParticipantsByTypeAndIDGet).toHaveBeenCalledTimes(1)
       expect(ParticipantsByTypeAndIDGet).toHaveBeenCalledWith(expect.anything(), expectedArgs, expect.anything())
       expect(response.statusCode).toBe(200)
-      expect(response.result).toBeDefined()
+      expect(response.result).toStrictEqual(getParticipantsByTypeAndIDResponse)
     })
 
     it('POST', async (): Promise<void> => {
