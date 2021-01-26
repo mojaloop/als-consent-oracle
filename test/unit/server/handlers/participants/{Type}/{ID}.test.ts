@@ -11,8 +11,8 @@ import {
   postParticipantsByWrongTypeAndIDRequest
   ,
   h,
-  getParticipantsByTypeAndIDRequest
-  , mockConsent
+  getParticipantsByTypeAndIDRequest,
+  mockConsent
 } from 'test/data/data'
 import { IDTypeNotSupported } from '~/model/errors'
 
