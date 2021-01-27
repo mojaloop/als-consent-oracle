@@ -17,7 +17,7 @@ export async function get (
 
   const consentId = request.params.ID
   const consent = await retrieveConsent(consentId)
-  return h.response(consent).code(200)
+  return h.response({ partyList: [consent] }).code(200)
 }
 
 export async function post (

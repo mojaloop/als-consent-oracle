@@ -329,9 +329,9 @@ components:
       description: Data model for the complex type PartyIdInfo.
       type: object
       properties:
-        id:
-          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/CorrelationId.yaml'
         fspId:
           $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/FspId.yaml'
+        partySubIdOrType:
+          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/PartySubIdOrType.yaml'
       required:
         - fspId
