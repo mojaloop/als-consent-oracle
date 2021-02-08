@@ -5,7 +5,7 @@ import Config from '~/shared/config'
 import * as Domain from '~/domain/participants'
 
 import OracleServer from '../../src/server'
-import { Consent } from '~/model/consent';
+import { Consent } from '~/model/consent'
 import Headers from '../data/headers.json'
 
 const mockRetrieveConsent = jest.spyOn(Domain, 'retrieveConsent')
@@ -19,6 +19,8 @@ const retrievedConsent: Consent = {
 
 const featurePath = path.join(__dirname, '../features/participants.scenario.feature')
 const feature = loadFeature(featurePath)
+
+jest.setTimeout(10 * 1000) // 10 seconds
 
 defineFeature(feature, (test): void => {
   let server: Server
@@ -65,8 +67,8 @@ defineFeature(feature, (test): void => {
         url: '/participants/CONSENT/fb2f2b12-5107-48f1-a93d-52b154270038',
         headers: Headers,
         payload: {
-          "currency": "USD",
-          "fspId": "dfspa"
+          currency: 'USD',
+          fspId: 'dfspa'
         }
       }
       response = await server.inject(request)
@@ -76,7 +78,7 @@ defineFeature(feature, (test): void => {
     then('I respond with a 201 Created', (): void => {
       expect(response.statusCode).toBe(201)
       expect(mockCreateConsent).toBeCalledWith(
-        {"fspId": "dfspa", "id": "fb2f2b12-5107-48f1-a93d-52b154270038"}
+        { fspId: 'dfspa', id: 'fb2f2b12-5107-48f1-a93d-52b154270038' }
       )
     })
   })
@@ -94,8 +96,8 @@ defineFeature(feature, (test): void => {
         url: '/participants/CONSENT/fb2f2b12-5107-48f1-a93d-52b154270038',
         headers: Headers,
         payload: {
-          "currency": "USD",
-          "fspId": "dfspa"
+          currency: 'USD',
+          fspId: 'dfspa'
         }
       }
       response = await server.inject(request)
@@ -105,7 +107,7 @@ defineFeature(feature, (test): void => {
     then('I respond with a 200 OK', (): void => {
       expect(response.statusCode).toBe(200)
       expect(mockUpdateConsent).toBeCalledWith(
-        {"fspId": "dfspa", "id": "fb2f2b12-5107-48f1-a93d-52b154270038"}
+        { fspId: 'dfspa', id: 'fb2f2b12-5107-48f1-a93d-52b154270038' }
       )
     })
   })

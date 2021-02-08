@@ -103,7 +103,6 @@
     "npm-check-updates": "11.0.0",
     "source-map-support": "0.5.19",
     "standard-version": "^9.1.0",
-    "swagger-cli": "^4.0.4",
     "ts-jest": "^26.4.4",
     "tsconfig-paths": "^3.9.0",
     "typescript": "4.1.3"
