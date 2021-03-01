@@ -151,7 +151,7 @@ async function methodMySQL (waitJob, CC) {
       port: CC.DATABASE.PORT,
       user: CC.DATABASE.USER,
       password: CC.DATABASE.PASSWORD,
-      database: CC.DATABASE.SCHEMA
+      database: CC.DATABASE.DATABASE
     }
   })
   await knex.select(1)
