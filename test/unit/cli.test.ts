@@ -30,14 +30,14 @@ describe('cli', (): void => {
     const cli = await import('~/cli')
     expect(cli).toBeDefined()
     expect(server.run).toHaveBeenCalledWith(expect.objectContaining({
-      ENV: Config.ENV,
       PORT: Config.PORT,
       HOST: Config.HOST,
       INSPECT: {
         DEPTH: 4,
         SHOW_HIDDEN: false,
         COLOR: true
-      }
+      },
+      DATABASE: Config.DATABASE
     }))
   })
 })

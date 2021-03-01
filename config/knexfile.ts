@@ -30,135 +30,162 @@
 import Convict from 'convict'
 import path from 'path'
 import { DbConnectionFormat, DbPoolFormat } from './custom-convict-formats'
+import { FileConfig, DatabaseConfig } from './config';
 const migrationsDirectory = path.join(__dirname, '../migrations')
 const seedsDirectory = path.join(__dirname, '../seeds')
-
-export interface DbConnection {
-  host: string;
-  port: number;
-  user: string;
-  password: string;
-  database: string;
-  timezone: string;
-}
-
-export interface DbPool {
-  min: number;
-  max: number;
-  acquireTimeoutMillis: number;
-  createTimeoutMillis: number;
-  destroyTimeoutMillis: number;
-  idleTimeoutMillis: number;
-  reapIntervalMillis: number;
-  createRetryIntervalMillis: number;
-}
-
-export interface DatabaseConfig {
-  ENV: string;
-  client: string;
-  version?: string;
-  useNullAsDefault?: boolean;
-  connection: DbConnection | string;
-  pool?: DbPool;
-
-  migrations: {
-    directory: string;
-    tableName: string;
-    stub?: string;
-    loadExtensions: string[];
-  };
-
-  seeds: {
-    directory: string;
-    loadExtensions: string[];
-  };
-}
 
 Convict.addFormat(DbConnectionFormat)
 Convict.addFormat(DbPoolFormat)
 
-const ConvictDatabaseConfig = Convict<DatabaseConfig>({
-  ENV: {
-    doc: 'The application environment.',
-    format: ['production', 'development', 'test', 'integration'],
-    default: 'production',
-    env: 'NODE_ENV'
+const ConvictFileConfig = Convict<FileConfig>({
+  PORT: {
+    format: Number,
+    default: 3000
   },
-  client: {
-    doc: 'Which database client should we use',
-    format: ['mysql', 'sqlite3'],
-    default: null
+  HOST: {
+    format: String,
+    default: '0.0.0.0'
   },
-  version: {
-    doc: 'What database version should we use',
-    format: function (val) {
-      if (val === null || typeof val === 'string') return true
-      throw Error('Database version was specified in the wrong format')
+  INSPECT: {
+    DEPTH: {
+      format: Number,
+      default: 4
     },
-    default: null
-  },
-  useNullAsDefault: {
-    doc: 'whether or not to use null for everything not specified',
-    format: 'Boolean',
-    default: false
-  },
-  connection: {
-    doc: 'Connection object specifying properties like host, port, user etc.',
-    format: DbConnectionFormat.name,
-    default: null
-  },
-  pool: {
-    doc: 'Pool object specifying tarn pool properties',
-    format: DbPoolFormat.name,
-    default: null
-  },
-  migrations: {
-    directory: {
-      doc: 'Migration directory',
-      format: String,
-      default: migrationsDirectory
+    SHOW_HIDDEN: {
+      format: Boolean,
+      default: false
     },
-    tableName: {
-      doc: 'Migration table name',
-      format: String,
-      default: 'als-consent-oracle'
-    },
-    stub: {
-      doc: 'Where the stubs for migration are located',
-      format: String,
-      default: `${migrationsDirectory}/migration.template`
-    },
-    loadExtensions: {
-      doc: 'Array of extensions to load',
-      format: 'Array',
-      default: ['.ts']
+    COLOR: {
+      format: Boolean,
+      default: true
     }
   },
-  seeds: {
-    directory: {
-      doc: 'Seeds directory',
-      format: String,
-      default: seedsDirectory
+  DATABASE: {
+    DIALECT: {
+      doc: 'Which database client should we use',
+      format: ['mysql', 'sqlite3'],
+      default: null
     },
-    loadExtensions: {
-      doc: 'Array of extensions to load',
-      format: 'Array',
-      default: ['.ts']
+    HOST: {
+      format: String,
+      default: 'users'
+    },
+    PORT: {
+      format: Number,
+      default: 8000
+    },
+    USER: {
+      format: String,
+      default: 'users'
+    },
+    PASSWORD: {
+      format: String,
+      default: 'users'
+    },
+    DATABASE: {
+      format: String,
+      default: 'users'
+    },
+    POOL_MIN_SIZE: {
+      format: Number,
+      default: 8000
+    },
+    POOL_MAX_SIZE: {
+      format: Number,
+      default: 8000
+    },
+    ACQUIRE_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    CREATE_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    DESTROY_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    IDLE_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    REAP_INTERVAL_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    CREATE_RETRY_INTERVAL_MILLIS: {
+      format: Number,
+      default: 8000
     }
   }
 })
 
-const env = ConvictDatabaseConfig.get('ENV')
-const dbConfigFile = `${__dirname}/${env}_db.json`
-ConvictDatabaseConfig.loadFile(dbConfigFile)
-ConvictDatabaseConfig.validate({ allowed: 'strict' })
+function areWeTestingWithJest () {
+  return process.env.JEST_WORKER_ID !== undefined
+}
 
-const Config: DatabaseConfig = ConvictDatabaseConfig.getProperties()
+const ConfigFile = path.join(__dirname, 'default.json')
+ConvictFileConfig.loadFile(ConfigFile)
+ConvictFileConfig.validate({ allowed: 'strict' })
+
+const ConfigFileProperties = ConvictFileConfig.getProperties()
+const KnexDatabaseConfig: DatabaseConfig = {
+  client: areWeTestingWithJest() ? 'sqlite3' : ConfigFileProperties.DATABASE.DIALECT,
+  version: '5.7',
+  connection: areWeTestingWithJest()
+    ? ':memory:'
+    : {
+      host: ConfigFileProperties.DATABASE.HOST,
+      port: ConfigFileProperties.DATABASE.PORT,
+      user: ConfigFileProperties.DATABASE.USER,
+      password: ConfigFileProperties.DATABASE.PASSWORD,
+      database: ConfigFileProperties.DATABASE.DATABASE
+    },
+  useNullAsDefault: !!areWeTestingWithJest(),
+  pool: {
+    // minimum size
+    min: ConfigFileProperties.DATABASE.POOL_MIN_SIZE || 2,
+
+    // maximum size
+    max: ConfigFileProperties.DATABASE.POOL_MAX_SIZE || 10,
+    // acquire promises are rejected after this many milliseconds
+    // if a resource cannot be acquired
+    acquireTimeoutMillis: ConfigFileProperties.DATABASE.ACQUIRE_TIMEOUT_MILLIS || 30000,
+
+    // create operations are cancelled after this many milliseconds
+    // if a resource cannot be acquired
+    createTimeoutMillis: ConfigFileProperties.DATABASE.CREATE_TIMEOUT_MILLIS || 3000,
+
+    // destroy operations are awaited for at most this many milliseconds
+    // new resources will be created after this timeout
+    destroyTimeoutMillis: ConfigFileProperties.DATABASE.DESTROY_TIMEOUT_MILLIS || 5000,
+
+    // free resources are destroyed after this many milliseconds
+    idleTimeoutMillis: ConfigFileProperties.DATABASE.IDLE_TIMEOUT_MILLIS || 30000,
+
+    // how often to check for idle resources to destroy
+    reapIntervalMillis: ConfigFileProperties.DATABASE.REAP_INTERVAL_MILLIS || 1000,
+
+    // long long to idle after failed create before trying again
+    createRetryIntervalMillis: ConfigFileProperties.DATABASE.CREATE_RETRY_INTERVAL_MILLIS || 20
+    // ping: function (conn, cb) { conn.query('SELECT 1', cb) }
+  },
+  migrations: {
+    directory: areWeTestingWithJest() ? '' : 'migrationsDirectory',
+    tableName: areWeTestingWithJest() ? 'als-consent-oracle' : 'migration',
+    loadExtensions: ['.ts']
+  },
+  seeds: {
+    directory: areWeTestingWithJest() ? '' : seedsDirectory,
+    loadExtensions: ['.ts']
+  }
+}
 
 // Inject directory paths here
-Config.migrations.directory = migrationsDirectory
-Config.migrations.stub = `${migrationsDirectory}/migration.template`
-Config.seeds.directory = seedsDirectory
+KnexDatabaseConfig.migrations.directory = migrationsDirectory
+KnexDatabaseConfig.migrations.stub = `${migrationsDirectory}/migration.template`
+KnexDatabaseConfig.seeds.directory = seedsDirectory
 
-export default Config
-module.exports = Config
+export default KnexDatabaseConfig
+module.exports = KnexDatabaseConfig

@@ -31,29 +31,12 @@
  ******/
 
 import Convict from 'convict'
-import DBConfig, { DatabaseConfig } from '~/../config/knexfile'
+import DBConfig from '~/../config/knexfile'
 import PACKAGE from '../../package.json'
 import Path from 'path'
+import { FileConfig, ServiceConfig } from '../../config/config';
 
-interface ServiceConfig {
-  PORT: number;
-  HOST: string;
-  DATABASE?: DatabaseConfig;
-  ENV: string;
-  INSPECT? : {
-    DEPTH: number;
-    SHOW_HIDDEN: boolean;
-    COLOR: boolean;
-  };
-}
-
-const ConvictConfig = Convict<ServiceConfig>({
-  ENV: {
-    doc: 'The environment that the als-consent-oracle is running in',
-    format: ['development', 'test', 'production', 'integration'],
-    default: 'production',
-    env: 'NODE_ENV'
-  },
+const ConvictConfig = Convict<FileConfig>({
   HOST: {
     doc: 'The Hostname/IP address to bind.',
     format: '*',
@@ -85,24 +68,83 @@ const ConvictConfig = Convict<ServiceConfig>({
       format: 'Boolean',
       default: true
     }
+  },
+  DATABASE: {
+    DIALECT: {
+      doc: 'Which database client should we use',
+      format: ['mysql', 'sqlite3'],
+      default: null
+    },
+    HOST: {
+      format: String,
+      default: 'users'
+    },
+    PORT: {
+      format: Number,
+      default: 8000
+    },
+    USER: {
+      format: String,
+      default: 'users'
+    },
+    PASSWORD: {
+      format: String,
+      default: 'users'
+    },
+    DATABASE: {
+      format: String,
+      default: 'users'
+    },
+    POOL_MIN_SIZE: {
+      format: Number,
+      default: 8000
+    },
+    POOL_MAX_SIZE: {
+      format: Number,
+      default: 8000
+    },
+    ACQUIRE_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    CREATE_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    DESTROY_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    IDLE_TIMEOUT_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    REAP_INTERVAL_MILLIS: {
+      format: Number,
+      default: 8000
+    },
+    CREATE_RETRY_INTERVAL_MILLIS: {
+      format: Number,
+      default: 8000
+    }
   }
 })
 
-// Load and validate general config based on environment variable
-const env = ConvictConfig.get('ENV')
-
-ConvictConfig.loadFile(Path.join(__dirname, `/../../config/${env}.json`))
+ConvictConfig.loadFile(Path.join(__dirname, '/../../config/default.json'))
 ConvictConfig.validate({ allowed: 'strict' })
 
 // Extract simplified config from Convict object
-const config: ServiceConfig = ConvictConfig.getProperties()
+const fileConfig: FileConfig = ConvictConfig.getProperties()
 
-// Inject DBConfig into shared config
-config.DATABASE = DBConfig
+const serviceConfig: ServiceConfig = {
+  PORT: fileConfig.PORT,
+  HOST: fileConfig.HOST,
+  DATABASE: DBConfig,
+  INSPECT: fileConfig.INSPECT
+}
 
-export default config
+export default serviceConfig
 export {
   PACKAGE,
-  ServiceConfig,
-  DatabaseConfig
+  ServiceConfig
 }

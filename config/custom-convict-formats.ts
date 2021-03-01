@@ -1,4 +1,4 @@
-import { DbConnection, DbPool } from './knexfile'
+import { DbConnection, DbPool } from './config'
 // Needed since connection could be a string or an object
 export const DbConnectionFormat = {
     name: 'db-connection',
@@ -10,13 +10,13 @@ export const DbConnectionFormat = {
         if (typeof val === 'object' && val) {
             const connection = val as DbConnection;
 
-            // Check that object is DbConnection and has DbConnection fields - 
+            // Check that object is DbConnection and has DbConnection fields -
             // i.e. PG and MySQL use a DbConnection object to configure
             // Verify that all fields are filled AND they are the right format - presence + format check
             if (typeof connection.host !== 'string') {
                 throw new Error("Mandatory field: 'host' is missing or is in the wrong format")
             }
-            
+
             if (typeof connection.port !== 'number') {
                 throw new Error("Mandatory field: 'port' is missing or is in the wrong format")
             }
