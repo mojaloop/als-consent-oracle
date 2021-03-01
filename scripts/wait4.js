@@ -84,7 +84,7 @@ function getWaiters (wait4, config) {
 async function wrapWithRetries (method, waitJob, retries, waitTimeMs) {
   try {
     // generate method's RC config
-    const CC = getConvictConfig(waitJob)
+    const CC = getConvictConfig()
     // method do it's wait job
     waitJob = await method(waitJob, CC)
     waitJob.status = 'connected'
@@ -110,16 +110,9 @@ async function wrapWithRetries (method, waitJob, retries, waitTimeMs) {
  * @description - create convict config instance
  * @param {object} waitJob
  */
-function getConvictConfig (waitJob) {
-  // Load config based on environment variable NODE_ENV
-  // defaults to integration environment
-  var environment = 'integration'
-  if(process.env.NODE_ENV) {
-    var environment = process.env.NODE_ENV
-  }
-
+function getConvictConfig () {
   // acquire rc parameters
-  const configPath = `../config/${environment}_db.json`
+  const configPath = `../config/default.json`
   return require(configPath)
 }
 
@@ -151,7 +144,16 @@ async function methodMongoDB (waitJob, RC) {
  */
 async function methodMySQL (waitJob, CC) {
   // make connection to MySQL using `knex`
-  const knex = require('knex')(CC)
+  const knex = require('knex')({
+    client: CC.DATABASE.DIALECT,
+    connection: {
+      host: CC.DATABASE.HOST.replace(/\/$/, ''),
+      port: CC.DATABASE.PORT,
+      user: CC.DATABASE.USER,
+      password: CC.DATABASE.PASSWORD,
+      database: CC.DATABASE.SCHEMA
+    }
+  })
   await knex.select(1)
 
   return waitJob
