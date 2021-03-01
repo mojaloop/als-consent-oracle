@@ -34,7 +34,7 @@ import Convict from 'convict'
 import DBConfig from '~/../config/knexfile'
 import PACKAGE from '../../package.json'
 import Path from 'path'
-import { FileConfig, ServiceConfig } from '../../config/config';
+import { FileConfig, ServiceConfig } from '../../config/config'
 
 const ConvictConfig = Convict<FileConfig>({
   HOST: {
