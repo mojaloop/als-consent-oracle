@@ -36,8 +36,7 @@ describe('cli', (): void => {
         DEPTH: 4,
         SHOW_HIDDEN: false,
         COLOR: true
-      },
-      DATABASE: Config.DATABASE
+      }
     }))
   })
 })

@@ -22,69 +22,8 @@
  --------------
  ******/
 
-export interface FileConfig {
-  PORT: number,
-  HOST: string,
-  INSPECT: {
-    DEPTH: number,
-    SHOW_HIDDEN: boolean,
-    COLOR: boolean
-  },
-  DATABASE: {
-    DIALECT: string;
-    HOST: string;
-    PORT: number;
-    USER: string;
-    PASSWORD: string;
-    DATABASE: string;
-    POOL_MIN_SIZE: number;
-    POOL_MAX_SIZE: number;
-    ACQUIRE_TIMEOUT_MILLIS: number;
-    CREATE_TIMEOUT_MILLIS: number;
-    DESTROY_TIMEOUT_MILLIS: number;
-    IDLE_TIMEOUT_MILLIS: number;
-    REAP_INTERVAL_MILLIS: number;
-    CREATE_RETRY_INTERVAL_MILLIS: number;
-  }
-}
-
-export interface DbConnection {
-  host: string;
-  port: number;
-  user: string;
-  password: string;
-  database: string;
-}
-
-export interface DbPool {
-  min: number;
-  max: number;
-  acquireTimeoutMillis: number;
-  createTimeoutMillis: number;
-  destroyTimeoutMillis: number;
-  idleTimeoutMillis: number;
-  reapIntervalMillis: number;
-  createRetryIntervalMillis: number;
-}
-
-export interface DatabaseConfig {
-  client: string;
-  version?: string;
-  useNullAsDefault?: boolean;
-  connection: DbConnection | string;
-  pool?: DbPool;
-  migrations: {
-    directory: string;
-    tableName: string;
-    stub?: string;
-    loadExtensions: string[];
-  };
-
-  seeds: {
-    directory: string;
-    loadExtensions: string[];
-  };
-}
+import KnexDatabaseConfig, { DatabaseConfig } from './knexfile'
+import ConvictFileConfig from './convictFileConfig'
 
 export interface ServiceConfig {
   PORT: number;
@@ -96,3 +35,15 @@ export interface ServiceConfig {
     COLOR: boolean;
   };
 }
+
+const ConfigFileProperties = ConvictFileConfig.getProperties()
+
+const ServiceConfig: ServiceConfig = {
+  PORT: ConfigFileProperties.PORT,
+  HOST: ConfigFileProperties.HOST,
+  INSPECT: ConfigFileProperties.INSPECT,
+  DATABASE: KnexDatabaseConfig
+}
+
+export default ServiceConfig
+module.exports = ServiceConfig

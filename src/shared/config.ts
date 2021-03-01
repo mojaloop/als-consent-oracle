@@ -30,120 +30,13 @@
  --------------
  ******/
 
-import Convict from 'convict'
-import DBConfig from '~/../config/knexfile'
 import PACKAGE from '../../package.json'
-import Path from 'path'
-import { FileConfig, ServiceConfig } from '../../config/config'
+import Config, { ServiceConfig } from '../../config/serviceConfig'
+import { DatabaseConfig } from '../../config/knexfile'
 
-const ConvictConfig = Convict<FileConfig>({
-  HOST: {
-    doc: 'The Hostname/IP address to bind.',
-    format: '*',
-    default: '0.0.0.0',
-    env: 'HOST',
-    arg: 'host'
-  },
-  PORT: {
-    doc: 'The port to bind.',
-    format: 'port',
-    default: 3000,
-    env: 'PORT',
-    arg: 'port'
-  },
-  INSPECT: {
-    DEPTH: {
-      doc: 'Inspection depth',
-      format: 'nat',
-      env: 'INSPECT_DEPTH',
-      default: 4
-    },
-    SHOW_HIDDEN: {
-      doc: 'Show hidden properties',
-      format: 'Boolean',
-      default: false
-    },
-    COLOR: {
-      doc: 'Show colors in output',
-      format: 'Boolean',
-      default: true
-    }
-  },
-  DATABASE: {
-    DIALECT: {
-      doc: 'Which database client should we use',
-      format: ['mysql', 'sqlite3'],
-      default: null
-    },
-    HOST: {
-      format: String,
-      default: 'users'
-    },
-    PORT: {
-      format: Number,
-      default: 8000
-    },
-    USER: {
-      format: String,
-      default: 'users'
-    },
-    PASSWORD: {
-      format: String,
-      default: 'users'
-    },
-    DATABASE: {
-      format: String,
-      default: 'users'
-    },
-    POOL_MIN_SIZE: {
-      format: Number,
-      default: 8000
-    },
-    POOL_MAX_SIZE: {
-      format: Number,
-      default: 8000
-    },
-    ACQUIRE_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    CREATE_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    DESTROY_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    IDLE_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    REAP_INTERVAL_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    CREATE_RETRY_INTERVAL_MILLIS: {
-      format: Number,
-      default: 8000
-    }
-  }
-})
-
-ConvictConfig.loadFile(Path.join(__dirname, '/../../config/default.json'))
-ConvictConfig.validate({ allowed: 'strict' })
-
-// Extract simplified config from Convict object
-const fileConfig: FileConfig = ConvictConfig.getProperties()
-
-const serviceConfig: ServiceConfig = {
-  PORT: fileConfig.PORT,
-  HOST: fileConfig.HOST,
-  DATABASE: DBConfig,
-  INSPECT: fileConfig.INSPECT
-}
-export default serviceConfig
+export default Config
 export {
   PACKAGE,
-  ServiceConfig
+  ServiceConfig,
+  DatabaseConfig
 }

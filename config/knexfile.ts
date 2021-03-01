@@ -26,108 +26,52 @@
  - Kenneth Zeng <kkzeng@google.com>
  --------------
  ******/
-
-import Convict from 'convict'
 import path from 'path'
-import { DbConnectionFormat, DbPoolFormat } from './custom-convict-formats'
-import { FileConfig, DatabaseConfig } from './config'
+import ConvictFileConfig from './convictFileConfig'
 const migrationsDirectory = path.join(__dirname, '../migrations')
 const seedsDirectory = path.join(__dirname, '../seeds')
 
-Convict.addFormat(DbConnectionFormat)
-Convict.addFormat(DbPoolFormat)
+export interface DbConnection {
+  host: string;
+  port: number;
+  user: string;
+  password: string;
+  database: string;
+}
 
-const ConvictFileConfig = Convict<FileConfig>({
-  PORT: {
-    format: Number,
-    default: 3000
-  },
-  HOST: {
-    format: String,
-    default: '0.0.0.0'
-  },
-  INSPECT: {
-    DEPTH: {
-      format: Number,
-      default: 4
-    },
-    SHOW_HIDDEN: {
-      format: Boolean,
-      default: false
-    },
-    COLOR: {
-      format: Boolean,
-      default: true
-    }
-  },
-  DATABASE: {
-    DIALECT: {
-      doc: 'Which database client should we use',
-      format: ['mysql', 'sqlite3'],
-      default: null
-    },
-    HOST: {
-      format: String,
-      default: 'users'
-    },
-    PORT: {
-      format: Number,
-      default: 8000
-    },
-    USER: {
-      format: String,
-      default: 'users'
-    },
-    PASSWORD: {
-      format: String,
-      default: 'users'
-    },
-    DATABASE: {
-      format: String,
-      default: 'users'
-    },
-    POOL_MIN_SIZE: {
-      format: Number,
-      default: 8000
-    },
-    POOL_MAX_SIZE: {
-      format: Number,
-      default: 8000
-    },
-    ACQUIRE_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    CREATE_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    DESTROY_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    IDLE_TIMEOUT_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    REAP_INTERVAL_MILLIS: {
-      format: Number,
-      default: 8000
-    },
-    CREATE_RETRY_INTERVAL_MILLIS: {
-      format: Number,
-      default: 8000
-    }
-  }
-})
+export interface DbPool {
+  min: number;
+  max: number;
+  acquireTimeoutMillis: number;
+  createTimeoutMillis: number;
+  destroyTimeoutMillis: number;
+  idleTimeoutMillis: number;
+  reapIntervalMillis: number;
+  createRetryIntervalMillis: number;
+}
+
+export interface DatabaseConfig {
+  client: string;
+  version?: string;
+  useNullAsDefault?: boolean;
+  connection: DbConnection | string;
+  pool?: DbPool;
+  migrations: {
+    directory: string;
+    tableName: string;
+    stub?: string;
+    loadExtensions: string[];
+  };
+
+  seeds: {
+    directory: string;
+    loadExtensions: string[];
+  };
+}
 
 function areWeTestingWithJest () {
   return process.env.JEST_WORKER_ID !== undefined
 }
-
-const ConfigFile = path.join(__dirname, 'default.json')
-ConvictFileConfig.loadFile(ConfigFile)
-ConvictFileConfig.validate({ allowed: 'strict' })
 
 const ConfigFileProperties = ConvictFileConfig.getProperties()
 const KnexDatabaseConfig: DatabaseConfig = {
@@ -144,32 +88,14 @@ const KnexDatabaseConfig: DatabaseConfig = {
     },
   useNullAsDefault: !!areWeTestingWithJest(),
   pool: {
-    // minimum size
     min: ConfigFileProperties.DATABASE.POOL_MIN_SIZE || 2,
-
-    // maximum size
     max: ConfigFileProperties.DATABASE.POOL_MAX_SIZE || 10,
-    // acquire promises are rejected after this many milliseconds
-    // if a resource cannot be acquired
     acquireTimeoutMillis: ConfigFileProperties.DATABASE.ACQUIRE_TIMEOUT_MILLIS || 30000,
-
-    // create operations are cancelled after this many milliseconds
-    // if a resource cannot be acquired
     createTimeoutMillis: ConfigFileProperties.DATABASE.CREATE_TIMEOUT_MILLIS || 3000,
-
-    // destroy operations are awaited for at most this many milliseconds
-    // new resources will be created after this timeout
     destroyTimeoutMillis: ConfigFileProperties.DATABASE.DESTROY_TIMEOUT_MILLIS || 5000,
-
-    // free resources are destroyed after this many milliseconds
     idleTimeoutMillis: ConfigFileProperties.DATABASE.IDLE_TIMEOUT_MILLIS || 30000,
-
-    // how often to check for idle resources to destroy
     reapIntervalMillis: ConfigFileProperties.DATABASE.REAP_INTERVAL_MILLIS || 1000,
-
-    // long long to idle after failed create before trying again
     createRetryIntervalMillis: ConfigFileProperties.DATABASE.CREATE_RETRY_INTERVAL_MILLIS || 20
-    // ping: function (conn, cb) { conn.query('SELECT 1', cb) }
   },
   migrations: {
     directory: migrationsDirectory,
