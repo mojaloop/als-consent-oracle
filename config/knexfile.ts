@@ -30,7 +30,7 @@
 import Convict from 'convict'
 import path from 'path'
 import { DbConnectionFormat, DbPoolFormat } from './custom-convict-formats'
-import { FileConfig, DatabaseConfig } from './config';
+import { FileConfig, DatabaseConfig } from './config'
 const migrationsDirectory = path.join(__dirname, '../migrations')
 const seedsDirectory = path.join(__dirname, '../seeds')
 
@@ -172,20 +172,16 @@ const KnexDatabaseConfig: DatabaseConfig = {
     // ping: function (conn, cb) { conn.query('SELECT 1', cb) }
   },
   migrations: {
-    directory: areWeTestingWithJest() ? '' : 'migrationsDirectory',
-    tableName: areWeTestingWithJest() ? 'als-consent-oracle' : 'migration',
+    directory: migrationsDirectory,
+    stub: `${migrationsDirectory}/migration.template`,
+    tableName: 'als-consent-oracle',
     loadExtensions: ['.ts']
   },
   seeds: {
-    directory: areWeTestingWithJest() ? '' : seedsDirectory,
+    directory: seedsDirectory,
     loadExtensions: ['.ts']
   }
 }
-
-// Inject directory paths here
-KnexDatabaseConfig.migrations.directory = migrationsDirectory
-KnexDatabaseConfig.migrations.stub = `${migrationsDirectory}/migration.template`
-KnexDatabaseConfig.seeds.directory = seedsDirectory
 
 export default KnexDatabaseConfig
 module.exports = KnexDatabaseConfig

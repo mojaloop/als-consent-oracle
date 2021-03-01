@@ -142,7 +142,6 @@ const serviceConfig: ServiceConfig = {
   DATABASE: DBConfig,
   INSPECT: fileConfig.INSPECT
 }
-
 export default serviceConfig
 export {
   PACKAGE,
