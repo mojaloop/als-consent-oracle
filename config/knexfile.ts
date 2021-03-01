@@ -69,24 +69,18 @@ export interface DatabaseConfig {
   };
 }
 
-function areWeTestingWithJest () {
-  return process.env.JEST_WORKER_ID !== undefined
-}
-
 const ConfigFileProperties = ConvictFileConfig.getProperties()
 const KnexDatabaseConfig: DatabaseConfig = {
-  client: areWeTestingWithJest() ? 'sqlite3' : ConfigFileProperties.DATABASE.DIALECT,
+  client: ConfigFileProperties.DATABASE.DIALECT,
   version: '5.7',
-  connection: areWeTestingWithJest()
-    ? ':memory:'
-    : {
-      host: ConfigFileProperties.DATABASE.HOST,
-      port: ConfigFileProperties.DATABASE.PORT,
-      user: ConfigFileProperties.DATABASE.USER,
-      password: ConfigFileProperties.DATABASE.PASSWORD,
-      database: ConfigFileProperties.DATABASE.DATABASE
-    },
-  useNullAsDefault: !!areWeTestingWithJest(),
+  connection: {
+    host: ConfigFileProperties.DATABASE.HOST,
+    port: ConfigFileProperties.DATABASE.PORT,
+    user: ConfigFileProperties.DATABASE.USER,
+    password: ConfigFileProperties.DATABASE.PASSWORD,
+    database: ConfigFileProperties.DATABASE.DATABASE
+  },
+  useNullAsDefault: ConfigFileProperties.DATABASE.USE_NULL_AS_DEFAULT,
   pool: {
     min: ConfigFileProperties.DATABASE.POOL_MIN_SIZE || 2,
     max: ConfigFileProperties.DATABASE.POOL_MAX_SIZE || 10,

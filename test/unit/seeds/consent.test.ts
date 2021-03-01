@@ -1,11 +1,15 @@
-import Config from '~/shared/config'
+import Config, { DatabaseConfig } from '~/shared/config'
 import Knex from 'knex'
+
+Config.DATABASE.client = 'sqlite3'
+Config.DATABASE.connection = ':memory:'
+Config.DATABASE.useNullAsDefault = true
 
 describe('testing Consent table', (): void => {
   let db: Knex<unknown[]>
 
   beforeAll(async (): Promise<void> => {
-    db = Knex(Config.DATABASE as object)
+    db = Knex(Config.DATABASE as DatabaseConfig)
     await db.migrate.latest()
     await db.seed.run()
   })
@@ -37,7 +41,7 @@ describe('testing that constraints are enforced in the consent table', (): void 
   let db: Knex<unknown[]>
 
   beforeAll(async (): Promise<void> => {
-    db = Knex(Config.DATABASE as object)
+    db = Knex(Config.DATABASE as DatabaseConfig)
     await db.migrate.latest()
     await db.seed.run()
   })
