@@ -612,6 +612,8 @@ workflows:
             - build-local
             - test-unit
             - test-coverage
+            - test-integration
+            - test-bdd
           filters:
             tags:
               only: /.*/
