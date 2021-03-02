@@ -18,25 +18,32 @@
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
 
- * Paweł Marzec <pawel.marzec@modusbox.com>
+ - Kevin Leyow <kevin.leyow@modusbox.com>
  --------------
  ******/
-import Config from '~/shared/config'
-import server from '~/server'
-jest.mock('~/server')
 
-describe('cli', (): void => {
-  it('should use default port & host', async (): Promise<void> => {
-    const cli = await import('~/cli')
-    expect(cli).toBeDefined()
-    expect(server.run).toHaveBeenCalledWith(expect.objectContaining({
-      PORT: Config.PORT,
-      HOST: Config.HOST,
-      INSPECT: {
-        DEPTH: 4,
-        SHOW_HIDDEN: false,
-        COLOR: true
-      }
-    }))
-  })
-})
+import KnexDatabaseConfig, { DatabaseConfig } from './knexfile'
+import ConvictFileConfig from './convictFileConfig'
+
+export interface ServiceConfig {
+  PORT: number;
+  HOST: string;
+  DATABASE: DatabaseConfig;
+  INSPECT? : {
+    DEPTH: number;
+    SHOW_HIDDEN: boolean;
+    COLOR: boolean;
+  };
+}
+
+const ConfigFileProperties = ConvictFileConfig.getProperties()
+
+const ServiceConfig: ServiceConfig = {
+  PORT: ConfigFileProperties.PORT,
+  HOST: ConfigFileProperties.HOST,
+  INSPECT: ConfigFileProperties.INSPECT,
+  DATABASE: KnexDatabaseConfig
+}
+
+export default ServiceConfig
+module.exports = ServiceConfig

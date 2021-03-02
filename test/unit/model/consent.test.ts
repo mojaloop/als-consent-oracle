@@ -36,9 +36,13 @@
  */
 
 import Knex from 'knex'
-import Config from '~/shared/config'
+import Config, { DatabaseConfig } from '~/shared/config'
 import ConsentDB, { Consent } from '~/model/consent'
 import { NotFoundError } from '~/model/errors'
+
+Config.DATABASE.client = 'sqlite3'
+Config.DATABASE.connection = ':memory:'
+Config.DATABASE.useNullAsDefault = true
 
 /*
  * Mock Consent Resources
@@ -66,7 +70,7 @@ describe('src/model/consent', (): void => {
   let consentDB: ConsentDB
 
   beforeAll(async (): Promise<void> => {
-    Db = Knex(Config.DATABASE as object)
+    Db = Knex(Config.DATABASE as DatabaseConfig)
     await Db.migrate.latest()
     await Db.raw('PRAGMA foreign_keys = ON')
 

@@ -26,10 +26,8 @@
  - Kenneth Zeng <kkzeng@google.com>
  --------------
  ******/
-
-import Convict from 'convict'
 import path from 'path'
-import { DbConnectionFormat, DbPoolFormat } from './custom-convict-formats'
+import ConvictFileConfig from './convictFileConfig'
 const migrationsDirectory = path.join(__dirname, '../migrations')
 const seedsDirectory = path.join(__dirname, '../seeds')
 
@@ -39,7 +37,6 @@ export interface DbConnection {
   user: string;
   password: string;
   database: string;
-  timezone: string;
 }
 
 export interface DbPool {
@@ -54,13 +51,11 @@ export interface DbPool {
 }
 
 export interface DatabaseConfig {
-  ENV: string;
   client: string;
   version?: string;
   useNullAsDefault?: boolean;
   connection: DbConnection | string;
   pool?: DbPool;
-
   migrations: {
     directory: string;
     tableName: string;
@@ -74,91 +69,39 @@ export interface DatabaseConfig {
   };
 }
 
-Convict.addFormat(DbConnectionFormat)
-Convict.addFormat(DbPoolFormat)
-
-const ConvictDatabaseConfig = Convict<DatabaseConfig>({
-  ENV: {
-    doc: 'The application environment.',
-    format: ['production', 'development', 'test', 'integration'],
-    default: 'production',
-    env: 'NODE_ENV'
-  },
-  client: {
-    doc: 'Which database client should we use',
-    format: ['mysql', 'sqlite3'],
-    default: null
-  },
-  version: {
-    doc: 'What database version should we use',
-    format: function (val) {
-      if (val === null || typeof val === 'string') return true
-      throw Error('Database version was specified in the wrong format')
-    },
-    default: null
-  },
-  useNullAsDefault: {
-    doc: 'whether or not to use null for everything not specified',
-    format: 'Boolean',
-    default: false
-  },
+const ConfigFileProperties = ConvictFileConfig.getProperties()
+const KnexDatabaseConfig: DatabaseConfig = {
+  client: ConfigFileProperties.DATABASE.DIALECT,
+  version: '5.7',
   connection: {
-    doc: 'Connection object specifying properties like host, port, user etc.',
-    format: DbConnectionFormat.name,
-    default: null
+    host: ConfigFileProperties.DATABASE.HOST,
+    port: ConfigFileProperties.DATABASE.PORT,
+    user: ConfigFileProperties.DATABASE.USER,
+    password: ConfigFileProperties.DATABASE.PASSWORD,
+    database: ConfigFileProperties.DATABASE.DATABASE
   },
+  useNullAsDefault: ConfigFileProperties.DATABASE.USE_NULL_AS_DEFAULT,
   pool: {
-    doc: 'Pool object specifying tarn pool properties',
-    format: DbPoolFormat.name,
-    default: null
+    min: ConfigFileProperties.DATABASE.POOL_MIN_SIZE || 2,
+    max: ConfigFileProperties.DATABASE.POOL_MAX_SIZE || 10,
+    acquireTimeoutMillis: ConfigFileProperties.DATABASE.ACQUIRE_TIMEOUT_MILLIS || 30000,
+    createTimeoutMillis: ConfigFileProperties.DATABASE.CREATE_TIMEOUT_MILLIS || 3000,
+    destroyTimeoutMillis: ConfigFileProperties.DATABASE.DESTROY_TIMEOUT_MILLIS || 5000,
+    idleTimeoutMillis: ConfigFileProperties.DATABASE.IDLE_TIMEOUT_MILLIS || 30000,
+    reapIntervalMillis: ConfigFileProperties.DATABASE.REAP_INTERVAL_MILLIS || 1000,
+    createRetryIntervalMillis: ConfigFileProperties.DATABASE.CREATE_RETRY_INTERVAL_MILLIS || 20
   },
   migrations: {
-    directory: {
-      doc: 'Migration directory',
-      format: String,
-      default: migrationsDirectory
-    },
-    tableName: {
-      doc: 'Migration table name',
-      format: String,
-      default: 'als-consent-oracle'
-    },
-    stub: {
-      doc: 'Where the stubs for migration are located',
-      format: String,
-      default: `${migrationsDirectory}/migration.template`
-    },
-    loadExtensions: {
-      doc: 'Array of extensions to load',
-      format: 'Array',
-      default: ['.ts']
-    }
+    directory: migrationsDirectory,
+    stub: `${migrationsDirectory}/migration.template`,
+    tableName: 'als-consent-oracle',
+    loadExtensions: ['.ts']
   },
   seeds: {
-    directory: {
-      doc: 'Seeds directory',
-      format: String,
-      default: seedsDirectory
-    },
-    loadExtensions: {
-      doc: 'Array of extensions to load',
-      format: 'Array',
-      default: ['.ts']
-    }
+    directory: seedsDirectory,
+    loadExtensions: ['.ts']
   }
-})
+}
 
-const env = ConvictDatabaseConfig.get('ENV')
-const dbConfigFile = `${__dirname}/${env}_db.json`
-ConvictDatabaseConfig.loadFile(dbConfigFile)
-ConvictDatabaseConfig.validate({ allowed: 'strict' })
-
-const Config: DatabaseConfig = ConvictDatabaseConfig.getProperties()
-
-// Inject directory paths here
-Config.migrations.directory = migrationsDirectory
-Config.migrations.stub = `${migrationsDirectory}/migration.template`
-Config.seeds.directory = seedsDirectory
-
-export default Config
-module.exports = Config
+export default KnexDatabaseConfig
+module.exports = KnexDatabaseConfig

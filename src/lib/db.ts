@@ -28,9 +28,8 @@
  ******/
 
 import Knex from 'knex'
-import Config from '../shared/config'
+import Config, { DatabaseConfig } from '../shared/config'
 import ConsentDB from '../model/consent'
-import { DatabaseConfig } from '../../config/knexfile'
 
 const Db: Knex = Knex(Config.DATABASE as DatabaseConfig)
 const consentDB: ConsentDB = new ConsentDB(Db)
