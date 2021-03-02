@@ -8,8 +8,6 @@ import OracleServer from '../../src/server'
 const featurePath = path.join(__dirname, '../features/template.scenario.feature')
 const feature = loadFeature(featurePath)
 
-jest.setTimeout(10 * 1000) // 10 seconds
-
 defineFeature(feature, (test): void => {
   let server: Server
   let response: ServerInjectResponse
