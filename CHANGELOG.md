@@ -1,4 +1,21 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [0.0.5](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.4...v0.0.5) (2021-03-02)
+
+
+### Bug Fixes
+
+* change bdd to run sequentially and resolve audit ([#9](https://github.com/mojaloop/als-consent-oracle/issues/9)) ([9c2642d](https://github.com/mojaloop/als-consent-oracle/commit/9c2642d30c50a5c6e68dbbb1a093da44073119bd))
+
+
+### Maintenance
+
+* update ci, remove package and add jest timeout bdd ([#7](https://github.com/mojaloop/als-consent-oracle/issues/7)) ([07f85e2](https://github.com/mojaloop/als-consent-oracle/commit/07f85e22b3178fc8f455d8b6fa820d6fc3d6bd01))
+
+
+### Code Refactor
+
+* change handling of config files ([#8](https://github.com/mojaloop/als-consent-oracle/issues/8)) ([02edabf](https://github.com/mojaloop/als-consent-oracle/commit/02edabf5100393b1942f3a4fa570c93c23a2af01))
+
 ### [0.0.4](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.3...v0.0.4) (2021-02-08)
 
 
