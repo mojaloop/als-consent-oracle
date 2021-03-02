@@ -19,6 +19,11 @@
       "decision": "ignore",
       "madeAt": 1614574676767,
       "expiresAt": 1617166666557
+    },
+    "1640|@mojaloop/central-services-health>@mojaloop/central-services-shared>widdershins>urijs": {
+      "decision": "ignore",
+      "madeAt": 1614692478982,
+      "expiresAt": 1617284472145
     }
   },
   "rules": {},
