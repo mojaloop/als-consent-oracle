@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [0.0.6](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.5...v0.0.6) (2021-03-03)
+
+
+### Features
+
+* add convict field for passing env variables ([#10](https://github.com/mojaloop/als-consent-oracle/issues/10)) ([43a93b7](https://github.com/mojaloop/als-consent-oracle/commit/43a93b7eb1a8356d879247fe5dde770ed57b3e12))
+
 ### [0.0.5](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.4...v0.0.5) (2021-03-02)
 
 
