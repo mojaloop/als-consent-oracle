@@ -29,6 +29,8 @@
 import path from 'path'
 import Convict from 'convict'
 
+const ENV_PREFIX = 'ALS_CO_'
+
 export interface FileConfig {
   PORT: number,
   HOST: string,
@@ -59,11 +61,13 @@ export interface FileConfig {
 const ConvictFileConfig = Convict<FileConfig>({
   PORT: {
     format: Number,
-    default: 3000
+    default: 3000,
+    env: ENV_PREFIX + 'PORT'
   },
   HOST: {
     format: String,
-    default: '0.0.0.0'
+    default: '0.0.0.0',
+    env: ENV_PREFIX + 'HOST'
   },
   INSPECT: {
     DEPTH: {
@@ -88,27 +92,32 @@ const ConvictFileConfig = Convict<FileConfig>({
     HOST: {
       doc: 'The hostname of the database you are connecting to',
       format: String,
-      default: 'localhost'
+      default: 'localhost',
+      env: ENV_PREFIX + 'DATABASE_HOST'
     },
     PORT: {
       doc: 'The port number to connect to',
       format: Number,
-      default: 3306
+      default: 3306,
+      env: ENV_PREFIX + 'DATABASE_PORT'
     },
     USER: {
       doc: 'The MySQL user to authenticate as.',
       format: String,
-      default: 'als-consent-oracle'
+      default: 'als-consent-oracle',
+      env: ENV_PREFIX + 'DATABASE_USER'
     },
     PASSWORD: {
       doc: 'The password of that MySQL user',
       format: String,
-      default: 'password'
+      default: 'password',
+      env: ENV_PREFIX + 'DATABASE_PASSWORD'
     },
     DATABASE: {
       doc: 'Name of the database to use for this connection',
       format: String,
-      default: 'als-consent-oracle'
+      default: 'als-consent-oracle',
+      env: ENV_PREFIX + 'DATABASE_NAME'
     },
     POOL_MIN_SIZE: {
       doc: 'Pool minimum size',
