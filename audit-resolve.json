@@ -11,8 +11,8 @@
     },
     "1500|@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
       "decision": "ignore",
-      "madeAt": 1611102533934,
-      "expiresAt": 1613694530151
+      "madeAt": 1632754650721,
+      "expiresAt": 1635346643281
     },
     "1594|@mojaloop/central-services-shared>axios": {
       "decision": "fix",
@@ -119,6 +119,16 @@
       "decision": "ignore",
       "madeAt": 1632754594165,
       "expiresAt": 1635345557321
+    },
+    "1675|@mojaloop/central-services-shared>shins>sanitize-html": {
+      "decision": "ignore",
+      "madeAt": 1632754653815,
+      "expiresAt": 1635346643281
+    },
+    "1676|@mojaloop/central-services-shared>shins>sanitize-html": {
+      "decision": "ignore",
+      "madeAt": 1632754653815,
+      "expiresAt": 1635346643281
     }
   },
   "rules": {},
