@@ -28,6 +28,8 @@ declare module '@mojaloop/central-services-error-handling'{
   export function validateRoutes(options?: object): object;
 }
 declare module '@mojaloop/central-services-shared'
+declare module '@mojaloop/central-services-shared/src/util/hapi'
+declare module '@mojaloop/central-services-metrics'
 
 declare module '@hapi/good'
 declare module 'hapi-openapi'

@@ -1,29 +1,55 @@
 {
   "decisions": {
-    "1594|@mojaloop/central-services-health>@mojaloop/central-services-shared>axios": {
-      "decision": "ignore",
-      "madeAt": 1611100930722,
-      "expiresAt": 1613692926295
+    "1594|@mojaloop/central-services-shared>axios": {
+      "decision": "fix",
+      "madeAt": 1632796604558
     },
-    "1500|@mojaloop/central-services-health>@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
-      "decision": "ignore",
-      "madeAt": 1614574679004,
-      "expiresAt": 1617166666557
+    "1673|@mojaloop/central-services-shared>@mojaloop/central-services-error-handling>lodash": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1673|@mojaloop/central-services-shared>@mojaloop/event-sdk>lodash": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1673|@mojaloop/central-services-shared>lodash": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1770|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1771|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1779|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1780|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1781|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
     },
     "1500|@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
       "decision": "ignore",
-      "madeAt": 1611102533934,
-      "expiresAt": 1613694530151
+      "madeAt": 1632801898901,
+      "expiresAt": 1635393892490
     },
-    "1594|@mojaloop/central-services-shared>axios": {
+    "1675|@mojaloop/central-services-shared>shins>sanitize-html": {
       "decision": "ignore",
-      "madeAt": 1614574676767,
-      "expiresAt": 1617166666557
+      "madeAt": 1632801903750,
+      "expiresAt": 1635393892490
     },
-    "1640|@mojaloop/central-services-health>@mojaloop/central-services-shared>widdershins>urijs": {
+    "1676|@mojaloop/central-services-shared>shins>sanitize-html": {
       "decision": "ignore",
-      "madeAt": 1614692478982,
-      "expiresAt": 1617284472145
+      "madeAt": 1632801903750,
+      "expiresAt": 1635393892490
     }
   },
   "rules": {},

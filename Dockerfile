@@ -17,8 +17,9 @@ RUN ln -sf /dev/stdout ./logs/combined.log
 RUN adduser -D as-user
 USER as-user
 COPY --chown=as-user --from=builder /opt/als-consent-oracle .
-# cleanup
-# disable prune, breaks tests
-# RUN npm prune --production
+
+# cleanup dev dependencies
+RUN npm prune --production
+
 EXPOSE 3000
 CMD ["npm", "run", "start"]
