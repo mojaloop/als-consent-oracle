@@ -36,6 +36,43 @@ import MockParticipantsByTypeAndIDPost from '../data/mockParticipantsByTypeAndID
 import MockParticipantsByTypeAndIDPut from '../data/mockParticipantsByTypeAndIDPut.json'
 import { getParticipantsByTypeAndIDResponse } from '../data/data'
 jest.mock('~/shared/logger')
+jest.mock('~/server/handlers', () => ({
+  HealthGet: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({ status: 'OK', uptime: 1.23 }).code(200)
+    )
+  ),
+  MetricsGet: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({ }).code(200)
+    )
+  ),
+  ParticipantsPost: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({}).code(202)
+    )
+  ),
+  ParticipantsByTypeAndIDGet: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({}).code(200)
+    )
+  ),
+  ParticipantsByTypeAndIDPost: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({}).code(202)
+    )
+  ),
+  ParticipantsByTypeAndIDPut: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({}).code(200)
+    )
+  ),
+  ParticipantsByTypeAndIDDelete: jest.fn(
+    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
+      h.response({}).code(204)
+    )
+  ),
+}))
 
 describe('index', (): void => {
   it('should have proper layout', (): void => {
@@ -90,7 +127,7 @@ describe('api routes', (): void => {
   })
 
   describe('Endpoint: /participants', (): void => {
-    it('POST /participants/', async (): Promise<void> => {
+    it('POST /participants', async (): Promise<void> => {
       const mockParticipantsPost = jest.spyOn(Handlers, 'ParticipantsPost')
       mockParticipantsPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(202)))
 
@@ -107,37 +144,13 @@ describe('api routes', (): void => {
         payload: MockParticipantPostData.payload
       })
 
+      
       const response = await server.inject(request)
+
       expect(mockParticipantsPost).toHaveBeenCalledTimes(1)
       expect(mockParticipantsPost).toHaveBeenCalledWith(expect.anything(), expectedArgs, expect.anything())
       expect(response.statusCode).toBe(202)
       expect(response.result).toBeDefined()
-    })
-
-    it('schema validation - missing fields', async (): Promise<void> => {
-      const mockParticipantsPost = jest.spyOn(Handlers, 'ParticipantsPost')
-      mockParticipantsPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(202)))
-
-      const payloadMissingId = Object.assign({}, MockParticipantPostData.payload as Record<string, unknown>)
-      delete payloadMissingId.requestId
-
-      const request = {
-        method: 'POST',
-        url: '/participants',
-        headers: Headers,
-        payload: payloadMissingId
-      }
-
-      const expected = {
-        errorInformation: {
-          errorCode: '3102',
-          errorDescription: 'Missing mandatory element - .requestBody should have required property \'requestId\''
-        }
-      }
-
-      const response = await server.inject(request)
-      expect(response.statusCode).toBe(400)
-      expect(response.result).toStrictEqual(expected)
     })
   })
 
@@ -197,31 +210,6 @@ describe('api routes', (): void => {
       expect(response.result).toBeDefined()
     })
 
-    it('POST schema validation - missing fields', async (): Promise<void> => {
-      const ParticipantsByTypeAndIDPost = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPost')
-      ParticipantsByTypeAndIDPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(201)))
-
-      const payloadMissingId = Object.assign({}, MockParticipantsByTypeAndIDPost.payload as Record<string, unknown>)
-      delete payloadMissingId.fspId
-
-      const request = {
-        method: 'POST',
-        url: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
-        headers: Headers,
-        payload: payloadMissingId
-      }
-
-      const expected = {
-        errorInformation: {
-          errorCode: '3102',
-          errorDescription: 'Missing mandatory element - .requestBody should have required property \'fspId\''
-        }
-      }
-
-      const response = await server.inject(request)
-      expect(response.statusCode).toBe(400)
-      expect(response.result).toStrictEqual(expected)
-    })
 
     it('PUT', async (): Promise<void> => {
       const ParticipantsByTypeAndIDPut = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPut')
@@ -251,31 +239,7 @@ describe('api routes', (): void => {
       expect(response.result).toBeDefined()
     })
 
-    it('PUT schema validation - missing fields', async (): Promise<void> => {
-      const ParticipantsByTypeAndIDPut = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPut')
-      ParticipantsByTypeAndIDPut.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(200)))
-
-      const payloadMissingId = Object.assign({}, MockParticipantsByTypeAndIDPut.payload as Record<string, unknown>)
-      delete payloadMissingId.fspId
-
-      const request = {
-        method: 'PUT',
-        url: '/participants/CONSENTS/73f22dbf-e322-44df-b407-f5a80ace9e02',
-        headers: Headers,
-        payload: payloadMissingId
-      }
-
-      const expected = {
-        errorInformation: {
-          errorCode: '3102',
-          errorDescription: 'Missing mandatory element - .requestBody should have required property \'fspId\''
-        }
-      }
-
-      const response = await server.inject(request)
-      expect(response.statusCode).toBe(400)
-      expect(response.result).toStrictEqual(expected)
-    })
+    
 
     it('DELETE', async (): Promise<void> => {
       const ParticipantsByTypeAndIDDelete = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDDelete')

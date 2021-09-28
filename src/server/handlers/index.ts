@@ -28,6 +28,8 @@ import Participants from './participants'
 import ParticipantsTypeId from './participants/{Type}/{ID}'
 const OpenapiBackend = Util.OpenapiBackend
 
+console.log('Participants.post', Participants.post)
+
 export default {
   HealthGet: Health.get,
   MetricsGet: Metrics.get,

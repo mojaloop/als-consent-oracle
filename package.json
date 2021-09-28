@@ -111,7 +111,7 @@
   "dependencies": {
     "@hapi/boom": "^9.1.1",
     "@hapi/good": "^9.0.1",
-    "@hapi/hapi": "^20.0.3",
+    "@hapi/hapi": "^20.2.0",
     "@hapi/inert": "^6.0.3",
     "@hapi/vision": "^6.0.1",
     "@mojaloop/central-services-error-handling": "^11.0.0",
@@ -122,6 +122,8 @@
     "@mojaloop/event-sdk": "^10.7.1",
     "@mojaloop/sdk-standard-components": "^13.3.3",
     "@types/convict": "^5.2.2",
+    "ajv": "^8.6.3",
+    "ajv-keywords": "^5.0.0",
     "babel-jest": "^26.6.3",
     "blipp": "^4.0.2",
     "commander": "^5.1.0",
