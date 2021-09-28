@@ -40,6 +40,8 @@ describe('openAPI', () => {
   let server: Server
 
   beforeAll(async (): Promise<void> => {
+    // Override the port to allow parallel tests
+    Config.PORT = 33290
     server = await index.server.run(Config)
   })
 

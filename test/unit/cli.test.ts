@@ -26,7 +26,7 @@ import server from '~/server'
 jest.mock('~/server')
 
 // TODO: fix this test!
-describe.skip('cli', (): void => {
+describe('cli', (): void => {
   it('should use default port & host', async (): Promise<void> => {
     const cli = await import('~/cli')
     expect(cli).toBeDefined()
