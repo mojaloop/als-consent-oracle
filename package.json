@@ -116,6 +116,7 @@
     "@hapi/vision": "^6.0.1",
     "@mojaloop/central-services-error-handling": "^11.0.0",
     "@mojaloop/central-services-health": "^13.0.0",
+    "@mojaloop/central-services-metrics": "^11.0.0",
     "@mojaloop/central-services-shared": "11.3.4",
     "@mojaloop/sdk-standard-components": "^13.3.3",
     "@types/convict": "^5.2.2",
