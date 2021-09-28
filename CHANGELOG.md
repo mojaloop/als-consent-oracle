@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [0.0.7](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.6...v0.0.7) (2021-09-28)
+
+
+### Bug Fixes
+
+* enable npm prune --production in dockerfile ([#11](https://github.com/mojaloop/als-consent-oracle/issues/11)) ([21d588b](https://github.com/mojaloop/als-consent-oracle/commit/21d588b40ada4903962fe71cf36f761ffe2c3017))
+
 ### [0.0.6](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.5...v0.0.6) (2021-03-03)
 
 
