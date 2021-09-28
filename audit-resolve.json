@@ -1,0 +1,42 @@
+{
+  "decisions": {
+    "1594|@mojaloop/central-services-shared>axios": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1673|@mojaloop/central-services-shared>@mojaloop/central-services-error-handling>lodash": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1673|@mojaloop/central-services-shared>@mojaloop/event-sdk>lodash": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1673|@mojaloop/central-services-shared>lodash": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1770|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1771|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1779|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1780|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    },
+    "1781|@mojaloop/central-services-shared>@mojaloop/event-sdk>grpc>node-pre-gyp>tar": {
+      "decision": "fix",
+      "madeAt": 1632796604558
+    }
+  },
+  "rules": {},
+  "version": 1
+}
