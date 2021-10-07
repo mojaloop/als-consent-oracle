@@ -69,15 +69,8 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@mojaloop/api-snippets": "^11.4.3",
     "@redocly/openapi-cli": "^1.0.0-beta.31",
-    "@types/hapi": "^18.0.5",
-    "@types/hapi__hapi": "^20.0.4",
-    "@types/hapi__inert": "^5.2.2",
-    "@types/hapi__vision": "^5.5.2",
     "@types/jest": "26.0.20",
-    "@types/node": "^14.14.22",
-    "@types/rc": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "4.14.0",
     "@typescript-eslint/parser": "4.14.0",
     "add": "^2.0.6",
@@ -104,16 +97,21 @@
     "source-map-support": "0.5.19",
     "standard-version": "^9.1.0",
     "sqlite3": "^4.2.0",
-    "ts-jest": "^26.4.4",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "4.1.3"
+    "ts-jest": "^26.4.4"
   },
   "dependencies": {
+    "@types/hapi": "^18.0.5",
+    "@types/hapi__hapi": "^20.0.4",
+    "@types/hapi__inert": "^5.2.2",
+    "@types/hapi__vision": "^5.5.2",
+    "@types/node": "^14.14.22",
+    "@types/rc": "^1.1.0",
     "@hapi/boom": "^9.1.1",
     "@hapi/good": "^9.0.1",
     "@hapi/hapi": "^20.2.0",
     "@hapi/inert": "^6.0.3",
     "@hapi/vision": "^6.0.1",
+    "@mojaloop/api-snippets": "^11.4.3",
     "@mojaloop/central-services-error-handling": "^11.0.0",
     "@mojaloop/central-services-health": "^13.0.0",
     "@mojaloop/central-services-logger": "^10.6.2",
@@ -137,6 +135,8 @@
     "parse-strings-in-object": "^2.0.0",
     "path": "^0.12.7",
     "rc": "^1.2.8",
-    "ts-node": "9.1.1"
+    "ts-node": "9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "4.1.3"
   }
 }
