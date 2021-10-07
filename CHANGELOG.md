@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [0.0.8](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.7...v0.0.8) (2021-10-07)
+
+
+### Bug Fixes
+
+* broken integration tests ([#12](https://github.com/mojaloop/als-consent-oracle/issues/12)) ([6a6b273](https://github.com/mojaloop/als-consent-oracle/commit/6a6b273ba0f36f7bcf7a15125e5e95d1690359c1))
+
 ### [0.0.7](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.6...v0.0.7) (2021-09-28)
 
 
