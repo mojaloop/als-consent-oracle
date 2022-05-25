@@ -215,29 +215,26 @@ jobs:
           name: Create dir for test results
           command: mkdir -p ./test/results
       - run:
-          name: Install MySQL CLI for debugging
+          name: Build docker images
           command: |
-                  sudo apt-get update
-                  sudo apt-get install mysql-client -y
-      - run:
-          name: Run integration test harness
-          command: |
-            docker-compose build
             docker-compose up -d
-            ./scripts/wait4.js mysql
-            ./scripts/wait4.js cicd-integration-tests
-            docker run --network mojaloop-net \
-              --rm mojaloop/auth-service:local \
-              sh -c "NODE_ENV=integration npm run migrate"
+            chmod +x ./scripts/wait4.js
+            sh -c "./scripts/wait4.js cicd-integration-tests"
           environment:
-            NODE_ENV: "development"
+            NODE_ENV: "integration"
+      - run:
+          name: Migrate DB
+          command: |
+            npm -s run migrate
       - run:
           name: Execute integration tests
           command: |
+            node --version
+            cd ~/project/
+            npm ci
             npm -s run test:integration
-          # use development env since we are connecting to db outside of docker
           environment:
-            NODE_ENV: "development"
+            NODE_ENV: "integration"
       - run:
           name: Prepare test results
           command: |
@@ -245,6 +242,7 @@ jobs:
             mv junit.xml test/results
       - store_artifacts:
           path: ./test/results
+          prefix: test
       - store_test_results:
           path: ./test/results
 
