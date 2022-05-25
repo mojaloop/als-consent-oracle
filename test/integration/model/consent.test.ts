@@ -1,4 +1,4 @@
-import Knex from 'knex'
+import { knex, Knex } from 'knex'
 import Config from '~/shared/config'
 import ConsentDB, { Consent } from '../../../src/model/consent'
 import { NotFoundError } from '../../../src/model/errors'
@@ -29,7 +29,7 @@ describe('src/model/consent', (): void => {
   let consentDB: ConsentDB
 
   beforeAll(async (): Promise<void> => {
-    Db = Knex(Config.DATABASE as object)
+    Db = knex(Config.DATABASE as object)
 
     consentDB = new ConsentDB(Db)
     await Db.seed.run()
