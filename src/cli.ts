@@ -24,6 +24,10 @@
  --------------
  ******/
 
+// This is required so that once we compile to js
+// the js `require()` can resolve the '~' paths
+require('module-alias/register')
+
 import Config, { PACKAGE } from './shared/config'
 import ServiceServer from './server'
 import { Command } from 'commander'
@@ -40,7 +44,7 @@ try {
     .option('-p, --port <number>', 'listen on port', Config.PORT.toString())
     .option('-H, --host <string>', 'listen on host', Config.HOST)
     .parse(process.argv)
-} catch(err) {
+} catch (err) {
   console.error(err)
 }
 

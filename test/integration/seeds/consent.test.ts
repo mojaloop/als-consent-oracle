@@ -1,9 +1,8 @@
-import * as Knex from 'knex'
-import knex from 'knex'
+import { knex, Knex } from 'knex'
 import Config from '~/shared/config'
 
 describe('testing Consent table', (): void => {
-  let db: knex<unknown[]>
+  let db: Knex
 
   beforeAll(async (): Promise<void> => {
     db = knex(Config.DATABASE as object)
@@ -46,7 +45,7 @@ describe('testing Consent table', (): void => {
 })
 
 describe('testing that constraints are enforced in the consent table', (): void => {
-  let db: knex<unknown[]>
+  let db: Knex
 
   beforeAll(async (): Promise<void> => {
     db = knex(Config.DATABASE as object)
@@ -59,21 +58,27 @@ describe('testing that constraints are enforced in the consent table', (): void 
   it('should properly enforce the primary key constraint in the Consent table', async (): Promise<void> => {
     expect(db).toBeDefined()
     /* Tests for duplication */
-    await expect(db.from('Consent').insert({
-      id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
-      fspId: 'dfspa'
-    })).rejects.toThrow()
+    await expect(
+      db.from('Consent').insert({
+        id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
+        fspId: 'dfspa'
+      })
+    ).rejects.toThrow()
     /* Tests for non-nullity */
-    await expect(db.from('Consent').insert({
-      id: null,
-      fspId: 'dfspa'
-    })).rejects.toThrow()
+    await expect(
+      db.from('Consent').insert({
+        id: null,
+        fspId: 'dfspa'
+      })
+    ).rejects.toThrow()
   })
   it('should properly enforce the non-nullable constraint for fspId', async (): Promise<void> => {
     expect(db).toBeDefined()
-    await expect(db.from('Consent').insert({
-      id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
-      fspId: null
-    })).rejects.toThrow()
+    await expect(
+      db.from('Consent').insert({
+        id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
+        fspId: null
+      })
+    ).rejects.toThrow()
   })
 })

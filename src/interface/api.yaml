@@ -64,7 +64,7 @@ paths:
       operationId: MetricsGet
       summary: Prometheus metrics endpoint
       description: The HTTP request GET /metrics is used to return metrics for the API.
-  '/participants/{Type}/{ID}':
+  /participants/{Type}/{ID}:
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -320,7 +320,7 @@ components:
   schemas:
     ParticipantsTypeIDPutRequest:
       title: ParticipantsTypeIDPutRequest
-      description: 'PUT /participants/{Type}/{ID} object'
+      description: PUT /participants/{Type}/{ID} object
       type: object
       properties:
         fspId:
@@ -364,31 +364,22 @@ components:
     ErrorCode:
       title: ErrorCode
       type: string
-      pattern: '^[1-9]\d{3}$'
-      description: >
+      pattern: ^[1-9]\d{3}$
+      description: >-
         The API data type ErrorCode is a JSON String of four characters,
-
-        consisting of digits only. Negative numbers are not allowed.
-
-        A leading zero is not allowed. Each error code in the API is a
-
-        four-digit number, for example, 1234, where the first number
-
-        (1 in the example) represents the high-level error category,
-
-        the second number (2 in the example) represents the low-level error
-        category,
-
-        and the last two numbers (34 in the example) represent the specific
-        error.
-      example: 5100
+        consisting of digits only. Negative numbers are not allowed. A leading
+        zero is not allowed. Each error code in the API is a four-digit number,
+        for example, 1234, where the first number (1 in the example) represents
+        the high-level error category, the second number (2 in the example)
+        represents the low-level error category, and the last two numbers (34 in
+        the example) represent the specific error.
+      example: '5100'
     ErrorDescription:
       title: ErrorDescription
       type: string
       minLength: 1
       maxLength: 128
       description: Error description string.
-      example: This is an error description.
     ExtensionKey:
       title: ExtensionKey
       type: string
@@ -416,9 +407,9 @@ components:
     ExtensionList:
       title: ExtensionList
       type: object
-      description: |
-        Data model for the complex type ExtensionList.
-        An optional list of extensions, specific to deployment.
+      description: >-
+        Data model for the complex type ExtensionList. An optional list of
+        extensions, specific to deployment.
       properties:
         extension:
           type: array
@@ -458,25 +449,21 @@ components:
       minLength: 1
       maxLength: 32
       description: FSP identifier.
-      example: 1234
     PartySubIdOrType:
       title: PartySubIdOrType
       type: string
       minLength: 1
       maxLength: 128
-      description: |
+      description: >-
         Either a sub-identifier of a PartyIdentifier, or a sub-type of the
         PartyIdType, normally a PersonalIdentifierType.
-      example: DRIVING_LICENSE
     Currency:
       title: Currency
-      description: >
-        The currency codes defined in
-
-        [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
-
-        as three-letter alphabetic codes are used as the standard naming
-        representation for currencies.
+      description: >-
+        The currency codes defined in [ISO
+        4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter
+        alphabetic codes are used as the standard naming representation for
+        currencies.
       type: string
       minLength: 3
       maxLength: 3
@@ -639,17 +626,19 @@ components:
         - XDR
         - XOF
         - XPF
+        - XTS
+        - XXX
         - YER
         - ZAR
         - ZMW
         - ZWD
-      example: USD
     ParticipantsTypeIDSubIDPostRequest:
       title: ParticipantsTypeIDSubIDPostRequest
       type: object
-      description: |
+      description: >-
         The object sent in the POST /participants/{Type}/{ID}/{SubId} and
-        /participants/{Type}/{ID} requests.
+        /participants/{Type}/{ID} requests. An additional optional ExtensionList
+        element has been added as part of v1.1 changes.
       properties:
         fspId:
           $ref: '#/components/schemas/FspId'
@@ -664,18 +653,13 @@ components:
       type: string
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-      description: >
-        Identifier that correlates all messages of the same sequence.
-
-        The API data type UUID (Universally Unique Identifier) is a JSON String
-
-        in canonical format, conforming to [RFC
-        4122](https://tools.ietf.org/html/rfc4122),
-
-        that is restricted by a regular expression for interoperability reasons.
-
-        A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes
-        (‘-‘).
+      description: >-
+        Identifier that correlates all messages of the same sequence. The API
+        data type UUID (Universally Unique Identifier) is a JSON String in
+        canonical format, conforming to [RFC
+        4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+        regular expression for interoperability reasons. A UUID is always 36
+        characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
       example: b51ec534-ee48-4575-b6a9-ead2955b8069
     PartyIdType:
       title: PartyIdType
@@ -692,11 +676,6 @@ components:
         - CONSENT
         - THIRD_PARTY_LINK
       description: >
-        This is a variant based on FSPIOP `PartyIdType` specification.
-
-        Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-
-
         Below are the allowed values for the enumeration.
 
         - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
@@ -727,7 +706,7 @@ components:
         certificate
 
         number, and national registration number. The identifier number is added
-        in
+        in 
 
         the PartyIdentifier element. The personal identifier type is added in
         the
@@ -784,9 +763,27 @@ components:
 
         by the PartyIdentifier.
 
-        - CONSENT - TBD
+        - CONSENT - A Consent represents an agreement between a PISP, a Customer
+        and
 
-        - THIRD_PARTY_LINK - TBD
+        a DFSP which allows the PISP permission to perform actions on behalf of
+        the 
+
+        customer. A Consent has an authoritative source: either the DFSP who
+        issued 
+
+        the Consent, or an Auth Service which administers the Consent.
+
+        - THIRD_PARTY_LINK - A Third Party Link represents an agreement between
+        a PISP,
+
+        a DFSP, and a specific Customer's account at the DFSP. The content of
+        the link 
+
+        is created by the DFSP at the time when it gives permission to the PISP
+        for 
+
+        specific access to a given account.
       example: PERSONAL_ID
     PartyIdentifier:
       title: PartyIdentifier
@@ -794,7 +791,7 @@ components:
       minLength: 1
       maxLength: 128
       description: Identifier of the Party.
-      example: 16135551212
+      example: '16135551212'
     PartyIdInfo:
       title: PartyIdInfo
       type: object
@@ -930,11 +927,10 @@ components:
       required: false
       schema:
         type: integer
-      description: >
+      description: >-
         The `Content-Length` header field indicates the anticipated size of the
-        payload body.
+        payload body. Only sent if there is a body.
 
-        Only sent if there is a body.
 
         **Note:** The API supports a maximum size of 5242880 bytes (5
         Megabytes).
@@ -942,11 +938,9 @@ components:
       schema:
         type: string
       required: true
-      description: >
+      description: >-
         The `Content-Type` header indicates the specific version of the API used
-        to
-
-        send the payload body.
+        to send the payload body.
   parameters:
     Type:
       name: Type
@@ -954,7 +948,7 @@ components:
       required: true
       schema:
         type: string
-      description: 'The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.'
+      description: The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.
     ID:
       name: ID
       in: path
@@ -968,7 +962,7 @@ components:
       schema:
         type: string
       required: true
-      description: |
+      description: >-
         The `Content-Type` header indicates the specific version of the API used
         to send the payload body.
     Date:
@@ -984,93 +978,72 @@ components:
       schema:
         type: string
       required: false
-      description: >
+      description: >-
         The `X-Forwarded-For` header field is an unofficially accepted standard
-        used
-
-        for informational purposes of the originating client IP address, as a
-
-        request might pass multiple proxies, firewalls, and so on. Multiple
-
+        used for informational purposes of the originating client IP address, as
+        a request might pass multiple proxies, firewalls, and so on. Multiple
         `X-Forwarded-For` values should be expected and supported by
-        implementers
+        implementers of the API.
 
-        of the API.
 
-        **Note:** An alternative to `X-Forwarded-For` is defined in
-
-        [RFC 7239](https://tools.ietf.org/html/rfc7239).
-
-        However, to this point RFC 7239 is less-used and supported than
-        `X-Forwarded-For`.
+        **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+        7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+        7239 is less-used and supported than `X-Forwarded-For`.
     FSPIOP-Source:
       name: FSPIOP-Source
       in: header
       schema:
         type: string
       required: true
-      description: |
-        The `FSPIOP-Source` header field is a non-HTTP standard field
-        used by the API for identifying the sender of the HTTP request.
-        The field should be set by the original sender of the request.
-        Required for routing and signature verification
-        (see header field `FSPIOP-Signature`).
+      description: >-
+        The `FSPIOP-Source` header field is a non-HTTP standard field used by
+        the API for identifying the sender of the HTTP request. The field should
+        be set by the original sender of the request. Required for routing and
+        signature verification (see header field `FSPIOP-Signature`).
     FSPIOP-Destination:
       name: FSPIOP-Destination
       in: header
       schema:
         type: string
       required: false
-      description: >
+      description: >-
         The `FSPIOP-Destination` header field is a non-HTTP standard field used
-        by
-
-        the API for HTTP header based routing of requests and responses to the
-
-        destination. The field should be set by the original sender of the
-        request
-
-        (if known), so that any entities between the client and the server do
-        not
-
-        need to parse the payload for routing purposes.
+        by the API for HTTP header based routing of requests and responses to
+        the destination. The field must be set by the original sender of the
+        request if the destination is known (valid for all services except GET
+        /parties) so that any entities between the client and the server do not
+        need to parse the payload for routing purposes. If the destination is
+        not known (valid for service GET /parties), the field should be left
+        empty.
     FSPIOP-Encryption:
       name: FSPIOP-Encryption
       in: header
       schema:
         type: string
       required: false
-      description: >
+      description: >-
         The `FSPIOP-Encryption` header field is a non-HTTP standard field used
-        by
-
-        the API for applying end-to-end encryption of the request.
+        by the API for applying end-to-end encryption of the request.
     FSPIOP-Signature:
       name: FSPIOP-Signature
       in: header
       schema:
         type: string
       required: false
-      description: >
+      description: >-
         The `FSPIOP-Signature` header field is a non-HTTP standard field used by
-        the
-
-        API for applying an end-to-end request signature.
+        the API for applying an end-to-end request signature.
     FSPIOP-URI:
       name: FSPIOP-URI
       in: header
       schema:
         type: string
       required: false
-      description: >
+      description: >-
         The `FSPIOP-URI` header field is a non-HTTP standard field used by the
-        API
-
-        for signature verification, should contain the service URI. Required if
-
-        signature verification is used, for more information, see
-
-        [the API Signature
+        API for signature verification, should contain the service URI. Required
+        if signature verification is used, for more information, see [the API
+        Signature
         document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     FSPIOP-HTTP-Method:
       name: FSPIOP-HTTP-Method
@@ -1078,16 +1051,11 @@ components:
       schema:
         type: string
       required: false
-      description: >
+      description: >-
         The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used
-        by
-
-        the API for signature verification, should contain the service HTTP
-        method.
-
-        Required if signature verification is used, for more information, see
-
-        [the API Signature
+        by the API for signature verification, should contain the service HTTP
+        method. Required if signature verification is used, for more
+        information, see [the API Signature
         document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     Accept:
       name: Accept
@@ -1095,7 +1063,7 @@ components:
       required: true
       schema:
         type: string
-      description: |
+      description: >-
         The `Accept` header field indicates the version of the API the client
         would like the server to use.
     Content-Length:
@@ -1104,10 +1072,10 @@ components:
       required: false
       schema:
         type: integer
-      description: >
+      description: >-
         The `Content-Length` header field indicates the anticipated size of the
-
         payload body. Only sent if there is a body.
+
 
         **Note:** The API supports a maximum size of 5242880 bytes (5
         Megabytes).

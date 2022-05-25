@@ -13,23 +13,23 @@ paths:
         - health
       responses:
         '200':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/200'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/200.yaml'
         '400':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         '401':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         '403':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         '404':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         '405':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         '406':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         '501':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         '503':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
       operationId: HealthGet
       summary: Get Server
       description: The HTTP request GET /health is used to return the current status of the API.
@@ -39,41 +39,41 @@ paths:
         - metrics
       responses:
         '200':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/200'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/200.yaml'
         '400':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         '401':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         '403':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         '404':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         '405':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         '406':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         '501':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         '503':
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
       operationId: MetricsGet
       summary: Prometheus metrics endpoint
       description: The HTTP request GET /metrics is used to return metrics for the API.
   /participants/{Type}/{ID}:
     parameters:
       #Path
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Type.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/ID.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Type.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/ID.yaml'
       #Headers
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Content-Type.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Date.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/X-Forwarded-For.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Source.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Destination.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Encryption.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Signature.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-URI.yaml'
-      - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-HTTP-Method.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Content-Type.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Date.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/X-Forwarded-For.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Source.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Destination.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Encryption.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Signature.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-URI.yaml'
+      - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-HTTP-Method.yaml'
     post:
       description: |
         The HTTP request `POST /participants/{Type}/{ID}`
@@ -89,35 +89,35 @@ paths:
       operationId: ParticipantsByTypeAndIDPost
       parameters:
         #Headers
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Accept.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Content-Length.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Accept.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Content-Length.yaml'
       requestBody:
         description: Participant information to be created.
         required: true
         content:
           application/json:
             schema:
-              $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/schemas/ParticipantsTypeIDSubIDPostRequest.yaml'
+              $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/schemas/ParticipantsTypeIDSubIDPostRequest.yaml'
       responses:
         201:
           description: Created
           headers: {}
         400:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         401:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         403:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         404:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         405:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         406:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         501:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         503:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
     get:
       description: |
         The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`)
@@ -133,7 +133,7 @@ paths:
       operationId: ParticipantsByTypeAndIDGet
       parameters:
         #Headers
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Accept.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Accept.yaml'
       responses:
         200:
           description: OK
@@ -146,21 +146,21 @@ paths:
               schema:
                 $ref: "#/components/schemas/ParticipantsTypeIDGetResponse"
         400:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         401:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         403:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         404:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         405:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         406:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         501:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         503:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
     put:
       description: |
         The PUT /participants/{Type}/{ID} is used to update information in the
@@ -172,7 +172,7 @@ paths:
       operationId: ParticipantsByTypeAndIDPut
       parameters:
         #Headers
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Content-Length.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Content-Length.yaml'
       requestBody:
         description: Participant information returned.
         required: true
@@ -182,23 +182,23 @@ paths:
               $ref: '#/components/schemas/ParticipantsTypeIDPutRequest'
       responses:
         200:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/200'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/200.yaml'
         400:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         401:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         403:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         404:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         405:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         406:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         501:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         503:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
     delete:
       description: |
         The HTTP request `DELETE /participants/{Type}/{ID}`
@@ -219,27 +219,27 @@ paths:
       operationId: ParticipantsByTypeAndIDDelete
       parameters:
         #Headers
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Accept.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Accept.yaml'
       responses:
         204:
           description: No Content
           headers: {}
         400:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         401:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         403:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         404:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         405:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         406:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         501:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         503:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
   /participants:
     post:
       description: The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency.
@@ -249,44 +249,44 @@ paths:
       operationId: ParticipantsPost
       parameters:
         #Headers
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Accept.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Content-Length.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Content-Type.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/Date.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/X-Forwarded-For.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Source.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Destination.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Encryption.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-Signature.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-URI.yaml'
-        - $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/parameters/FSPIOP-HTTP-Method.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Accept.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Content-Length.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Content-Type.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/Date.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/X-Forwarded-For.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Source.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Destination.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Encryption.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-Signature.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-URI.yaml'
+        - $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/parameters/FSPIOP-HTTP-Method.yaml'
       requestBody:
         description: Participant information to be created.
         required: true
         content:
           application/json:
             schema:
-              $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/ParticipantsPostRequest.yaml'
+              $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/v1_0/openapi3/components/schemas/ParticipantsPostRequest.yaml'
       responses:
         201:
           description: Created
           headers: {}
         400:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/400'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/400.yaml'
         401:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/401'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/401.yaml'
         403:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/403'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/403.yaml'
         404:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/404'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/404.yaml'
         405:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/405'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/405.yaml'
         406:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/406'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/406.yaml'
         501:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/501'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/501.yaml'
         503:
-          $ref: '../../node_modules/@mojaloop/api-snippets/v1.1/openapi3/responses/index.yaml#/503'
+          $ref: '../../node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/responses/503.yaml'
 tags:
   - name: participants
     description: ''
@@ -330,8 +330,8 @@ components:
       type: object
       properties:
         fspId:
-          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/FspId.yaml'
+          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/v1_0/openapi3/components/schemas/FspId.yaml'
         partySubIdOrType:
-          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/openapi3/schemas/PartySubIdOrType.yaml'
+          $ref: '../../node_modules/@mojaloop/api-snippets/thirdparty/v1_0/openapi3/components/schemas/PartySubIdOrType.yaml'
       required:
         - fspId

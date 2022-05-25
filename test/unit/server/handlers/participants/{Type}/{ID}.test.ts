@@ -8,8 +8,7 @@ import {
   postParticipantsByTypeAndIDRequest,
   deleteParticipantsByWrongTypeAndIDRequest,
   putParticipantsByWrongTypeAndIDRequest,
-  postParticipantsByWrongTypeAndIDRequest
-  ,
+  postParticipantsByWrongTypeAndIDRequest,
   h,
   getParticipantsByTypeAndIDRequest,
   mockConsent
@@ -40,7 +39,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.OK.CODE)
     })
 
@@ -57,7 +57,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
@@ -78,7 +79,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.CREATED.CODE)
     })
 
@@ -95,7 +97,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
@@ -116,7 +119,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.OK.CODE)
     })
 
@@ -133,7 +137,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })
@@ -154,7 +159,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response.statusCode).toBe(Enum.Http.ReturnCodes.NOCONTENT.CODE)
     })
 
@@ -170,7 +176,8 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response).toStrictEqual(new IDTypeNotSupported())
     })
   })

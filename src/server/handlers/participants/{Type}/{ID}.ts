@@ -1,18 +1,15 @@
 import { Request, ResponseToolkit, ResponseObject } from '@hapi/hapi'
 import { Context } from '~/server/plugins'
 import { retrieveConsent, createConsent, updateConsent, deleteConsent } from '~/domain/participants'
-import { Schemas } from '@mojaloop/api-snippets/lib/v1_1'
+import { Schemas } from '@mojaloop/api-snippets/lib/fspiop/v1_1'
 import { Consent } from '~/model/consent'
 import * as Types from '~/interface/types'
 import { IDTypeNotSupported } from '../../../../model/errors'
-import Boom from '@hapi/boom'
+import { boomify } from '@hapi/boom'
 
-export async function get (
-  _context: Context,
-  request: Request,
-  h: ResponseToolkit): Promise<ResponseObject> {
+export async function get(_context: Context, request: Request, h: ResponseToolkit): Promise<ResponseObject> {
   if (request.params.Type !== 'CONSENT') {
-    return Boom.boomify(new IDTypeNotSupported())
+    return boomify(new IDTypeNotSupported())
   }
 
   const consentId = request.params.ID
@@ -20,17 +17,14 @@ export async function get (
   return h.response({ partyList: [consent] }).code(200)
 }
 
-export async function post (
-  _context: Context,
-  request: Request,
-  h: ResponseToolkit): Promise<ResponseObject> {
+export async function post(_context: Context, request: Request, h: ResponseToolkit): Promise<ResponseObject> {
   if (request.params.Type !== 'CONSENT') {
-    return Boom.boomify(new IDTypeNotSupported())
+    return boomify(new IDTypeNotSupported())
   }
 
   const consentId = request.params.ID
   const payload = request.payload as Schemas.ParticipantsTypeIDSubIDPostRequest
-  const consent : Consent = {
+  const consent: Consent = {
     id: consentId,
     fspId: payload.fspId
   }
@@ -38,17 +32,14 @@ export async function post (
   return h.response().code(201)
 }
 
-export async function put (
-  _context: Context,
-  request: Request,
-  h: ResponseToolkit): Promise<ResponseObject> {
+export async function put(_context: Context, request: Request, h: ResponseToolkit): Promise<ResponseObject> {
   if (request.params.Type !== 'CONSENT') {
-    return Boom.boomify(new IDTypeNotSupported())
+    return boomify(new IDTypeNotSupported())
   }
 
   const consentId = request.params.ID
   const payload = request.payload as Types.ParticipantsTypeIDSubIDPut
-  const consent : Consent = {
+  const consent: Consent = {
     id: consentId,
     fspId: payload.fspId
   }
@@ -56,12 +47,9 @@ export async function put (
   return h.response().code(200)
 }
 
-export async function del (
-  _context: Context,
-  request: Request,
-  h: ResponseToolkit): Promise<ResponseObject> {
+export async function del(_context: Context, request: Request, h: ResponseToolkit): Promise<ResponseObject> {
   if (request.params.Type !== 'CONSENT') {
-    return Boom.boomify(new IDTypeNotSupported())
+    return boomify(new IDTypeNotSupported())
   }
 
   const consentId = request.params.ID

@@ -1,10 +1,7 @@
 import { Request, ResponseToolkit } from '@hapi/hapi'
 import * as Handler from '~/server/handlers/participants'
 import Boom from '@hapi/boom'
-import {
-  h,
-  postParticipantsRequest
-} from 'test/data/data'
+import { h, postParticipantsRequest } from 'test/data/data'
 
 jest.mock('~/shared/logger')
 
@@ -21,7 +18,8 @@ describe('server/handler/participants', (): void => {
           headers: req.headers
         },
         req,
-        h as unknown as ResponseToolkit)
+        h as unknown as ResponseToolkit
+      )
       expect(response).toStrictEqual(Boom.notImplemented())
     })
   })

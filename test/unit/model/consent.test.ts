@@ -35,7 +35,7 @@
  * Thus, testing environment (SQLite) differs from Production environment.
  */
 
-import Knex from 'knex'
+import { knex, Knex } from 'knex'
 import Config, { DatabaseConfig } from '~/shared/config'
 import ConsentDB, { Consent } from '~/model/consent'
 import { NotFoundError } from '~/model/errors'
@@ -70,7 +70,7 @@ describe('src/model/consent', (): void => {
   let consentDB: ConsentDB
 
   beforeAll(async (): Promise<void> => {
-    Db = Knex(Config.DATABASE as DatabaseConfig)
+    Db = knex(Config.DATABASE as DatabaseConfig)
     await Db.migrate.latest()
     await Db.raw('PRAGMA foreign_keys = ON')
 
@@ -87,84 +87,65 @@ describe('src/model/consent', (): void => {
   })
 
   describe('insert', (): void => {
-    it('adds consent to the database',
-      async (): Promise<void> => {
-        const inserted: boolean = await consentDB.insert(exampleConsent)
+    it('adds consent to the database', async (): Promise<void> => {
+      const inserted: boolean = await consentDB.insert(exampleConsent)
 
-        expect(inserted).toEqual(true)
+      expect(inserted).toEqual(true)
 
-        const consents: Consent[] = await Db<Consent>('Consent')
-          .select('*')
-          .where({
-            id: exampleConsent.id
-          })
+      const consents: Consent[] = await Db<Consent>('Consent').select('*').where({
+        id: exampleConsent.id
+      })
 
-        expect(consents.length).toEqual(1)
-        expect(consents[0]).toEqual(expectedConsent)
+      expect(consents.length).toEqual(1)
+      expect(consents[0]).toEqual(expectedConsent)
+    })
+
+    it('throws an error on adding a consent with existing consentId', async (): Promise<void> => {
+      const inserted: boolean = await consentDB.insert(exampleConsent)
+
+      expect(inserted).toEqual(true)
+
+      const consents: Consent[] = await Db<Consent>('Consent').select('*').where({
+        id: exampleConsent.id
+      })
+
+      // Consent has been added
+      expect(consents[0]).toEqual(expectedConsent)
+
+      // Fail primary key constraint
+      await expect(consentDB.insert(exampleConsent)).rejects.toThrow()
+    })
+
+    it('throws an error on adding consent without an id', async (): Promise<void> => {
+      const consentWithoutId: Consent = {
+        id: null as unknown as string,
+        fspId: 'dfspa'
       }
-    )
 
-    it('throws an error on adding a consent with existing consentId',
-      async (): Promise<void> => {
-        const inserted: boolean = await consentDB.insert(exampleConsent)
-
-        expect(inserted).toEqual(true)
-
-        const consents: Consent[] = await Db<Consent>('Consent')
-          .select('*')
-          .where({
-            id: exampleConsent.id
-          })
-
-        // Consent has been added
-        expect(consents[0]).toEqual(expectedConsent)
-
-        // Fail primary key constraint
-        await expect(consentDB.insert(exampleConsent)).rejects.toThrow()
-      }
-    )
-
-    it('throws an error on adding consent without an id',
-      async (): Promise<void> => {
-        const consentWithoutId: Consent = {
-          id: null as unknown as string,
-          fspId: 'dfspa'
-        }
-
-        await expect(consentDB.insert(consentWithoutId)).rejects.toThrow()
-      }
-    )
+      await expect(consentDB.insert(consentWithoutId)).rejects.toThrow()
+    })
   })
 
   describe('update', (): void => {
-    it('updates existing consent from a consent having only required fields',
-      async (): Promise<void> => {
-        // Inserting record to update
-        await Db<Consent>('Consent').insert(exampleConsent)
+    it('updates existing consent from a consent having only required fields', async (): Promise<void> => {
+      // Inserting record to update
+      await Db<Consent>('Consent').insert(exampleConsent)
 
-        // Update only selected fields of inserted record
-        const updateCount: number = await consentDB.update(
-          updatedConsent
-        )
+      // Update only selected fields of inserted record
+      const updateCount: number = await consentDB.update(updatedConsent)
 
-        expect(updateCount).toEqual(1)
+      expect(updateCount).toEqual(1)
 
-        const consents: Consent[] = await Db<Consent>('Consent')
-          .select('*')
-          .where({
-            id: updatedConsent.id
-          })
+      const consents: Consent[] = await Db<Consent>('Consent').select('*').where({
+        id: updatedConsent.id
+      })
 
-        expect(consents[0].id).toEqual(updatedConsent.id)
-        expect(consents[0]).toEqual(
-          expect.objectContaining(updatedConsent)
-        )
-      }
-    )
+      expect(consents[0].id).toEqual(updatedConsent.id)
+      expect(consents[0]).toEqual(expect.objectContaining(updatedConsent))
+    })
 
     it('throws an error on updating non-existent consent', async (): Promise<void> => {
-      await expect(consentDB.update(updatedConsent))
-        .rejects.toThrowError(NotFoundError)
+      await expect(consentDB.update(updatedConsent)).rejects.toThrowError(NotFoundError)
     })
   })
 
@@ -178,8 +159,7 @@ describe('src/model/consent', (): void => {
     })
 
     it('throws an error on retrieving non-existent consent', async (): Promise<void> => {
-      await expect(consentDB.retrieve(exampleConsent.id))
-        .rejects.toThrowError(NotFoundError)
+      await expect(consentDB.retrieve(exampleConsent.id)).rejects.toThrowError(NotFoundError)
     })
   })
 
@@ -187,11 +167,9 @@ describe('src/model/consent', (): void => {
     it('deletes an existing consent', async (): Promise<void> => {
       await Db<Consent>('Consent').insert(exampleConsent)
 
-      let consents: Consent[] = await Db<Consent>('Consent')
-        .select('*')
-        .where({
-          id: exampleConsent.id
-        })
+      let consents: Consent[] = await Db<Consent>('Consent').select('*').where({
+        id: exampleConsent.id
+      })
 
       // Inserted properly
       expect(consents.length).toEqual(1)
@@ -200,19 +178,16 @@ describe('src/model/consent', (): void => {
 
       expect(deleteCount).toEqual(1)
 
-      consents = await Db<Consent>('Consent')
-        .select('*')
-        .where({
-          id: exampleConsent.id
-        })
+      consents = await Db<Consent>('Consent').select('*').where({
+        id: exampleConsent.id
+      })
 
       // Deleted properly
       expect(consents.length).toEqual(0)
     })
 
     it('throws an error on deleting non-existent consent', async (): Promise<void> => {
-      await expect(consentDB.delete(exampleConsent.id))
-        .rejects.toThrowError(NotFoundError)
+      await expect(consentDB.delete(exampleConsent.id)).rejects.toThrowError(NotFoundError)
     })
   })
 })

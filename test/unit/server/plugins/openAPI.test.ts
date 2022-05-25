@@ -67,7 +67,7 @@ describe('openAPI', () => {
     const expected = {
       errorInformation: {
         errorCode: '3102',
-        errorDescription: 'Missing mandatory element - /requestBody must have required property \'requestId\''
+        errorDescription: "Missing mandatory element - /requestBody must have required property 'requestId'"
       }
     }
 
@@ -76,10 +76,11 @@ describe('openAPI', () => {
     expect(response.result).toStrictEqual(expected)
   })
 
-
   it('POST schema validation - missing fields', async (): Promise<void> => {
     const ParticipantsByTypeAndIDPost = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPost')
-    ParticipantsByTypeAndIDPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(201)))
+    ParticipantsByTypeAndIDPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+      Promise.resolve(h.response().code(201))
+    )
 
     const payloadMissingId = Object.assign({}, MockParticipantsByTypeAndIDPost.payload as Record<string, unknown>)
     delete payloadMissingId.fspId
@@ -94,7 +95,7 @@ describe('openAPI', () => {
     const expected = {
       errorInformation: {
         errorCode: '3102',
-        errorDescription: 'Missing mandatory element - /requestBody must have required property \'fspId\''
+        errorDescription: "Missing mandatory element - /requestBody must have required property 'fspId'"
       }
     }
 
@@ -105,7 +106,9 @@ describe('openAPI', () => {
 
   it('PUT schema validation - missing fields', async (): Promise<void> => {
     const ParticipantsByTypeAndIDPut = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPut')
-    ParticipantsByTypeAndIDPut.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(200)))
+    ParticipantsByTypeAndIDPut.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+      Promise.resolve(h.response().code(200))
+    )
 
     const payloadMissingId = Object.assign({}, MockParticipantsByTypeAndIDPut.payload as Record<string, unknown>)
     delete payloadMissingId.fspId
@@ -120,7 +123,7 @@ describe('openAPI', () => {
     const expected = {
       errorInformation: {
         errorCode: '3102',
-        errorDescription: 'Missing mandatory element - /requestBody must have required property \'fspId\''
+        errorDescription: "Missing mandatory element - /requestBody must have required property 'fspId'"
       }
     }
 

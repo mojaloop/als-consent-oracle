@@ -37,41 +37,27 @@ import MockParticipantsByTypeAndIDPut from '../data/mockParticipantsByTypeAndIDP
 import { getParticipantsByTypeAndIDResponse } from '../data/data'
 jest.mock('~/shared/logger')
 jest.mock('~/server/handlers', () => ({
-  HealthGet: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({ status: 'OK', uptime: 1.23 }).code(200)
-    )
+  HealthGet: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({ status: 'OK', uptime: 1.23 }).code(200))
   ),
-  MetricsGet: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({ }).code(200)
-    )
+  MetricsGet: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({}).code(200))
   ),
-  ParticipantsPost: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({}).code(202)
-    )
+  ParticipantsPost: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({}).code(202))
   ),
-  ParticipantsByTypeAndIDGet: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({}).code(200)
-    )
+  ParticipantsByTypeAndIDGet: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({}).code(200))
   ),
-  ParticipantsByTypeAndIDPost: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({}).code(202)
-    )
+  ParticipantsByTypeAndIDPost: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({}).code(202))
   ),
-  ParticipantsByTypeAndIDPut: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({}).code(200)
-    )
+  ParticipantsByTypeAndIDPut: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({}).code(200))
   ),
-  ParticipantsByTypeAndIDDelete: jest.fn(
-    (_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(
-      h.response({}).code(204)
-    )
-  ),
+  ParticipantsByTypeAndIDDelete: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>
+    Promise.resolve(h.response({}).code(204))
+  )
 }))
 
 describe('index', (): void => {
@@ -95,10 +81,10 @@ describe('api routes', (): void => {
 
   it('/health', async (): Promise<void> => {
     interface HealthResponse {
-      status: string;
-      uptime: number;
-      startTime: string;
-      versionNumber: string;
+      status: string
+      uptime: number
+      startTime: string
+      versionNumber: string
     }
 
     const request = {
@@ -129,7 +115,9 @@ describe('api routes', (): void => {
   describe('Endpoint: /participants', (): void => {
     it('POST /participants', async (): Promise<void> => {
       const mockParticipantsPost = jest.spyOn(Handlers, 'ParticipantsPost')
-      mockParticipantsPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(202)))
+      mockParticipantsPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+        Promise.resolve(h.response().code(202))
+      )
 
       const request = {
         method: 'POST',
@@ -144,7 +132,6 @@ describe('api routes', (): void => {
         payload: MockParticipantPostData.payload
       })
 
-      
       const response = await server.inject(request)
 
       expect(mockParticipantsPost).toHaveBeenCalledTimes(1)
@@ -158,7 +145,8 @@ describe('api routes', (): void => {
     it('GET', async (): Promise<void> => {
       const ParticipantsByTypeAndIDGet = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDGet')
       ParticipantsByTypeAndIDGet.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
-        Promise.resolve(h.response(getParticipantsByTypeAndIDResponse).code(200)))
+        Promise.resolve(h.response(getParticipantsByTypeAndIDResponse).code(200))
+      )
 
       const request = {
         method: 'GET',
@@ -184,7 +172,9 @@ describe('api routes', (): void => {
 
     it('POST', async (): Promise<void> => {
       const ParticipantsByTypeAndIDPost = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPost')
-      ParticipantsByTypeAndIDPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(201)))
+      ParticipantsByTypeAndIDPost.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+        Promise.resolve(h.response().code(201))
+      )
 
       const request = {
         method: 'POST',
@@ -210,10 +200,11 @@ describe('api routes', (): void => {
       expect(response.result).toBeDefined()
     })
 
-
     it('PUT', async (): Promise<void> => {
       const ParticipantsByTypeAndIDPut = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDPut')
-      ParticipantsByTypeAndIDPut.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(200)))
+      ParticipantsByTypeAndIDPut.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+        Promise.resolve(h.response().code(200))
+      )
 
       const request = {
         method: 'PUT',
@@ -239,11 +230,11 @@ describe('api routes', (): void => {
       expect(response.result).toBeDefined()
     })
 
-    
-
     it('DELETE', async (): Promise<void> => {
       const ParticipantsByTypeAndIDDelete = jest.spyOn(Handlers, 'ParticipantsByTypeAndIDDelete')
-      ParticipantsByTypeAndIDDelete.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) => Promise.resolve(h.response().code(204)))
+      ParticipantsByTypeAndIDDelete.mockImplementationOnce((_context: Context, _req: Request, h: ResponseToolkit) =>
+        Promise.resolve(h.response().code(204))
+      )
 
       const request = {
         method: 'DELETE',
