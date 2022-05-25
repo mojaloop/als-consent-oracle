@@ -30,14 +30,16 @@ describe('cli', (): void => {
   it('should use default port & host', async (): Promise<void> => {
     const cli = await import('~/cli')
     expect(cli).toBeDefined()
-    expect(server.run).toHaveBeenCalledWith(expect.objectContaining({
-      PORT: Config.PORT,
-      HOST: Config.HOST,
-      INSPECT: {
-        DEPTH: 4,
-        SHOW_HIDDEN: false,
-        COLOR: true
-      }
-    }))
+    expect(server.run).toHaveBeenCalledWith(
+      expect.objectContaining({
+        PORT: Config.PORT,
+        HOST: Config.HOST,
+        INSPECT: {
+          DEPTH: 4,
+          SHOW_HIDDEN: false,
+          COLOR: true
+        }
+      })
+    )
   })
 })

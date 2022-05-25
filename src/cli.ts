@@ -40,7 +40,7 @@ try {
     .option('-p, --port <number>', 'listen on port', Config.PORT.toString())
     .option('-H, --host <string>', 'listen on host', Config.HOST)
     .parse(process.argv)
-} catch(err) {
+} catch (err) {
   console.error(err)
 }
 

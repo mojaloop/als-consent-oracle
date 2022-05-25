@@ -27,15 +27,14 @@
  --------------
  ******/
 
-import Knex from 'knex'
+import { knex, Knex } from 'knex'
 import Config, { DatabaseConfig } from '../shared/config'
 import ConsentDB from '../model/consent'
 
-const Db: Knex = Knex(Config.DATABASE as DatabaseConfig)
+const Db: Knex = knex(Config.DATABASE as DatabaseConfig)
 const consentDB: ConsentDB = new ConsentDB(Db)
-const closeKnexConnection = async () => { await Db.destroy() }
-
-export {
-  consentDB,
-  closeKnexConnection
+const closeKnexConnection = async () => {
+  await Db.destroy()
 }
+
+export { consentDB, closeKnexConnection }

@@ -1,5 +1,5 @@
 'use strict'
-import * as Knex from 'knex'
+import { Knex } from 'knex'
 
 export const consents = [
   {
@@ -16,7 +16,8 @@ export const consents = [
   }
 ]
 
-export function seed (knex: Knex): Promise<Knex.QueryBuilder<number[]>> {
-  return knex('Consent').del()
+export function seed(knex: Knex): Promise<Knex.QueryBuilder<number[]>> {
+  return knex('Consent')
+    .del()
     .then(() => knex('Consent').insert(consents))
 }

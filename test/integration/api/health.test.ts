@@ -9,10 +9,10 @@ describe('health', () => {
       startTime: expect.stringMatching('.*'),
       services: []
     })
-    
+
     // Act
     const result = (await axios.get('http://localhost:3000/health')).data
-    
+
     // Assert
     expect(result).toStrictEqual(expected)
   })

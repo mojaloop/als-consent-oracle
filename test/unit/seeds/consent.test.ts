@@ -1,5 +1,5 @@
 import Config, { DatabaseConfig } from '~/shared/config'
-import Knex from 'knex'
+import { knex, Knex } from 'knex'
 
 Config.DATABASE.client = 'sqlite3'
 Config.DATABASE.connection = ':memory:'
@@ -9,7 +9,7 @@ describe('testing Consent table', (): void => {
   let db: Knex<unknown[]>
 
   beforeAll(async (): Promise<void> => {
-    db = Knex(Config.DATABASE as DatabaseConfig)
+    db = knex(Config.DATABASE as DatabaseConfig)
     await db.migrate.latest()
     await db.seed.run()
   })
@@ -41,7 +41,7 @@ describe('testing that constraints are enforced in the consent table', (): void 
   let db: Knex<unknown[]>
 
   beforeAll(async (): Promise<void> => {
-    db = Knex(Config.DATABASE as DatabaseConfig)
+    db = knex(Config.DATABASE as DatabaseConfig)
     await db.migrate.latest()
     await db.seed.run()
   })
@@ -53,21 +53,27 @@ describe('testing that constraints are enforced in the consent table', (): void 
   it('should properly enforce the primary key constraint in the Consent table', async (): Promise<void> => {
     expect(db).toBeDefined()
     /* Tests for duplication */
-    await expect(db.from('Consent').insert({
-      id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
-      fspId: 'dfspa'
-    })).rejects.toThrow()
+    await expect(
+      db.from('Consent').insert({
+        id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
+        fspId: 'dfspa'
+      })
+    ).rejects.toThrow()
     /* Tests for non-nullity */
-    await expect(db.from('Consent').insert({
-      id: null,
-      fspId: 'dfspa'
-    })).rejects.toThrow()
+    await expect(
+      db.from('Consent').insert({
+        id: null,
+        fspId: 'dfspa'
+      })
+    ).rejects.toThrow()
   })
   it('should properly enforce the non-nullable constraint for fspId', async (): Promise<void> => {
     expect(db).toBeDefined()
-    await expect(db.from('Consent').insert({
-      id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
-      fspId: null
-    })).rejects.toThrow()
+    await expect(
+      db.from('Consent').insert({
+        id: 'ab7f9872-d9fe-4aee-a540-fc12f9aad8aa',
+        fspId: null
+      })
+    ).rejects.toThrow()
   })
 })

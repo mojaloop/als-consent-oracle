@@ -22,9 +22,7 @@ export const mockConsent: Consent = {
 }
 
 export const getParticipantsByTypeAndIDResponse: Record<string, unknown> = {
-  partyList: [
-    { fspId: 'dfspa' }
-  ]
+  partyList: [{ fspId: 'dfspa' }]
 }
 
 export const postParticipantsRequest: Record<string, unknown> = {
@@ -51,8 +49,7 @@ export const getParticipantsByTypeAndIDRequest: Record<string, unknown> = {
     'fspiop-source': 'als',
     'fspiop-destination': 'als-consent-oracle'
   },
-  payload: {
-  },
+  payload: {},
   params: {
     ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
     Type: 'CONSENT'
@@ -97,8 +94,7 @@ export const deleteParticipantsByTypeAndIDRequest: Record<string, unknown> = {
     'fspiop-source': 'als',
     'fspiop-destination': 'als-consent-oracle'
   },
-  payload: {
-  },
+  payload: {},
   params: {
     ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
     Type: 'CONSENT'
@@ -111,8 +107,7 @@ export const getParticipantsByWrongTypeAndIDRequest: Record<string, unknown> = {
     'fspiop-source': 'als',
     'fspiop-destination': 'als-consent-oracle'
   },
-  payload: {
-  },
+  payload: {},
   params: {
     ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
     Type: 'ACCOUNT_ID'
@@ -157,8 +152,7 @@ export const deleteParticipantsByWrongTypeAndIDRequest: Record<string, unknown> 
     'fspiop-source': 'als',
     'fspiop-destination': 'als-consent-oracle'
   },
-  payload: {
-  },
+  payload: {},
   params: {
     ID: 'e83b456a-8d8b-46cf-bc67-b2e7744bc063',
     Type: 'ACCOUNT_ID'

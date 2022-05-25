@@ -35,8 +35,4 @@ import Config, { ServiceConfig } from '../../config/serviceConfig'
 import { DatabaseConfig } from '../../config/knexfile'
 
 export default Config
-export {
-  PACKAGE,
-  ServiceConfig,
-  DatabaseConfig
-}
+export { PACKAGE, ServiceConfig, DatabaseConfig }

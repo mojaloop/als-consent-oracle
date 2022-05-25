@@ -28,14 +28,14 @@
  ******/
 
 export class NotFoundError extends Error {
-  public constructor (resource: string, id: string) {
+  public constructor(resource: string, id: string) {
     super(`NotFoundError: ${resource} for Consent Id ${id}`)
     this.name = 'NotFoundError'
   }
 }
 
 export class IDTypeNotSupported extends Error {
-  public constructor () {
+  public constructor() {
     super('This service supports only CONSENT ID types')
     this.name = 'IDTypeNotSupported'
   }
