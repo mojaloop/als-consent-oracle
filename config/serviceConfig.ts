@@ -26,14 +26,14 @@ import KnexDatabaseConfig, { DatabaseConfig } from './knexfile'
 import ConvictFileConfig from './convictFileConfig'
 
 export interface ServiceConfig {
-  PORT: number;
-  HOST: string;
-  DATABASE: DatabaseConfig;
-  INSPECT? : {
-    DEPTH: number;
-    SHOW_HIDDEN: boolean;
-    COLOR: boolean;
-  };
+  PORT: number
+  HOST: string
+  DATABASE: DatabaseConfig
+  INSPECT?: {
+    DEPTH: number
+    SHOW_HIDDEN: boolean
+    COLOR: boolean
+  }
 }
 
 const ConfigFileProperties = ConvictFileConfig.getProperties()

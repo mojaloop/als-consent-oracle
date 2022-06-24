@@ -32,41 +32,41 @@ const migrationsDirectory = path.join(__dirname, '../migrations')
 const seedsDirectory = path.join(__dirname, '../seeds')
 
 export interface DbConnection {
-  host: string;
-  port: number;
-  user: string;
-  password: string;
-  database: string;
+  host: string
+  port: number
+  user: string
+  password: string
+  database: string
 }
 
 export interface DbPool {
-  min: number;
-  max: number;
-  acquireTimeoutMillis: number;
-  createTimeoutMillis: number;
-  destroyTimeoutMillis: number;
-  idleTimeoutMillis: number;
-  reapIntervalMillis: number;
-  createRetryIntervalMillis: number;
+  min: number
+  max: number
+  acquireTimeoutMillis: number
+  createTimeoutMillis: number
+  destroyTimeoutMillis: number
+  idleTimeoutMillis: number
+  reapIntervalMillis: number
+  createRetryIntervalMillis: number
 }
 
 export interface DatabaseConfig {
-  client: string;
-  version?: string;
-  useNullAsDefault?: boolean;
-  connection: DbConnection | string;
-  pool?: DbPool;
+  client: string
+  version?: string
+  useNullAsDefault?: boolean
+  connection: DbConnection | string
+  pool?: DbPool
   migrations: {
-    directory: string;
-    tableName: string;
-    stub?: string;
-    loadExtensions: string[];
-  };
+    directory: string
+    tableName: string
+    stub?: string
+    loadExtensions: string[]
+  }
 
   seeds: {
-    directory: string;
-    loadExtensions: string[];
-  };
+    directory: string
+    loadExtensions: string[]
+  }
 }
 
 const ConfigFileProperties = ConvictFileConfig.getProperties()
@@ -95,11 +95,11 @@ const KnexDatabaseConfig: DatabaseConfig = {
     directory: migrationsDirectory,
     stub: `${migrationsDirectory}/migration.template`,
     tableName: 'als-consent-oracle',
-    loadExtensions: ['.ts']
+    loadExtensions: ['.js']
   },
   seeds: {
     directory: seedsDirectory,
-    loadExtensions: ['.ts']
+    loadExtensions: ['.js']
   }
 }
 

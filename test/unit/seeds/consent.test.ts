@@ -4,6 +4,16 @@ import { knex, Knex } from 'knex'
 Config.DATABASE.client = 'sqlite3'
 Config.DATABASE.connection = ':memory:'
 Config.DATABASE.useNullAsDefault = true
+Config.DATABASE.migrations = {
+  directory: Config.DATABASE.migrations.directory,
+  stub: Config.DATABASE.migrations.stub,
+  tableName: 'auth-service',
+  loadExtensions: ['.ts']
+}
+Config.DATABASE.seeds = {
+  directory: Config.DATABASE.seeds.directory,
+  loadExtensions: ['.ts']
+}
 
 describe('testing Consent table', (): void => {
   let db: Knex<unknown[]>

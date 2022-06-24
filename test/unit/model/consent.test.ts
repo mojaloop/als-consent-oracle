@@ -43,6 +43,16 @@ import { NotFoundError } from '~/model/errors'
 Config.DATABASE.client = 'sqlite3'
 Config.DATABASE.connection = ':memory:'
 Config.DATABASE.useNullAsDefault = true
+Config.DATABASE.migrations = {
+  directory: Config.DATABASE.migrations.directory,
+  stub: Config.DATABASE.migrations.stub,
+  tableName: 'auth-service',
+  loadExtensions: ['.ts']
+}
+Config.DATABASE.seeds = {
+  directory: Config.DATABASE.migrations.directory,
+  loadExtensions: ['.ts']
+}
 
 /*
  * Mock Consent Resources
