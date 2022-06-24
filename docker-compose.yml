@@ -18,6 +18,9 @@ services:
       - mojaloop-net
     depends_on:
       - mysql
+    environment:
+      - ALS_CO_DATABASE_HOST=mysql
+      - ALS_CO_DATABASE_PORT=3306
     volumes:
       - ./scripts/wait4.js:/opt/als-consent-oracle/scripts/wait4.js
       - ./scripts/wait4.config.js:/opt/als-consent-oracle/scripts/wait4.config.js
