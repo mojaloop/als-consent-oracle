@@ -41,10 +41,11 @@ dist
 └───migrations
 └───seeds
 └───src
+└───package.json
 logs
 node_modules
 package-lock.json
-package.json
+package.json (Run package commands with root package.json)
 ```
 
 ### Run locally with database in `docker-compose`
