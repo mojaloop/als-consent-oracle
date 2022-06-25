@@ -226,8 +226,9 @@ jobs:
           name: Migrate DB
           command: |
             docker run --network mojaloop-net \
-              --rm mojaloop/als-consent-oracle:local \
               -e ALS_CO_DATABASE_HOST='mysql' \
+              -e ALS_CO_DATABASE_PORT='3306' \
+              --rm mojaloop/als-consent-oracle:local \
               sh -c 'npm run migrate'
       - run:
           name: Execute integration tests
