@@ -16,7 +16,7 @@
   "scripts": {
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",
-    "build": "npm run build:openapi; tsc -p ./tsconfig.build.json; cp -R config/*.json dist/config/; mkdir -p ./dist/src/interface; cp ./src/interface/*.yaml ./dist/src/interface/",
+    "build": "npm run build:openapi; tsc -p ./tsconfig.build.json; cp -R config/*.json dist/config/; mkdir -p ./dist/src/interface; cp ./src/interface/*.yaml ./dist/src/interface/; rm ./dist/package.json",
     "build:openapi": "openapi bundle --output ./src/interface/api.yaml --ext yaml ./src/interface/api-template.yaml",
     "dep:check": "npx ncu -e 2",
     "dep:update": "npx ncu -u",
@@ -79,7 +79,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
-    "@redocly/cli": "^1.0.0-beta.102",
+    "@redocly/openapi-cli": "^1.0.0-beta.94",
     "@types/jest": "26.0.20",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",

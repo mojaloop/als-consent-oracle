@@ -36,6 +36,11 @@ To check the als-consent-oracle health visit [http://als-consent-oracle.local:30
 ### File structure of docker image
 ```
 dist
+│
+└───config (Mount your default.json config file here)
+└───migrations
+└───seeds
+└───src
 logs
 node_modules
 package-lock.json
