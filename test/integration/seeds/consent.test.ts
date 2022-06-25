@@ -1,12 +1,23 @@
 import { knex, Knex } from 'knex'
 import Config from '~/shared/config'
 
+Config.DATABASE.migrations = {
+  directory: Config.DATABASE.migrations.directory,
+  stub: Config.DATABASE.migrations.stub,
+  tableName: 'auth-service',
+  loadExtensions: ['.ts']
+}
+Config.DATABASE.seeds = {
+  directory: Config.DATABASE.seeds.directory,
+  loadExtensions: ['.ts']
+}
+
 describe('testing Consent table', (): void => {
   let db: Knex
 
   beforeAll(async (): Promise<void> => {
     db = knex(Config.DATABASE as object)
-    await db.seed.run()
+    console.log(await db.seed.run())
   })
 
   afterAll(async (): Promise<void> => {
