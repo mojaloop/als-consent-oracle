@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+## [0.2.0](https://github.com/mojaloop/als-consent-oracle/compare/v0.1.0...v0.2.0) (2022-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* change migration directory and migration flow, prune docker image (#18)
+
+### Bug Fixes
+
+* change migration directory and migration flow, prune docker image ([#18](https://github.com/mojaloop/als-consent-oracle/issues/18)) ([ed522f6](https://github.com/mojaloop/als-consent-oracle/commit/ed522f644e4959a4ad07632712ca7eb19016ea1a))
+
 ## [0.1.0](https://github.com/mojaloop/als-consent-oracle/compare/v0.0.8...v0.1.0) (2022-06-10)
 
 
