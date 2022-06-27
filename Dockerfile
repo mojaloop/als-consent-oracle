@@ -11,13 +11,12 @@ RUN apk add --no-cache -t build-dependencies git make gcc g++ python3 libtool au
 COPY package.json package-lock.json* /opt/app/
 RUN npm ci
 
-# check in .dockerignore what is skipped during copy
+# Check in .dockerignore what is skipped during copy
 COPY /. /opt/app/
 
 RUN npm run build
-RUN rm -rf src
 
-# cleanup
+# Cleanup
 RUN apk del build-dependencies
 
 FROM node:16.15.0-alpine
@@ -31,7 +30,10 @@ RUN ln -sf /dev/stdout ./logs/combined.log
 RUN adduser -D app-user
 USER app-user
 
-COPY --chown=app-user --from=builder /opt/app/ .
+# Copy only essential files for running service
+COPY --chown=app-user --from=builder /opt/app/node_modules ./node_modules
+COPY --chown=app-user --from=builder /opt/app/package*.json ./
+COPY --chown=app-user --from=builder /opt/app/dist ./dist
 
 RUN npm prune --production
 

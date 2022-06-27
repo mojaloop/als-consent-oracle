@@ -32,29 +32,29 @@ import Convict from 'convict'
 const ENV_PREFIX = 'ALS_CO_'
 
 export interface FileConfig {
-  PORT: number,
-  HOST: string,
+  PORT: number
+  HOST: string
   INSPECT: {
-    DEPTH: number,
-    SHOW_HIDDEN: boolean,
+    DEPTH: number
+    SHOW_HIDDEN: boolean
     COLOR: boolean
-  },
+  }
   DATABASE: {
-    DIALECT: string;
-    HOST: string;
-    PORT: number;
-    USER: string;
-    PASSWORD: string;
-    DATABASE: string;
-    POOL_MIN_SIZE: number;
-    POOL_MAX_SIZE: number;
-    ACQUIRE_TIMEOUT_MILLIS: number;
-    CREATE_TIMEOUT_MILLIS: number;
-    DESTROY_TIMEOUT_MILLIS: number;
-    IDLE_TIMEOUT_MILLIS: number;
-    REAP_INTERVAL_MILLIS: number;
-    CREATE_RETRY_INTERVAL_MILLIS: number;
-    USE_NULL_AS_DEFAULT?: boolean;
+    DIALECT: string
+    HOST: string
+    PORT: number
+    USER: string
+    PASSWORD: string
+    DATABASE: string
+    POOL_MIN_SIZE: number
+    POOL_MAX_SIZE: number
+    ACQUIRE_TIMEOUT_MILLIS: number
+    CREATE_TIMEOUT_MILLIS: number
+    DESTROY_TIMEOUT_MILLIS: number
+    IDLE_TIMEOUT_MILLIS: number
+    REAP_INTERVAL_MILLIS: number
+    CREATE_RETRY_INTERVAL_MILLIS: number
+    USE_NULL_AS_DEFAULT?: boolean
   }
 }
 
@@ -170,6 +170,5 @@ const ConvictFileConfig = Convict<FileConfig>({
 const ConfigFile = path.join(__dirname, 'default.json')
 ConvictFileConfig.loadFile(ConfigFile)
 ConvictFileConfig.validate({ allowed: 'strict' })
-
 export default ConvictFileConfig
 module.exports = ConvictFileConfig

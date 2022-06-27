@@ -33,6 +33,21 @@ npm run docker:run
 
 To check the als-consent-oracle health visit [http://als-consent-oracle.local:3000/health](http://als-consent-oracle.local:3000/health)
 
+### File structure of docker image
+```
+dist
+│
+└───config (Mount your default.json config file here)
+└───migrations
+└───seeds
+└───src
+└───package.json
+logs
+node_modules
+package-lock.json
+package.json (Run package commands with root package.json)
+```
+
 ### Run locally with database in `docker-compose`
 
 ```bash
