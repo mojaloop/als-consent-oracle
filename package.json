@@ -131,7 +131,7 @@
     "babel-jest": "^28.1.1",
     "blipp": "^4.0.2",
     "commander": "^5.1.0",
-    "convict": "^6.2.3",
+    "convict": "^6.2.4",
     "dot-prop": "^7.2.0",
     "hapi-openapi": "^3.0.0",
     "hapi-swagger": "^14.5.5",
