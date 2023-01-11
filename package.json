@@ -135,7 +135,7 @@
     "dot-prop": "^7.2.0",
     "hapi-openapi": "^3.0.0",
     "hapi-swagger": "^14.5.5",
-    "knex": "2.1.0",
+    "knex": "2.4.0",
     "module-alias": "^2.2.2",
     "mysql": "^2.18.1",
     "npm-run-all": "^4.1.5",
