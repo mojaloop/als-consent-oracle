@@ -317,11 +317,6 @@ jobs:
 
             # wait for services to be up and running
             npm run wait-4-docker
-
-            # chmod +x ./scripts/wait4.js
-            # sh -c "./scripts/wait4.js cicd-integration-tests"
-          environment:
-            NODE_ENV: "integration"
       - run:
           name: Migrate DB
           command: |

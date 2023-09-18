@@ -21,9 +21,6 @@ services:
     environment:
       - ALS_CO_DATABASE_HOST=mysql
       - ALS_CO_DATABASE_PORT=3306
-    # volumes:
-    #   - ./scripts/wait4.js:/opt/als-consent-oracle/scripts/wait4.js
-    #   - ./scripts/wait4.config.js:/opt/als-consent-oracle/scripts/wait4.config.js
     healthcheck:
       test: ["CMD", "sh", "-c" ,"apk --no-cache add curl", ";", "curl", "http://localhost:3008/health"]
       timeout: 20s
