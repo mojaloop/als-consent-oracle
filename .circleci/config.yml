@@ -533,6 +533,7 @@ jobs:
 
   github-release:
     executor: default-machine
+    shell: "/bin/bash -eo pipefail"
     environment:
       <<: *defaults_environment
     steps:
@@ -857,6 +858,8 @@ workflows:
             - audit-licenses
             - license-scan
             - image-scan
+            - test-integration
+            - build-local
           filters:
             branches:
               only:
@@ -883,6 +886,7 @@ workflows:
             - vulnerability-check
             - audit-licenses
             - test-integration
+            - build-local
             - license-scan
             - image-scan
           filters:
@@ -903,6 +907,7 @@ workflows:
             - vulnerability-check
             - audit-licenses
             - test-integration
+            - build-local
             - license-scan
             - image-scan
           filters:
