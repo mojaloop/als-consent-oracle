@@ -1,5 +1,5 @@
 # ALS Consent Oracle (Work in Progress)
-[![Git Commit](https://img.shields.io/github/last-commit/mojaloop/als-consent-oracle.svg?style=flat)](https://github.com/mojaloop/als-consent-oracle/commits/master)
+[![Git Commit](https://img.shields.io/github/last-commit/mojaloop/als-consent-oracle.svg?style=flat)](https://github.com/mojaloop/als-consent-oracle/commits/main)
 [![Git Releases](https://img.shields.io/github/release/mojaloop/als-consent-oracle.svg?style=flat)](https://github.com/mojaloop/als-consent-oracle/releases)
 [![Npm Version](https://img.shields.io/npm/v/@mojaloop/als-consent-oracle.svg?style=flat)](https://www.npmjs.com/package/@mojaloop/als-consent-oracle)
 [![NPM Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@mojaloop/als-consent-oracle.svg?style=flat)](https://www.npmjs.com/package/@mojaloop/als-consent-oracle)
