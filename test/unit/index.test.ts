@@ -74,8 +74,7 @@ describe('api routes', (): void => {
     server = await index.server.run(Config)
   })
 
-  afterAll(async (done): Promise<void> => {
-    server.events.on('stop', done)
+  afterAll(async (): Promise<void> => {
     await server.stop()
   })
 

@@ -31,7 +31,7 @@ import inspect from '~/shared/inspect'
 // import { Logger as SDKLogger } from '@mojaloop/sdk-standard-components'
 
 // import SDK from '@mojaloop/sdk-standard-components'
-// import { mocked } from 'ts-jest/utils'
+// import { mocked } from 'ts-jest'
 
 jest.mock(
   '@mojaloop/sdk-standard-components',
