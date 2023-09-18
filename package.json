@@ -45,13 +45,6 @@
     "seed:run": "knex $npm_package_config_knex seed:run",
     "wait-4-docker": "node ./scripts/wait4.js cicd-integration-tests"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged && npm run test",
-      "post-commit": "git update-index --again"
-    }
-  },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix"
   },
@@ -118,20 +111,16 @@
     "@hapi/vision": "^7.0.3",
     "@mojaloop/api-snippets": "^17.2.4",
     "@mojaloop/central-services-health": "14.0.2",
-    "@mojaloop/central-services-shared": "18.1.1",
+    "@mojaloop/central-services-shared": "18.1.2-snapshot.2",
     "@mojaloop/sdk-standard-components": "17.1.3",
     "@types/convict": "^6.1.4",
-    "@types/hapi": "^18.0.11",
-    "@types/hapi__hapi": "^20.0.13",
-    "@types/hapi__inert": "^5.2.7",
-    "@types/hapi__vision": "^5.5.5",
     "@types/node": "^20.6.2",
     "@types/rc": "^1.2.1",
     "ajv": "8.x.x",
     "ajv-keywords": "5.x.x",
     "babel-jest": "^29.7.0",
     "blipp": "^4.0.2",
-    "commander": "^5.1.0",
+    "commander": "^11.0.0",
     "convict": "^6.2.4",
     "dot-prop": "^8.0.2",
     "hapi-openapi": "^3.0.0",
