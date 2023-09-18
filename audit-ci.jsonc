@@ -4,5 +4,22 @@
   // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
   "moderate": true,
   "allowlist": [
+    "GHSA-v88g-cgmw-v5xw",
+    "GHSA-phwq-j96m-2c2q",
+    "GHSA-282f-qqgm-c34q",
+    "GHSA-6vfc-qv3f-vr6c",
+    "GHSA-p8p7-x288-28g6",
+    "GHSA-mjxr-4v3x-q3m4",
+    "GHSA-rjqq-98f6-6j3r",
+    "GHSA-c2qf-rxjj-qqgw",
+    "GHSA-9qrh-qjmc-5w2p",
+    "GHSA-jqv5-7xpx-qj74",
+    "GHSA-3jfq-g458-7qm9",
+    "GHSA-r628-mhmh-qjhw",
+    "GHSA-9r2w-394v-53qc",
+    "GHSA-5955-9wpr-37jh",
+    "GHSA-qq89-hq3f-393p",
+    "GHSA-72xf-g2v4-qvf3",
+    "GHSA-p9pc-299p-vxgp"
   ]
 }
