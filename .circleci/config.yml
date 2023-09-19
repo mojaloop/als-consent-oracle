@@ -157,6 +157,8 @@ executors:
 jobs:
   setup:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -176,6 +178,8 @@ jobs:
 
   test-dependencies:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -193,6 +197,8 @@ jobs:
 
   test-lint:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -210,6 +216,8 @@ jobs:
 
   test-unit:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -237,6 +245,8 @@ jobs:
 
   test-bdd:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -263,6 +273,8 @@ jobs:
 
   test-coverage:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -286,6 +298,8 @@ jobs:
 
   test-integration:
     executor: default-machine
+    environment:
+      <<: *defaults_environment
     steps:
       - checkout
       - run:
@@ -347,6 +361,8 @@ jobs:
 
   vulnerability-check:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -363,13 +379,15 @@ jobs:
           command: mkdir -p ./audit/results
       - run:
           name: Check for new npm vulnerabilities
-          command: npm run audit:check --silent -- --json > ./audit/results/auditResults.json
+          command: npm run audit:check -- -o json > ./audit/results/auditResults.json
       - store_artifacts:
           path: ./audit/results
           destination: audit
 
   audit-licenses:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
