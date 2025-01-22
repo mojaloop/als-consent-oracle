@@ -21,7 +21,7 @@
  --------------
  ******/
 
-import { Request, ResponseToolkit, HTTP_METHODS } from '@hapi/hapi'
+import { Request, ResponseToolkit } from '@hapi/hapi'
 import { Enum } from '@mojaloop/central-services-shared'
 import * as Handler from '~/server/handlers/participants/{Type}/{ID}'
 import * as Domain from '~/domain/participants'
@@ -56,7 +56,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
       const req = getParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.get(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -74,7 +74,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
 
       const response = await Handler.get(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -96,7 +96,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
       const req = postParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.post(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -114,7 +114,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
 
       const response = await Handler.post(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -136,7 +136,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
       const req = putParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.put(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -154,7 +154,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
 
       const response = await Handler.put(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -176,7 +176,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
       const req = deleteParticipantsByTypeAndIDRequest as unknown as Request
       const response = await Handler.del(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
@@ -193,7 +193,7 @@ describe('server/handler/participants/{Type}/{ID}', (): void => {
 
       const response = await Handler.del(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,

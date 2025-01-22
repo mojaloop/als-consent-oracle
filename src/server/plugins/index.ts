@@ -72,7 +72,7 @@ async function register(server: Server): Promise<Server> {
 
 // Context is required for OpenAPI
 export interface Context {
-  method: HTTP_METHODS
+  method: Lowercase<HTTP_METHODS>
   path: string
   body: StreamReadable | Buffer | string | object
   query: RequestQuery

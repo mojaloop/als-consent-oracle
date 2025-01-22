@@ -1,9 +1,9 @@
 /*****
  License
  --------------
- Copyright © 2020 Mojaloop Foundation
- The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
+ Copyright © 2020-2025 Mojaloop Foundation
+ The Mojaloop files are made available by the Mojaloop Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License.
+ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  Contributors
  --------------
@@ -15,6 +15,8 @@
  Gates Foundation organization for an example). Those individuals should have
  their names indented and be marked with a '-'. Email address can be added
  optionally within square brackets <email>.
+ * Mojaloop Foundation
+ - Name Surname <name.surname@mojaloop.io>
 
  * Lewis Daly <lewis@vesselstech.com>
  * Paweł Marzec <pawel.marzec@modusbox.com>
@@ -35,6 +37,7 @@ import MockParticipantPostData from '../data/mockParticipantsPost.json'
 import MockParticipantsByTypeAndIDPost from '../data/mockParticipantsByTypeAndIDPost.json'
 import MockParticipantsByTypeAndIDPut from '../data/mockParticipantsByTypeAndIDPut.json'
 import { getParticipantsByTypeAndIDResponse } from '../data/data'
+import { jest, describe, it, expect, beforeAll, afterAll } from '@jest/globals'
 jest.mock('~/shared/logger')
 jest.mock('~/server/handlers', () => ({
   HealthGet: jest.fn((_context: Context, _req: Request, h: ResponseToolkit) =>

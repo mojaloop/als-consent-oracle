@@ -23,7 +23,7 @@
  --------------
  ******/
 
-import { Request, ResponseToolkit, HTTP_METHODS } from '@hapi/hapi'
+import { Request, ResponseToolkit} from '@hapi/hapi'
 import * as Handler from '~/server/handlers/participants'
 import Boom from '@hapi/boom'
 import { h, postParticipantsRequest } from 'test/data/data'
@@ -37,7 +37,7 @@ describe('server/handler/participants', (): void => {
       const req = postParticipantsRequest as unknown as Request
       const response = await Handler.post(
         {
-          method: req.method.toUpperCase() as HTTP_METHODS,
+          method: req.method,
           path: req.path,
           body: req.payload,
           query: req.query,
