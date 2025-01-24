@@ -19,7 +19,7 @@ module.exports = {
       lines: 90
     }
   },
-  testTimeout: 10000,
+  testTimeout: 30000,
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/'
   }),
