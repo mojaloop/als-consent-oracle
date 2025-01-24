@@ -74,7 +74,7 @@ defineFeature(feature, (test): void => {
 
     then('I respond with a 200 OK', (): void => {
       expect(response.statusCode).toBe(200)
-      expect(mockRetrieveConsent).toBeCalledWith('fb2f2b12-5107-48f1-a93d-52b154270038')
+      expect(mockRetrieveConsent).toHaveBeenCalledWith('fb2f2b12-5107-48f1-a93d-52b154270038')
     })
   })
 
@@ -101,7 +101,7 @@ defineFeature(feature, (test): void => {
 
     then('I respond with a 201 Created', (): void => {
       expect(response.statusCode).toBe(201)
-      expect(mockCreateConsent).toBeCalledWith({ fspId: 'dfspa', id: 'fb2f2b12-5107-48f1-a93d-52b154270038' })
+      expect(mockCreateConsent).toHaveBeenCalledWith({ fspId: 'dfspa', id: 'fb2f2b12-5107-48f1-a93d-52b154270038' })
     })
   })
 
@@ -128,7 +128,7 @@ defineFeature(feature, (test): void => {
 
     then('I respond with a 200 OK', (): void => {
       expect(response.statusCode).toBe(200)
-      expect(mockUpdateConsent).toBeCalledWith({ fspId: 'dfspa', id: 'fb2f2b12-5107-48f1-a93d-52b154270038' })
+      expect(mockUpdateConsent).toHaveBeenCalledWith({ fspId: 'dfspa', id: 'fb2f2b12-5107-48f1-a93d-52b154270038' })
     })
   })
 
@@ -154,7 +154,7 @@ defineFeature(feature, (test): void => {
 
     then('I respond with a 204 No Content', (): void => {
       expect(response.statusCode).toBe(204)
-      expect(mockDeleteConsent).toBeCalledWith('fb2f2b12-5107-48f1-a93d-52b154270038')
+      expect(mockDeleteConsent).toHaveBeenCalledWith('fb2f2b12-5107-48f1-a93d-52b154270038')
     })
   })
 })

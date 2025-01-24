@@ -26,6 +26,17 @@ import server from '~/server'
 import { jest, describe, it, expect } from '@jest/globals'
 jest.mock('~/server')
 
+
+// Mock process.argv to avoid unknown options
+const ORIGINAL_ARGV = process.argv;
+beforeEach(() => {
+  process.argv = ['node', 'cli.js']; // Mocked CLI arguments
+})
+
+afterEach(() => {
+  process.argv = ORIGINAL_ARGV; // Restore original arguments
+})
+
 // TODO: fix this test!
 describe('cli', (): void => {
   it('should use default port & host', async (): Promise<void> => {

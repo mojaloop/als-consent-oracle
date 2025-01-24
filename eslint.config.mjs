@@ -2,30 +2,34 @@ import js from '@eslint/js';
 import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import globals from "globals";
+import jest from 'eslint-plugin-jest';
+import { parse } from 'path';
 
 export default [
     {
         files: ['**/*.ts', '**/*.tsx'], // Target TypeScript files
         languageOptions: {
             parser: tsParser,
-            ecmaVersion: 2022, // Support modern JavaScript
-            sourceType: 'module',  // Enable ESModules
+            ecmaVersion: 'latest',
             globals: {
                 ...globals.node,
+                ...globals.jest,
+                structuredClone: 'readonly',
             }
         },
         plugins: {
             '@typescript-eslint': ts,
+            jest,
         },
         rules: {
-            ...js.configs.recommended.rules, // Include recommended JavaScript rules
-            ...ts.configs.recommended.rules, // Include recommended TypeScript rules
-            '@typescript-eslint/no-explicit-any': 'off', // Disable "no-explicit-any"
-            '@typescript-eslint/no-var-requires': 'off', // Disable "no-var-requires"
-            '@typescript-eslint/no-non-null-assertion': 'off',
-            '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-            // Sometimes openapi generator emits empty interfaces
-            '@typescript-eslint/no-empty-interface': 'warn'
+            indent: ["error", 2, {
+                SwitchCase: 1,
+            }],
+    
+            "linebreak-style": [2, "unix"],
+            quotes: [2, "single"],
+            "no-console": 2,
+            "no-prototype-builtins": "off",
         },
         ignores: ["node_modules/**/*.js", "coverage/*", ".circleci/*", "*.d.ts", "commitlint.config.js", "eslint.config.mjs"]
     },

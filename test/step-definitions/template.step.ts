@@ -49,7 +49,7 @@ defineFeature(feature, (test): void => {
       return server
     })
 
-    when("I get 'Health Check' response", async (): Promise<ServerInjectResponse> => {
+    when('I get "Health Check" response', async (): Promise<ServerInjectResponse> => {
       const request = {
         method: 'GET',
         url: '/health'
@@ -58,7 +58,7 @@ defineFeature(feature, (test): void => {
       return response
     })
 
-    then("The status should be 'OK'", (): void => {
+    then('The status should be "OK"', (): void => {
       interface HealthResponse {
         status: string
         uptime: number
