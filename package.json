@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/als-consent-oracle",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "An Account Lookup Service Oracle for consents",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
