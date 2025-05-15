@@ -22,6 +22,7 @@
 
  * Mojaloop Foundation
  - Name Surname <name.surname@mojaloop.io>
+ - Shashikant Hirugade <shashi.mojaloop@gmail.com>
 
  - Paweł Marzec <pawel.marzec@modusbox.com>
 
@@ -29,36 +30,27 @@
  ******/
 
 import { RequestLogged, logResponse, logger, createLogger } from '~/shared/logger'
-// import { Logger as SDKLogger } from '@mojaloop/sdk-standard-components'
 import inspect from '~/shared/inspect'
-// import { Logger as SDKLogger } from '@mojaloop/sdk-standard-components'
-
-// import SDK from '@mojaloop/sdk-standard-components'
-// import { mocked } from 'ts-jest'
 
 jest.mock(
   '@mojaloop/sdk-standard-components',
-  jest.fn(() => ({
+  () => ({
     Logger: {
-      Logger: jest.fn(() => ({
+      loggerFactory: jest.fn(() => ({
         push: jest.fn(),
-        configure: jest.fn(),
-
-        // log methods
         log: jest.fn(),
-
-        // generated methods from default levels
-        verbose: jest.fn(),
+        silly: jest.fn(),
         debug: jest.fn(),
+        verbose: jest.fn(),
+        perf: jest.fn(),
+        info: jest.fn(),
+        trace: jest.fn(),
+        audit: jest.fn(),
         warn: jest.fn(),
         error: jest.fn(),
-        trace: jest.fn(),
-        info: jest.fn(),
-        fatal: jest.fn()
       })),
-      buildStringify: jest.fn()
-    }
-  }))
+    },
+  })
 )
 
 describe('shared/logger', (): void => {
@@ -78,10 +70,8 @@ describe('shared/logger', (): void => {
   })
 
   it('should log response via inspect', (): void => {
-     
     jest.mock('~/shared/inspect', () => jest.fn())
 
-     
     const spyStringify = jest.spyOn(JSON, 'stringify').mockImplementationOnce(() => {
       throw new Error('parse-error')
     })
@@ -95,7 +85,6 @@ describe('shared/logger', (): void => {
   })
 
   it('should log if there is no request.response', (): void => {
-     
     const spyStringify = jest.spyOn(JSON, 'stringify').mockImplementationOnce(() => null as unknown as string)
     const request = { response: { source: 'abc', statusCode: 200 } }
     logResponse(request as RequestLogged)
@@ -108,39 +97,37 @@ describe('shared/logger', (): void => {
       const log = createLogger()
       // basic methods
       expect(typeof log.push).toEqual('function')
-      expect(typeof log.configure).toEqual('function')
-
       // log methods
       expect(typeof log.log).toEqual('function')
-
       // generated methods from default levels
-      expect(typeof log.verbose).toEqual('function')
+      expect(typeof log.silly).toEqual('function')
       expect(typeof log.debug).toEqual('function')
+      expect(typeof log.verbose).toEqual('function')
+      expect(typeof log.perf).toEqual('function')
+      expect(typeof log.info).toEqual('function')
+      expect(typeof log.trace).toEqual('function')
+      expect(typeof log.audit).toEqual('function')
       expect(typeof log.warn).toEqual('function')
       expect(typeof log.error).toEqual('function')
-      expect(typeof log.trace).toEqual('function')
-      expect(typeof log.info).toEqual('function')
-      expect(typeof log.fatal).toEqual('function')
     })
   })
 
   describe('logger default instance', () => {
     it('should have proper layout', () => {
-      // basic methods
+      //InboundContextLogger methods
       expect(typeof logger.push).toEqual('function')
-      expect(typeof logger.configure).toEqual('function')
-
       // log methods
       expect(typeof logger.log).toEqual('function')
-
       // generated methods from default levels
-      expect(typeof logger.verbose).toEqual('function')
+      expect(typeof logger.silly).toEqual('function')
       expect(typeof logger.debug).toEqual('function')
+      expect(typeof logger.verbose).toEqual('function')
+      expect(typeof logger.perf).toEqual('function')
+      expect(typeof logger.info).toEqual('function')
+      expect(typeof logger.trace).toEqual('function')
+      expect(typeof logger.audit).toEqual('function')
       expect(typeof logger.warn).toEqual('function')
       expect(typeof logger.error).toEqual('function')
-      expect(typeof logger.trace).toEqual('function')
-      expect(typeof logger.info).toEqual('function')
-      expect(typeof logger.fatal).toEqual('function')
     })
   })
 })

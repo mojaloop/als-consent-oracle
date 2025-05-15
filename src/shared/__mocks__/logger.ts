@@ -32,11 +32,11 @@ const mockLog = jest.fn()
 const mockError = jest.fn()
 const mockInfo = jest.fn()
 
-export const logger: SDKLogger.Logger = {
+export const logger: SDKLogger.SdkLogger = {
   log: mockLog,
   error: mockError,
   info: mockInfo,
-  push: jest.fn((): SDKLogger.Logger => logger)
-} as unknown as SDKLogger.Logger
+  push: jest.fn((): SDKLogger.SdkLogger => logger),
+} as unknown as SDKLogger.SdkLogger
 
 export const logResponse = jest.fn()
