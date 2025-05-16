@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+## [1.1.0](https://github.com/mojaloop/als-consent-oracle/compare/v1.0.1...v1.1.0) (2025-05-16)
+
+
+### Features
+
+* node version upgrade to v22.15.0 ([#38](https://github.com/mojaloop/als-consent-oracle/issues/38)) ([a440db7](https://github.com/mojaloop/als-consent-oracle/commit/a440db73977a2ca454f3ed84ef06e2b574d29197))
+
 ### [1.0.1](https://github.com/mojaloop/als-consent-oracle/compare/v0.2.4...v1.0.1) (2025-02-24)
 
 
