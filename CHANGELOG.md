@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [1.1.1](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.0...v1.1.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* new orb version to fix docker issue ([#39](https://github.com/mojaloop/als-consent-oracle/issues/39)) ([bfe229c](https://github.com/mojaloop/als-consent-oracle/commit/bfe229c2269f7472d396562e6a615521636856b5))
+
 ## [1.1.0](https://github.com/mojaloop/als-consent-oracle/compare/v1.0.1...v1.1.0) (2025-05-16)
 
 
