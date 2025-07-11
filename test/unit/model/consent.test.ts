@@ -154,7 +154,7 @@ describe('src/model/consent', (): void => {
     })
 
     it('throws an error on updating non-existent consent', async (): Promise<void> => {
-      await expect(consentDB.update(updatedConsent)).rejects.toThrowError(NotFoundError)
+      await expect(consentDB.update(updatedConsent)).rejects.toThrow(NotFoundError)
     })
   })
 
@@ -168,7 +168,7 @@ describe('src/model/consent', (): void => {
     })
 
     it('throws an error on retrieving non-existent consent', async (): Promise<void> => {
-      await expect(consentDB.retrieve(exampleConsent.id)).rejects.toThrowError(NotFoundError)
+      await expect(consentDB.retrieve(exampleConsent.id)).rejects.toThrow(NotFoundError)
     })
   })
 
@@ -196,7 +196,7 @@ describe('src/model/consent', (): void => {
     })
 
     it('throws an error on deleting non-existent consent', async (): Promise<void> => {
-      await expect(consentDB.delete(exampleConsent.id)).rejects.toThrowError(NotFoundError)
+      await expect(consentDB.delete(exampleConsent.id)).rejects.toThrow(NotFoundError)
     })
   })
 })
