@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [1.1.2](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.1...v1.1.2) (2025-07-11)
+
+
+### Chore
+
+* switch to mysql2 client ([#41](https://github.com/mojaloop/als-consent-oracle/issues/41)) ([569bbb1](https://github.com/mojaloop/als-consent-oracle/commit/569bbb12d90e236b00ecf84b47e19bee62659c6a))
+
 ### [1.1.1](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.0...v1.1.1) (2025-05-29)
 
 
