@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [1.1.3](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.2...v1.1.3) (2025-07-17)
+
+
+### Chore
+
+* add initial sbom ([#42](https://github.com/mojaloop/als-consent-oracle/issues/42)) ([ed07c25](https://github.com/mojaloop/als-consent-oracle/commit/ed07c25b554622ea3c4bba1e5b95a23277ade72c))
+
 ### [1.1.2](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.1...v1.1.2) (2025-07-11)
 
 
