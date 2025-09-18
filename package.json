@@ -121,7 +121,7 @@
     "@mojaloop/api-snippets": "18.1.1",
     "@mojaloop/central-services-health": "15.1.0",
     "@mojaloop/central-services-shared": "18.30.6",
-    "@mojaloop/sdk-standard-components": "19.16.4",
+    "@mojaloop/sdk-standard-components": "19.16.8",
     "@types/convict": "6.1.6",
     "@types/node": "24.1.0",
     "@types/rc": "1.2.4",
