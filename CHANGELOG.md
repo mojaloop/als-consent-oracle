@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [1.1.5](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.4...v1.1.5) (2025-10-16)
+
+
+### Chore
+
+* comprehensive security fixes for PI28 ([#51](https://github.com/mojaloop/als-consent-oracle/issues/51)) ([17316d6](https://github.com/mojaloop/als-consent-oracle/commit/17316d65a6b0fe8d7c6354f78d111987fc685276))
+* **sbom:** update sbom [skip ci] ([517e3e5](https://github.com/mojaloop/als-consent-oracle/commit/517e3e512acc08405e1650e010d52694eafaefd4))
+
 ### [1.1.4](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.3...v1.1.4) (2025-07-25)
 
 
