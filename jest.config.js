@@ -20,9 +20,10 @@ module.exports = {
     }
   },
   testTimeout: 30000,
-  maxWorkers: '50%',
+  maxWorkers: 1,
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/'
   }),
-  reporters: ['jest-junit', 'default']
+  reporters: ['jest-junit', 'default'],
+  testMatch: ['**/test/unit/**/*.(test|spec).ts']
 }
