@@ -123,7 +123,7 @@
     "@mojaloop/central-services-shared": "18.34.6",
     "@mojaloop/sdk-standard-components": "19.18.4",
     "@types/convict": "6.1.6",
-    "@types/node": "25.0.8",
+    "@types/node": "25.0.9",
     "@types/rc": "1.2.4",
     "ajv": "8.x.x",
     "ajv-keywords": "5.x.x",
