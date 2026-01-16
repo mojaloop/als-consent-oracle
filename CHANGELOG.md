@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [1.1.6](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.5...v1.1.6) (2026-01-16)
+
+
+### Chore
+
+* **sbom:** update sbom [skip ci] ([143408c](https://github.com/mojaloop/als-consent-oracle/commit/143408c5889240fcb11bdad5cc6802ac57c5d46d))
+* update orb,node ver and deps ([#58](https://github.com/mojaloop/als-consent-oracle/issues/58)) ([655c22f](https://github.com/mojaloop/als-consent-oracle/commit/655c22f3836f3e4f49ec11973dd94553892440c9))
+
 ### [1.1.5](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.4...v1.1.5) (2025-10-16)
 
 
