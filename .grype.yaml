@@ -61,6 +61,12 @@ ignore:
   - vulnerability: GHSA-xffm-g5w8-qvg7
     include-aliases: true
     reason: "Unfixable npm transitive vulnerability: unknown (unknown severity) as of 2026-02-25"
+  - vulnerability: GHSA-23c5-xmqv-rm74
+    include-aliases: true
+    reason: "Unfixable npm transitive vulnerability: minimatch ReDoS (high severity) as of 2026-02-27"
+  - vulnerability: GHSA-7r86-cg39-jmmj
+    include-aliases: true
+    reason: "Unfixable npm transitive vulnerability: minimatch ReDoS (high severity) as of 2026-02-27"
 output:
   - table
   - json
