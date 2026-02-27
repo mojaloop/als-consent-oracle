@@ -45,7 +45,7 @@ describe('server/handler/participants', (): void => {
           path: req.path,
           body: req.payload,
           query: req.query,
-          headers: req.headers
+          headers: req.headers as Record<string, string>
         },
         req,
         h as unknown as ResponseToolkit
