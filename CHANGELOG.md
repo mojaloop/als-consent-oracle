@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/als-consent-oracle](https://github.com/mojaloop/als-consent-oracle)
+### [1.1.8](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.7...v1.1.8) (2026-03-24)
+
+
+### Chore
+
+* add private:true to prevent npm publish ([#4384](https://github.com/mojaloop/als-consent-oracle/issues/4384)) ([#63](https://github.com/mojaloop/als-consent-oracle/issues/63)) ([3215673](https://github.com/mojaloop/als-consent-oracle/commit/3215673722879484bfb15b9aef03f679b4b26ee0))
+* **sbom:** update sbom [skip ci] ([6378887](https://github.com/mojaloop/als-consent-oracle/commit/6378887da49120029623737ae8005c9003c977f7))
+
 ### [1.1.7](https://github.com/mojaloop/als-consent-oracle/compare/v1.1.6...v1.1.7) (2026-02-27)
 
 

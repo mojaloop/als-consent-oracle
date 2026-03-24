@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/als-consent-oracle",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "private": true,
   "description": "An Account Lookup Service Oracle for consents",
   "main": "dist/index.js",
@@ -73,7 +73,7 @@
   "author": "Kevin Leyow <kevin.leyow@modusbox.com",
   "contributors": [
     "Lewis Daly <lewis@vesselstech.com>",
-    "Pawe\u0142 Marzec <pawel.marzec@modusbox.com>"
+    "Paweł Marzec <pawel.marzec@modusbox.com>"
   ],
   "license": "Apache-2.0",
   "bugs": {
