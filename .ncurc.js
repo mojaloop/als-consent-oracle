@@ -1,10 +1,8 @@
 module.exports = {
   reject: [
-    // sqlite3 v6.x is a major version - keep on 5.x until verified
-    'sqlite3',
-    // eslint v10.x breaks eslint-plugin-import compatibility
-    'eslint',
-    // typescript v6.x is a major version - keep on 5.x until verified
-    'typescript',
+    // @types/node must stay on the 24.x line: its major must match the .nvmrc runtime major;
+    // higher majors only weaken type checking (tsc accepts Node-26-only APIs that crash at
+    // runtime - untestable failure mode)
+    '@types/node',
   ]
 }
