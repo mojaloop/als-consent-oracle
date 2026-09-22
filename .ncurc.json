@@ -1,0 +1,14 @@
+{
+  "reject": [
+    "sqlite3",
+    "why-sqlite: native build kept on the pinned line (carried over from the js config)",
+    "eslint",
+    "why-eslint: the ts lint parser and plugin in this repo cap out below the latest major (carried over from the js config)",
+    "typescript",
+    "why-typescript: 7.x ships Go-built tsgo binaries that trip the Grype source scan and the ts lint parser peer range tops out below 6.1 (carried over from the js config)",
+    "@types/node",
+    "why-types-node: its major must match the Node runtime major in .nvmrc (24); a higher major only weakens type checking (tsc accepts newer-Node-only APIs that crash at runtime); bump together with the runtime",
+    "ts-jest",
+    "why-ts-jest: 29.4.10 started honouring moduleResolution nodeNext with per-import resolutionMode, which makes namespace-style type references resolve to a package's ESM d.ts and fail with TS2503; hold at 29.4.6 until the sources use named type imports (reproduced 2026-09-18 in another repo)"
+  ]
+}
