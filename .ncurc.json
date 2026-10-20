@@ -1,11 +1,9 @@
 {
   "reject": [
-    "sqlite3",
-    "why-sqlite: native build kept on the pinned line (carried over from the js config)",
     "eslint",
-    "why-eslint: the ts lint parser and plugin in this repo cap out below the latest major (carried over from the js config)",
+    "why-eslint: 10.x cannot be installed by npm ci - eslint-plugin-import 2.32.0 (latest) declares a peer range that stops at eslint 9 (re-tested 2026-10-20)",
     "typescript",
-    "why-typescript: 7.x ships Go-built tsgo binaries that trip the Grype source scan and the ts lint parser peer range tops out below 6.1 (carried over from the js config)",
+    "why-typescript: 7.0.2 fails npm install with ERESOLVE because the ts lint parser 8.72 declares a peer range of typescript <6.1.0, and its Go-built tsgo binaries trip the Grype source scan (re-tested 2026-10-20)",
     "@types/node",
     "why-types-node: its major must match the Node runtime major in .nvmrc (24); a higher major only weakens type checking (tsc accepts newer-Node-only APIs that crash at runtime); bump together with the runtime",
     "ts-jest",
