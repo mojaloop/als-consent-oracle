@@ -1,5 +1,5 @@
 # Arguments
-ARG NODE_VERSION="22.22.1-alpine3.23"
+ARG NODE_VERSION="24.21.0-alpine3.24"
 # NOTE: Ensure you set NODE_VERSION Build Argument as follows...
 #
 #  export NODE_VERSION="$(cat .nvmrc)-alpine" \
@@ -10,16 +10,17 @@ ARG NODE_VERSION="22.22.1-alpine3.23"
 #
 
 # Build Image
-FROM node:${NODE_VERSION} as builder
+FROM node:${NODE_VERSION} AS builder
 USER root
 
 WORKDIR /opt/app/
 
-RUN apk add --no-cache -t build-dependencies git make gcc g++ python3 libtool autoconf automake \
-    && cd $(npm root -g)/npm
+RUN apk add --no-cache --virtual .build-deps autoconf automake g++ gcc git libtool make python3
 
 COPY package.json package-lock.json* /opt/app/
-RUN npm ci
+# Lifecycle scripts are skipped for supply-chain safety (docker:S6505); no production
+# dependency in this service needs a native build.
+RUN npm ci --ignore-scripts
 
 # Check in .dockerignore what is skipped during copy
 COPY /. /opt/app/
@@ -27,7 +28,7 @@ COPY /. /opt/app/
 RUN npm run build
 
 # Cleanup
-RUN apk del build-dependencies
+RUN apk del .build-deps
 
 FROM node:${NODE_VERSION}
 WORKDIR /opt/app/
@@ -45,7 +46,7 @@ COPY --chown=app-user --from=builder /opt/app/node_modules ./node_modules
 COPY --chown=app-user --from=builder /opt/app/package*.json ./
 COPY --chown=app-user --from=builder /opt/app/dist ./dist
 
-RUN npm prune --production
+RUN npm prune --omit=dev --ignore-scripts
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]
