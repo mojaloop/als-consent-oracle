@@ -12,7 +12,7 @@ export async function get(_context: Context, request: Request, h: ResponseToolki
     return boomify(new IDTypeNotSupported())
   }
 
-  const consentId = request.params.ID
+  const consentId = request.params.ID as string
   const consent = await retrieveConsent(consentId)
   return h.response({ partyList: [consent] }).code(200)
 }
@@ -22,7 +22,7 @@ export async function post(_context: Context, request: Request, h: ResponseToolk
     return boomify(new IDTypeNotSupported())
   }
 
-  const consentId = request.params.ID
+  const consentId = request.params.ID as string
   const payload = request.payload as Schemas.ParticipantsTypeIDSubIDPostRequest
   const consent: Consent = {
     id: consentId,
@@ -37,7 +37,7 @@ export async function put(_context: Context, request: Request, h: ResponseToolki
     return boomify(new IDTypeNotSupported())
   }
 
-  const consentId = request.params.ID
+  const consentId = request.params.ID as string
   const payload = request.payload as Types.ParticipantsTypeIDSubIDPut
   const consent: Consent = {
     id: consentId,
@@ -52,7 +52,7 @@ export async function del(_context: Context, request: Request, h: ResponseToolki
     return boomify(new IDTypeNotSupported())
   }
 
-  const consentId = request.params.ID
+  const consentId = request.params.ID as string
   await deleteConsent(consentId)
   return h.response().code(204)
 }
